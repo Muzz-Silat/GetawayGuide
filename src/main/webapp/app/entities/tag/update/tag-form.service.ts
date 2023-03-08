@@ -14,11 +14,12 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type TagFormGroupInput = ITag | PartialWithRequiredKeyOf<NewTag>;
 
-type TagFormDefaults = Pick<NewTag, 'id' | 'posts'>;
+type TagFormDefaults = Pick<NewTag, 'id' | 'posts' | 'posts'>;
 
 type TagFormGroupContent = {
   id: FormControl<ITag['id'] | NewTag['id']>;
   name: FormControl<ITag['name']>;
+  posts: FormControl<ITag['posts']>;
   posts: FormControl<ITag['posts']>;
 };
 
@@ -43,6 +44,7 @@ export class TagFormService {
         validators: [Validators.required, Validators.minLength(2)],
       }),
       posts: new FormControl(tagRawValue.posts ?? []),
+      posts: new FormControl(tagRawValue.posts ?? []),
     });
   }
 
@@ -63,6 +65,7 @@ export class TagFormService {
   private getFormDefaults(): TagFormDefaults {
     return {
       id: null,
+      posts: [],
       posts: [],
     };
   }

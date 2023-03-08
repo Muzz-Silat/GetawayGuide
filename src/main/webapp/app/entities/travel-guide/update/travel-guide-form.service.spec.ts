@@ -22,6 +22,7 @@ describe('TravelGuide Form Service', () => {
             id: expect.any(Object),
             place: expect.any(Object),
             weather: expect.any(Object),
+            tags: expect.any(Object),
           })
         );
       });
@@ -34,6 +35,7 @@ describe('TravelGuide Form Service', () => {
             id: expect.any(Object),
             place: expect.any(Object),
             weather: expect.any(Object),
+            tags: expect.any(Object),
           })
         );
       });

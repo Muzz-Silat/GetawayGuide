@@ -53,7 +53,12 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
         <tr *ngFor="let travelGuide of travelGuides; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/travel-guide', travelGuide.id, 'view']">{{ travelGuide.id }}</a>

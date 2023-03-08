@@ -25,6 +25,20 @@
         <dropDefaultValue tableName="travel_guide" columnName="weather" columnDataType="${datetimeType}"/>
     </changeSet>
 
+    <changeSet id="20230308053818-1-relations" author="jhipster">
+
+        <createTable tableName="rel_travel_guide__tag">
+            <column name="tag_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="travel_guide_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="travel_guide_id, tag_id" tableName="rel_travel_guide__tag"/>
+    </changeSet>
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--

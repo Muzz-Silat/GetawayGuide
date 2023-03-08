@@ -27,12 +27,13 @@ type TravelGuideFormRawValue = FormValueOf<ITravelGuide>;
 
 type NewTravelGuideFormRawValue = FormValueOf<NewTravelGuide>;
 
-type TravelGuideFormDefaults = Pick<NewTravelGuide, 'id' | 'weather'>;
+type TravelGuideFormDefaults = Pick<NewTravelGuide, 'id' | 'weather' | 'tags'>;
 
 type TravelGuideFormGroupContent = {
   id: FormControl<TravelGuideFormRawValue['id'] | NewTravelGuide['id']>;
   place: FormControl<TravelGuideFormRawValue['place']>;
   weather: FormControl<TravelGuideFormRawValue['weather']>;
+  tags: FormControl<TravelGuideFormRawValue['tags']>;
 };
 
 export type TravelGuideFormGroup = FormGroup<TravelGuideFormGroupContent>;
@@ -58,6 +59,7 @@ export class TravelGuideFormService {
       weather: new FormControl(travelGuideRawValue.weather, {
         validators: [Validators.required],
       }),
+      tags: new FormControl(travelGuideRawValue.tags ?? []),
     });
   }
 
@@ -81,6 +83,7 @@ export class TravelGuideFormService {
     return {
       id: null,
       weather: currentTime,
+      tags: [],
     };
   }
 
@@ -99,6 +102,7 @@ export class TravelGuideFormService {
     return {
       ...travelGuide,
       weather: travelGuide.weather ? travelGuide.weather.format(DATE_TIME_FORMAT) : undefined,
+      tags: travelGuide.tags ?? [],
     };
   }
 }

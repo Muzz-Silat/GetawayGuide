@@ -48,12 +48,6 @@ public class CacheConfiguration {
             createCache(cm, uk.ac.bham.teamproject.domain.User.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.Authority.class.getName());
             createCache(cm, uk.ac.bham.teamproject.domain.User.class.getName() + ".authorities");
-            createCache(cm, uk.ac.bham.teamproject.domain.Blog.class.getName());
-            createCache(cm, uk.ac.bham.teamproject.domain.Post.class.getName());
-            createCache(cm, uk.ac.bham.teamproject.domain.Post.class.getName() + ".tags");
-            createCache(cm, uk.ac.bham.teamproject.domain.Tag.class.getName());
-            createCache(cm, uk.ac.bham.teamproject.domain.Tag.class.getName() + ".posts");
-            createCache(cm, uk.ac.bham.teamproject.domain.TravelGuide.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

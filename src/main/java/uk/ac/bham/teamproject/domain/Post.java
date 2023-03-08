@@ -48,7 +48,7 @@ public class Post implements Serializable {
     @ManyToMany
     @JoinTable(name = "rel_post__tag", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "posts" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "posts", "posts" }, allowSetters = true)
     private Set<Tag> tags = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

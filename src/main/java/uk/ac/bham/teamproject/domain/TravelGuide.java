@@ -1,7 +1,10 @@
 package uk.ac.bham.teamproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -31,6 +34,16 @@ public class TravelGuide implements Serializable {
     @NotNull
     @Column(name = "weather", nullable = false)
     private Instant weather;
+
+    @ManyToMany
+    @JoinTable(
+        name = "rel_travel_guide__tag",
+        joinColumns = @JoinColumn(name = "travel_guide_id"),
+        inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "posts", "posts" }, allowSetters = true)
+    private Set<Tag> tags = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -71,6 +84,31 @@ public class TravelGuide implements Serializable {
 
     public void setWeather(Instant weather) {
         this.weather = weather;
+    }
+
+    public Set<Tag> getTags() {
+        return this.tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public TravelGuide tags(Set<Tag> tags) {
+        this.setTags(tags);
+        return this;
+    }
+
+    public TravelGuide addTag(Tag tag) {
+        this.tags.add(tag);
+        tag.getPosts().add(this);
+        return this;
+    }
+
+    public TravelGuide removeTag(Tag tag) {
+        this.tags.remove(tag);
+        tag.getPosts().remove(this);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

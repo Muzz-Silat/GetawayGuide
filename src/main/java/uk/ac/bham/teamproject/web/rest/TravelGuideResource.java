@@ -10,10 +10,16 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.TravelGuide;
 import uk.ac.bham.teamproject.repository.TravelGuideRepository;
@@ -145,12 +151,24 @@ public class TravelGuideResource {
     /**
      * {@code GET  /travel-guides} : get all the travelGuides.
      *
+     * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of travelGuides in body.
      */
     @GetMapping("/travel-guides")
-    public List<TravelGuide> getAllTravelGuides() {
-        log.debug("REST request to get all TravelGuides");
-        return travelGuideRepository.findAll();
+    public ResponseEntity<List<TravelGuide>> getAllTravelGuides(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
+        log.debug("REST request to get a page of TravelGuides");
+        Page<TravelGuide> page;
+        if (eagerload) {
+            page = travelGuideRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = travelGuideRepository.findAll(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -162,7 +180,7 @@ public class TravelGuideResource {
     @GetMapping("/travel-guides/{id}")
     public ResponseEntity<TravelGuide> getTravelGuide(@PathVariable Long id) {
         log.debug("REST request to get TravelGuide : {}", id);
-        Optional<TravelGuide> travelGuide = travelGuideRepository.findById(id);
+        Optional<TravelGuide> travelGuide = travelGuideRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(travelGuide);
     }
 

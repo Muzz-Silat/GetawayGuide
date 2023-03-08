@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "place": "Place",
-      "weather": "Weather"
+      "weather": "Weather",
+      "tag": "Tag"
     }
   }
 }

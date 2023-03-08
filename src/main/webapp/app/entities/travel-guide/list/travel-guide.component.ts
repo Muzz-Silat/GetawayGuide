@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ITravelGuide } from '../travel-guide.model';
+
+import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { EntityArrayResponseType, TravelGuideService } from '../service/travel-guide.service';
 import { TravelGuideDeleteDialogComponent } from '../delete/travel-guide-delete-dialog.component';
-import { SortService } from 'app/shared/sort/sort.service';
+import { ParseLinks } from 'app/core/util/parse-links.service';
 
 @Component({
   selector: 'jhi-travel-guide',
@@ -20,13 +23,30 @@ export class TravelGuideComponent implements OnInit {
   predicate = 'id';
   ascending = true;
 
+  itemsPerPage = ITEMS_PER_PAGE;
+  links: { [key: string]: number } = {
+    last: 0,
+  };
+  page = 1;
+
   constructor(
     protected travelGuideService: TravelGuideService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
-    protected sortService: SortService,
+    protected parseLinks: ParseLinks,
     protected modalService: NgbModal
   ) {}
+
+  reset(): void {
+    this.page = 1;
+    this.travelGuides = [];
+    this.load();
+  }
+
+  loadPage(page: number): void {
+    this.page = page;
+    this.load();
+  }
 
   trackId = (_index: number, item: ITravelGuide): number => this.travelGuideService.getTravelGuideIdentifier(item);
 
@@ -59,13 +79,17 @@ export class TravelGuideComponent implements OnInit {
   }
 
   navigateToWithComponentValues(): void {
-    this.handleNavigation(this.predicate, this.ascending);
+    this.handleNavigation(this.page, this.predicate, this.ascending);
+  }
+
+  navigateToPage(page = this.page): void {
+    this.handleNavigation(page, this.predicate, this.ascending);
   }
 
   protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
     return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
       tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-      switchMap(() => this.queryBackend(this.predicate, this.ascending))
+      switchMap(() => this.queryBackend(this.page, this.predicate, this.ascending))
     );
   }
 
@@ -76,28 +100,50 @@ export class TravelGuideComponent implements OnInit {
   }
 
   protected onResponseSuccess(response: EntityArrayResponseType): void {
+    this.fillComponentAttributesFromResponseHeader(response.headers);
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
-    this.travelGuides = this.refineData(dataFromBody);
-  }
-
-  protected refineData(data: ITravelGuide[]): ITravelGuide[] {
-    return data.sort(this.sortService.startSort(this.predicate, this.ascending ? 1 : -1));
+    this.travelGuides = dataFromBody;
   }
 
   protected fillComponentAttributesFromResponseBody(data: ITravelGuide[] | null): ITravelGuide[] {
-    return data ?? [];
+    const travelGuidesNew = this.travelGuides ?? [];
+    if (data) {
+      for (const d of data) {
+        if (travelGuidesNew.map(op => op.id).indexOf(d.id) === -1) {
+          travelGuidesNew.push(d);
+        }
+      }
+    }
+    return travelGuidesNew;
   }
 
-  protected queryBackend(predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
+  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
+    const linkHeader = headers.get('link');
+    if (linkHeader) {
+      this.links = this.parseLinks.parse(linkHeader);
+    } else {
+      this.links = {
+        last: 0,
+      };
+    }
+  }
+
+  protected queryBackend(page?: number, predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
     this.isLoading = true;
+    const pageToLoad: number = page ?? 1;
     const queryObject = {
+      page: pageToLoad - 1,
+      size: this.itemsPerPage,
+      eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
     return this.travelGuideService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
   }
 
-  protected handleNavigation(predicate?: string, ascending?: boolean): void {
+  protected handleNavigation(page = this.page, predicate?: string, ascending?: boolean): void {
     const queryParamsObj = {
+      page,
+      size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
 

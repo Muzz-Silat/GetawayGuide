@@ -8,11 +8,13 @@ import { of } from 'rxjs';
 import { TravelGuideService } from '../service/travel-guide.service';
 
 import { TravelGuideComponent } from './travel-guide.component';
+import SpyInstance = jest.SpyInstance;
 
 describe('TravelGuide Management Component', () => {
   let comp: TravelGuideComponent;
   let fixture: ComponentFixture<TravelGuideComponent>;
   let service: TravelGuideService;
+  let routerNavigateSpy: SpyInstance<Promise<boolean>>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,6 +45,7 @@ describe('TravelGuide Management Component', () => {
     fixture = TestBed.createComponent(TravelGuideComponent);
     comp = fixture.componentInstance;
     service = TestBed.inject(TravelGuideService);
+    routerNavigateSpy = jest.spyOn(comp.router, 'navigate');
 
     const headers = new HttpHeaders();
     jest.spyOn(service, 'query').mockReturnValue(
@@ -72,5 +75,50 @@ describe('TravelGuide Management Component', () => {
       expect(service.getTravelGuideIdentifier).toHaveBeenCalledWith(entity);
       expect(id).toBe(entity.id);
     });
+  });
+
+  it('should load a page', () => {
+    // WHEN
+    comp.navigateToPage(1);
+
+    // THEN
+    expect(routerNavigateSpy).toHaveBeenCalled();
+  });
+
+  it('should calculate the sort attribute for an id', () => {
+    // WHEN
+    comp.ngOnInit();
+
+    // THEN
+    expect(service.query).toHaveBeenLastCalledWith(expect.objectContaining({ sort: ['id,desc'] }));
+  });
+
+  it('should calculate the sort attribute for a non-id attribute', () => {
+    // GIVEN
+    comp.predicate = 'name';
+
+    // WHEN
+    comp.navigateToWithComponentValues();
+
+    // THEN
+    expect(routerNavigateSpy).toHaveBeenLastCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        queryParams: expect.objectContaining({
+          sort: ['name,asc'],
+        }),
+      })
+    );
+  });
+
+  it('should re-initialize the page', () => {
+    // WHEN
+    comp.loadPage(1);
+    comp.reset();
+
+    // THEN
+    expect(comp.page).toEqual(1);
+    expect(service.query).toHaveBeenCalledTimes(2);
+    expect(comp.travelGuides?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 });

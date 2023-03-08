@@ -19,8 +19,17 @@
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "TravelGuide",
-  "pagination": "no",
+  "pagination": "infinite-scroll",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "tag",
+      "otherEntityRelationshipName": "post",
+      "ownerSide": true,
+      "relationshipName": "tag",
+      "relationshipType": "many-to-many"
+    }
+  ],
   "service": "no"
 }
