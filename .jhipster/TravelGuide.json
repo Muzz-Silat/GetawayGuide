@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230308053818",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "travel_guide",
+  "fields": [
+    {
+      "fieldName": "place",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "weather",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TravelGuide",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

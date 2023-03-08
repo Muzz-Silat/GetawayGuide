@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-travel-guide-heading"
+        data-cy="TravelGuideCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.travelGuide.home.createOrEditLabel"
+      >
+        Create or edit a Travel Guide
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.travelGuide.place" for="field_place">Place</label>
+          <input type="text" class="form-control" name="place" id="field_place" data-cy="place" formControlName="place" />
+          <div *ngIf="editForm.get('place')!.invalid && (editForm.get('place')!.dirty || editForm.get('place')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('place')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.travelGuide.weather" for="field_weather">Weather</label>
+          <div class="d-flex">
+            <input
+              id="field_weather"
+              data-cy="weather"
+              type="datetime-local"
+              class="form-control"
+              name="weather"
+              formControlName="weather"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('weather')!.invalid && (editForm.get('weather')!.dirty || editForm.get('weather')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('weather')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('weather')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

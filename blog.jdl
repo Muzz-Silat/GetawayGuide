@@ -13,6 +13,11 @@ entity Tag {
     name String required minlength(2)
 }
 
+entity TravelGuide {
+    place String required
+    weather Instant required
+}
+
 relationship ManyToOne {
     Blog{user(login)} to User
     Post{blog(name)} to Blog
@@ -20,6 +25,7 @@ relationship ManyToOne {
 
 relationship ManyToMany {
     Post{tag(name)} to Tag{post}
+    TravelGuide{tag(name)} to Tag{post}
 }
 
-paginate Post, Tag with infinite-scroll
+paginate Post, Tag, TravelGuide with infinite-scroll
