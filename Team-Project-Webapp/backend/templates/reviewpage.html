@@ -1,0 +1,67 @@
+<div>
+  <link href="../static/css/reviewpage.css" rel="stylesheet" />
+  <div class="review-container">
+    <div class="review-page">
+      <h1 class="review-title">Getaway Guide</h1>
+      <a
+        href="/"
+        rel="noreferrer noopener"
+        class="review-home"
+      >
+        Home
+      </a>
+      <a
+        href="/create-itinerary/"
+        rel="noreferrer noopener"
+        class="review-createit"
+      >
+        Create Itinerary
+      </a>
+      <a
+        href="/reviews"
+        rel="noreferrer noopener"
+        class="review-reviews"
+      >
+        Reviews
+      </a>
+      <span class="review-more">
+        <span>More Coming Soon</span>
+        <br />
+      </span>
+      <h1 class="review-customer">Customer Reviews</h1>
+      <span class="review-short-para">
+        At Getaway Guide, we value user feedback above all else. We understand
+        that planning a trip can be overwhelming and we want to make the process
+        as easy as possible. Before planning your next adventure, take a moment
+        to read reviews from other travellers. Their experiences can offer
+        valuable insight and help you make the most of your trip.
+      </span>
+      {% if reviews %}
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Date Posted</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for review in reviews %}
+              <tr>
+                <td>{{ review.user }}</td>
+                <td>{{ review.rating }}</td>
+                <td>{{ review.comment }}</td>
+                <td>{{ review.date_posted }}</td>
+                <td><a href="{% url 'review_delete' review.pk %}">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p class= "no-reviews">No reviews yet.</p>
+          {% endif %}
+          <button class="button review-button" onclick="window.location.href='/create-review/'">Add Review</button>
+    </div>
+  </div>
+</div>

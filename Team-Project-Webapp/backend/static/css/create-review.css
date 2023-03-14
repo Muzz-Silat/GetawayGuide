@@ -1,0 +1,127 @@
+.create-review-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    background-image: url('../images/background.jpg');
+    height: 1000px;
+  }
+  .create-review-container1 {
+    top: -2px;
+      left: 0px;
+      right: -5px;
+      width: 1200px;
+      height: 1000px;
+      position: absolute;
+  }
+  .create-review-links-container {
+    top: 8px;
+      right: 28px;
+      width: 700px;
+      height: 101px;
+      position: absolute;
+  }
+    .create-review-text {
+      top: 25px;
+      left: 60px;
+      width: 367px;
+      height: 87px;
+      position: absolute;
+      font-size: 45px;
+      font-style: normal;
+      font-weight: 700;
+      font-family: Arial;
+    }
+    .create-review-link {
+      top: 35px;
+      right: 110px;
+      position: absolute;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: Arial;
+      text-decoration: none;
+    }
+    .create-review-link:visited { 
+      color: black; 
+    }
+    .create-review-link:hover {
+      color: #fb0101;
+    }
+    .create-review-link1 {
+      top: 35px;
+      right: -87px;
+      position: absolute;
+      font-size: 20px;
+      font-family: Arial;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .create-review-link1:visited { 
+      color: black; 
+    }
+    .create-review-link1:hover {
+      color: #fb0101;
+    }
+    .create-review-link2 {
+      top: 35px;
+      right: -217px;
+      color: #fb0101;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .create-review-text1 {
+      top: 35px;
+      right: -450px;
+      position: absolute;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: Arial
+    }
+    .create-review-title {
+      top: 176px;
+      left: 700px;
+      position: absolute;
+      font-size: 45px;
+      font-style: normal;
+      font-weight: 700;
+      font-family: Arial;
+    }
+    .create-review-button {
+      top: 270px;
+      left: 0px;
+      color: #ffffff;
+      width: 93px;
+      height: 35px;
+      position: absolute;
+      font-size: 20px;
+      text-align: center;
+      font-family: Arial;
+      background-color: black;
+    }
+  
+    form{
+      font-family: Arial;
+      font-weight: 700;
+      position: absolute;
+      top: 300px;
+      left: 700px;
+    }
+    input{
+      margin-left: 50px;
+    }
+    textarea{
+      position: absolute;
+      left: 95px;
+    }
+    select{
+      position: absolute;
+      left: 95px;
+    }

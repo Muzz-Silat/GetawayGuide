@@ -1,0 +1,41 @@
+<div>
+    <link href="../static/css/create-review.css" rel="stylesheet" />
+    <div class="create-review-container">
+      <div class="create-review-container1">
+        <h1 class="create-review-text">Getaway Guide</h1>
+        <div class="create-review-links-container">
+          <a
+            href="/"
+            rel="noreferrer noopener"
+            class="create-review-link"
+          >
+            Home
+          </a>
+          <a
+            href="/create-itinerary"
+            rel="noreferrer noopener"
+            class="create-review-link1"
+          >
+            Create Itinerary
+          </a>
+          <a
+            href="/reviews"
+            rel="noreferrer noopener"
+            class="create-review-link2"
+          >
+            Reviews
+          </a>
+          <span class="create-review-text1">More Coming Soon</span>
+        </div>
+        <span class="create-review-title">Add Review</span>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class= "button create-review-button">Save</button>
+      </form>
+      </div>
+    </div>
+  </div>
+  
+
+     
