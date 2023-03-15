@@ -110,7 +110,7 @@ cache:
 #   - pip install -r requirements.txt
 stages:
   - build
-#  - test
+  - test
 #  - publish
 #  - deploy
 
@@ -139,19 +139,19 @@ build_stage:
     paths:
       - /venv
 
-# test_stage:
-#   stage: test
-#   script:
-#     - echo "Running fictional test suite..."
-#     - ls
-#     - source venv/bin/activate
-#     - python manage.py test
-#     - python manage.py runserver &
-#     - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
-#     - pkill python
-#     - deactivate
-#     - chmod 400 $RSA4
-#     - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "echo 1"
+test_stage:
+  stage: test
+  script:
+    - echo "Running fictional test suite..."
+    - ls
+    - source venv/bin/activate
+    - python manage.py test
+    - python manage.py runserver &
+    - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
+    - pkill python
+    - deactivate
+    - chmod 400 $RSA4
+    - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "echo 1"
     # - source venv/bin/activate
     # - python manage.py test
   # variables:
