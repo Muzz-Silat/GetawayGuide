@@ -1,86 +1,217 @@
-image: jhipster/jhipster:v7.9.3
+# image: jhipster/jhipster:v7.9.3
+
+# variables:
+#   CI_IMG: "\"${CI_REGISTRY_IMAGE}:latest\""
+#   TP_URL: "${CI_PROJECT_NAMESPACE}.bham.team"
+#   TP_CONTACT: "${GITLAB_USER_EMAIL}"
+# cache:
+#   key: '$CI_COMMIT_REF_NAME'
+#   paths:
+#     - .maven/
+# stages:
+#   - check
+#   - build
+#   - test
+#   - analyze
+#   - package
+#   - release
+#   - publish
+#   - deploy
+# before_script:
+#   - export NG_CLI_ANALYTICS="false"
+#   - export MAVEN_USER_HOME=`pwd`/.maven
+
+# nohttp:
+#   stage: check
+#   script:
+#     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
+
+# maven-compile:
+#   stage: build
+#   script:
+#     - ./mvnw -ntp compile -P-webapp -Dmaven.repo.local=$MAVEN_USER_HOME
+#   artifacts:
+#     paths:
+#       - target/classes/
+#       - target/generated-sources/
+#     expire_in: 1 day
+
+# maven-package:
+#   stage: package
+#   script:
+#     - echo "jhipster" | sudo -S apt-get update
+#     - echo "jhipster" | sudo -S apt-get install -y chromium-browser
+#     - echo 'whereis chromium-browser'
+#     - ./mvnw -ntp verify -Pprod -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
+#   artifacts:
+#     paths:
+#       - target/*.jar
+#       - target/classes
+#     expire_in: 1 day
+
+# publish-docker:
+#     stage: publish
+#     services:
+#      - docker:dind
+#     variables:
+#      DOCKER_HOST: 'tcp://docker:2375'
+#      DOCKER_DRIVER: overlay2
+#      DOCKER_TLS_CERTDIR: ""
+#     dependencies:
+#         - maven-package
+#     script:
+#         - echo "pushing ${CI_REGISTRY_IMAGE} ${CI_REGISTRY_USER} ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}"
+#         - ./mvnw -ntp -e -X jib:build -DskipTests -Pprod -Djib.to.auth.username=${CI_REGISTRY_USER} -Djib.to.auth.password=${CI_REGISTRY_PASSWORD} -Djib.to.image=${CI_REGISTRY_IMAGE}:latest -Dmaven.repo.local=$MAVEN_USER_HOME
+
+# #uncomment this once the $RSA $VM_USER@$VM are set in the repo - Setting -> CI/CD -> variables
+# #$RSA should be a private key file, $VM_USER is the VM user name (e.g. root or ec2) and $VM is the IP address of the Virtual Machine
+# #this assumes docker and SSH is installed on the $VM
+# deploy-git:
+#   image: alpine:latest
+#   stage: deploy
+#   when: on_success
+#   before_script: 
+#     - chmod og= $RSA
+#     - apk update && apk add openssh-client
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f ~/team-project-deployment/src/main/docker/app.yml down || true"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker rm -f $(docker ps -a -q) || true"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker volume rm $(docker volume ls -q) || true"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "rm -rf ~/team-project-deployment || true"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker pull ${CI_REGISTRY_IMAGE}:latest"
+#   script:
+#     - scp -o StrictHostKeyChecking=no -i $RSA -r . $VM_USER@$VM:~/team-project-deployment 
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "sed -i '5s|teamproject|$CI_IMG|' ~/team-project-deployment/src/main/docker/app.yml"
+#     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f ~/team-project-deployment/src/main/docker/app.yml up -d"
+
+image: python:3.11.2
 
 variables:
-  CI_IMG: "\"${CI_REGISTRY_IMAGE}:latest\""
+  CI_IMG: '"${CI_REGISTRY_IMAGE}:latest"'
   TP_URL: "${CI_PROJECT_NAMESPACE}.bham.team"
   TP_CONTACT: "${GITLAB_USER_EMAIL}"
+  PIP_CACHE_DIR: "${CI_PROJECT_DIR}/.cache/pip"
+  # PSQL_USER: '${PSQL_USER}'
+  # PSQL_PASSWORD: '${PSQL_PASSWORD}'
+  # PSQL_DB: '${PSQL_DB}'
+  # PSQL_HOST: '${PSQL_HOST}'
+  # DOCKER_HOST: tcp://docker:2375
+  # PSQL_PORT: '${PSQL_PORT}'
 cache:
-  key: '$CI_COMMIT_REF_NAME'
+  key: "$CI_COMMIT_REF_NAME"
   paths:
-    - .maven/
+    - .cache/pip
+    - venv
+    # - .venv
+# before_script:
+# - ssh add $RSA4
+#   - python -V
+#   - pip install --upgrade pip
+#   - pip install -r requirements.txt
 stages:
-  - check
   - build
-  - test
-  - analyze
-  - package
-  - release
-  - publish
-  - deploy
-before_script:
-  - export NG_CLI_ANALYTICS="false"
-  - export MAVEN_USER_HOME=`pwd`/.maven
+#  - test
+#  - publish
+#  - deploy
 
-nohttp:
-  stage: check
-  script:
-    - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
-
-maven-compile:
+build_stage:
   stage: build
+  # before_script:
+  #   - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  #   - export WEB_IMAGE=$IMAGE:web
+  #   - export NGINX_IMAGE=$IMAGE:nginx
+  # services:
+  #   - docker:dind
+  # variables:
+  #   DOCKER_HOST: "tcp://docker:2375/"
+  #   DOCKER_DRIVER: overlay2
+  #   DOCKER_TLS_CERTDIR: ""
   script:
-    - ./mvnw -ntp compile -P-webapp -Dmaven.repo.local=$MAVEN_USER_HOME
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip install -r requirements.txt
+    - deactivate
+    # - python manage.py collectstatic --noinput
+    # - python manage.py makemigrations
+    # - python manage.py migrate
+    # - python manage.py runserver
   artifacts:
     paths:
-      - target/classes/
-      - target/generated-sources/
-    expire_in: 1 day
+      - /venv
 
-maven-package:
-  stage: package
-  script:
-    - echo "jhipster" | sudo -S apt-get update
-    - echo "jhipster" | sudo -S apt-get install -y chromium-browser
-    - echo 'whereis chromium-browser'
-    - ./mvnw -ntp verify -Pprod -DskipTests -Dmaven.repo.local=$MAVEN_USER_HOME
-  artifacts:
-    paths:
-      - target/*.jar
-      - target/classes
-    expire_in: 1 day
+# test_stage:
+#   stage: test
+#   script:
+#     - echo "Running fictional test suite..."
+#     - ls
+#     - source venv/bin/activate
+#     - python manage.py test
+#     - python manage.py runserver &
+#     - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
+#     - pkill python
+#     - deactivate
+#     - chmod 400 $RSA4
+#     - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "echo 1"
+    # - source venv/bin/activate
+    # - python manage.py test
+  # variables:
+  # DOCKER_HOST: tcp://docker:2375/
+#   DOCKER_DRIVER: overlay2
 
-publish-docker:
-    stage: publish
-    services:
-     - docker:dind
-    variables:
-     DOCKER_HOST: 'tcp://docker:2375'
-     DOCKER_DRIVER: overlay2
-     DOCKER_TLS_CERTDIR: ""
-    dependencies:
-        - maven-package
-    script:
-        - echo "pushing ${CI_REGISTRY_IMAGE} ${CI_REGISTRY_USER} ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}"
-        - ./mvnw -ntp -e -X jib:build -DskipTests -Pprod -Djib.to.auth.username=${CI_REGISTRY_USER} -Djib.to.auth.password=${CI_REGISTRY_PASSWORD} -Djib.to.image=${CI_REGISTRY_IMAGE}:latest -Dmaven.repo.local=$MAVEN_USER_HOME
+# publish_stage:
+#   image: docker:latest
+#   stage: publish
+#   services:
+#     - docker:dind
+#   before_script:
+#     - "command -v ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+#     - eval $(ssh-agent -s)
+#     - chmod 400 $RSA4
+#     - ssh-add $RSA4
+#     - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+#     # - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#   script:
+#     - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "docker build -t $CI_IMG ."
+#     - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "docker push $CI_IMG"
+    # - docker build -t $CI_IMG .
+    # - docker push $CI_IMG
+# deploy_stage:
+#   image: alpine:latest
+#   stage: deploy
+#   when: on_success
+#   before_script:
+#     - chmod 400 $RSA
+#     - apk update && apk add openssh-client
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f docker-compose.yml down || true"
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker rm -f $(docker ps -a -q) || true"
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker volume rm $(docker volume ls -q) || true"
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker pull ${CI_REGISTRY_IMAGE}:latest"
+# script:
+# - scp -o StrictHostKeyChecking=no -i $RSA -r . $VM_USER@$VM:~/team-project-deployment
+# - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY && docker run -d -p 80:8000 $CI_IMG"
+# - echo "$RSA" > ~/.ssh/id_rsa
+# - cat ~/.ssh/id_rsa
+# - chmod 700 ~/.ssh/id_rsa
+# - eval $(ssh-agent -s)# - ssh-add ~/.ssh/id_rsa
+# - ssh-keyscan -H 'git.cs.bham.ac.uk/' >> ~/.ssh/known_hosts
+# - chmod +x deploy.sh
+# - scp -o StrictHostKeyChecking=no -r ./docker-compose.yml root@143.198.222.14:/PathFinder
+# - bash ./deploy.sh
 
-#uncomment this once the $RSA $VM_USER@$VM are set in the repo - Setting -> CI/CD -> variables
-#$RSA should be a private key file, $VM_USER is the VM user name (e.g. root or ec2) and $VM is the IP address of the Virtual Machine
-#this assumes docker and SSH is installed on the $VM
-deploy-git:
-  image: alpine:latest
-  stage: deploy
-  when: on_success
-  before_script: 
-    - chmod og= $RSA
-    - apk update && apk add openssh-client
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f ~/team-project-deployment/src/main/docker/app.yml down || true"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker rm -f $(docker ps -a -q) || true"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker volume rm $(docker volume ls -q) || true"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "rm -rf ~/team-project-deployment || true"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker pull ${CI_REGISTRY_IMAGE}:latest"
-  script:
-    - scp -o StrictHostKeyChecking=no -i $RSA -r . $VM_USER@$VM:~/team-project-deployment 
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "sed -i '5s|teamproject|$CI_IMG|' ~/team-project-deployment/src/main/docker/app.yml"
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f ~/team-project-deployment/src/main/docker/app.yml up -d"
+# before_script:
+#   - export IMAGE=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+#   # - export WEB_IMAGE=$IMAGE:web
+#   - apk update
+#   - apk add --no-cache bash
+#   - apk add --no-cache python3
+#   - apk add --no-cache python3-dev
+#   - apk add --no-cache --update postgresql-client
+#   - apk add --no-cache postgresql-dev
+#   - apk add --no-cache build-base
+#   - apk add --no-cache curl
+#   - pip install --upgrade pip
+#   - python3 -m venv venv
+#   - source venv/bin/activate
+#   - pip install -r requirements.txt
 
