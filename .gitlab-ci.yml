@@ -145,6 +145,7 @@ test_stage:
     - echo "Running fictional test suite..."
     - ls
     - source venv/bin/activate
+    - cd Team-Project-Webapp
     - python manage.py test
     - python manage.py runserver &
     - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
