@@ -148,11 +148,11 @@ test_stage:
     - cd Team-Project-Webapp
     - python manage.py test
     - python manage.py runserver &
-    - curl -sSf http://localhost:8000 > /dev/null && echo "Server is Up"
+    - curl -sSf http://127.0.0.1:8000/ > /dev/null && echo "Server is Up"
     - pkill python
     - deactivate
-    - chmod 400 $RSA4
-    - ssh -o StrictHostKeyChecking=no -i $RSA4 $VMUSER@$VM "echo 1"
+    - chmod 400 $RSA
+    - ssh -o StrictHostKeyChecking=no -i $RSA $VMUSER@$VM "echo 1"
     # - source venv/bin/activate
     # - python manage.py test
   # variables:
