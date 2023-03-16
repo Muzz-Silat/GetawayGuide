@@ -3,10 +3,18 @@ from django.http import HttpResponse
 from .models import Review
 from .forms import ReviewForm
 from django.contrib import messages
+import pip._vendor.requests 
 
 # Create your views here.
 def homepage(request):
-    return render(request, 'homepage.html')
+    response = pip._vendor.requests.get('http://api.weatherapi.com/v1/current.json?key=84a1a048b3304244957125921231303&q=Dubai&aqi=no').json()
+    details= {
+        'location': response['location'],
+        'current' : response['current'],
+        
+    }
+    return render(request,'homepage.html',details)
+
 
 def create_itinerary(request):
     return render(request,'create-itinerary.html')
@@ -34,3 +42,6 @@ def review_delete(request, pk):
     review = get_object_or_404(Review, pk=pk)
     review.delete()
     return redirect('reviews')
+
+def gdpr(request): 
+	return render(request,'gdpr.html')

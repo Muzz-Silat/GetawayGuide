@@ -1,0 +1,217 @@
+.gdpr-container {
+    width: 1150px;
+    height: 4000px;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    border-color: black;
+    border-width: 2px;
+    background-color: #999999;
+  }
+    .gdpr-title {
+      top: 27px;
+      left: 258px;
+      position: absolute;
+      font-size: 40px;
+      font-family: Arial;
+    }
+    .gdpr-para1 {
+      top: 126px;
+      left: 99px;
+      width: 1000px;
+      height: 100px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para2 {
+      top: 254px;
+      left: 97px;
+      width: 1000px;
+      height: 130px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para3 {
+      top: 431px;
+      left: 92px;
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para4 {
+      top: 435px;
+      left: 594px;
+      width: 350px;
+      height: 350px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para5 {
+      top: 879px;
+      left: 98px;
+      width: 400px;
+      height: 450px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para6 {
+      top: 864px;
+      right: 72px;
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para7 {
+      top: 1375px;
+      left: 99px;
+      width: 400px;
+      height: 500px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para8 {
+      top: 1383px;
+      left: 574px;
+      width: 500px;
+      height: 400px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para9 {
+      top: 1909px;
+      left: 100px;
+      width: 900px;
+      height: 500px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para10 {
+      top: 2420px;
+      right: 24px;
+      width: 500px;
+      height: 680px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para11 {
+      top: 2433px;
+      left: 96px;
+      width: 500px;
+      height: 450px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para12 {
+      top: 2889px;
+      left: 99px;
+      width: 500px;
+      height: 200px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para13 {
+      left: 113px;
+      width: 450px;
+      bottom: 534px;
+      height: 350px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-para14 {
+      right: 59px;
+      width: 450px;
+      bottom: 544px;
+      height: 300px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+    .gdpr-text {
+      left: 113px;
+      width: 1000px;
+      bottom: 373px;
+      height: 150px;
+      position: absolute;
+      font-size: 20px;
+      font-style: normal;
+      font-family: Arial;
+      font-weight: 700;
+    }
+  
+  .gdpr-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .gdpr-bigsq {
+    flex: 0 0 auto;
+    width: 1200px;
+    height: 4050px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    border-style: solid;
+    background-color: #999999;
+  }
+  .home-button {
+    left: -200 px;
+    color: white;
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    top: 3850px;
+    font-size: 20px;
+    font-style: normal;
+    text-align: center;
+    font-family: Arial;
+    font-weight: 700;
+    background-color: black;
+  }
