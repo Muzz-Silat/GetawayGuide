@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Team-Project-Webapp/backend/templates:/Team-Project-Webapp/backend/templates
+      - ./Team-Project-Webapp/backend/static:/Team-Project-Webapp/backend/static
+      - ./Team-Project-Webapp:/Team-Project-Webapp/
+      
+    ports:
+      - 8000:8000
