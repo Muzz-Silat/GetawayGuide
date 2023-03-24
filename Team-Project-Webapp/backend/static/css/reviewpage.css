@@ -124,6 +124,7 @@
     text-align: center;
     font-family: Arial;
     background-color: black;
+    border-radius: 15px;
   } 
 .review-table td:nth-child(3) {
   max-width: 280px;

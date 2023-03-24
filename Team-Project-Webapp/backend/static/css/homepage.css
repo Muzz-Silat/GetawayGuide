@@ -543,6 +543,7 @@
     text-align: center;
     font-weight: 700;
     background-color: rgb(0, 0, 0);
+    border-radius: 20px;
   }
   .gdpr-button {
     left: -200 px;
@@ -557,6 +558,7 @@
     font-family: Arial;
     font-weight: 700;
     background-color: black;
+    border-radius: 20px;
   }
   .weather {
     font-family: Arial;
@@ -575,4 +577,8 @@
     font-size: 25;
     font-family: Arial;
     font-weight: 700;
+  }
+  .footer {
+    font-size: 25px;
+    font-family: Arial;
   }

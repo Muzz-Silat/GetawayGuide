@@ -6,14 +6,18 @@ from django.contrib import messages
 import pip._vendor.requests 
 
 # Create your views here.
+def login(request):
+    return render(request, 'login.html')
+
 def homepage(request):
     response = pip._vendor.requests.get('http://api.weatherapi.com/v1/current.json?key=84a1a048b3304244957125921231303&q=Dubai&aqi=no').json()
     details= {
         'location': response['location'],
         'current' : response['current'],
-        
     }
+
     return render(request,'homepage.html',details)
+
 
 
 def create_itinerary(request):

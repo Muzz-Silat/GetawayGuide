@@ -103,6 +103,7 @@
     height: 52px;
     position: absolute;
     border-style: groove;
+    border-radius: 15px;
 }
 .create-itinerary-start {
     top: 350px;
@@ -112,12 +113,14 @@
     font-style: normal;
     font-family: Arial;
     font-weight: 700;
+    border-radius: 15px;
 }
 .create-itinerary-start-input {
     top: 350px;
     flex: 1;
     left: 840px;
     position: absolute;
+    border-radius: 15px;
 }
 .create-itinerary-end {
     top: 400px;
@@ -127,11 +130,13 @@
     font-weight: 700;
     font-style: normal;
     font-family: Arial;
+    border-radius: 15px;
 }
 .create-itinerary-end-input {
     top: 400px;
     left: 840px;
     position: absolute;
+    border-radius: 15px;
 }
 .create-itinerary-budget {
     top: 450px;
@@ -140,6 +145,7 @@
     height: 55px;
     position: absolute;
     border-style: groove;
+    border-radius: 15px;
 }
 .create-itinerary-text03 {
     top: 540px;
@@ -157,6 +163,7 @@
     position: absolute;
     border-color: var(--dl-color-gray-black);
     border-width: 3px;
+    border-radius: 15px;
 }
 .create-itinerary-accessibility {
     top: 700px;
@@ -166,6 +173,7 @@
     position: absolute;
     border-color: var(--dl-color-gray-black);
     border-width: 3px;
+    border-radius: 15px;
 }
 .create-itinerary-preference {
     top: 775px;
@@ -175,14 +183,65 @@
     height: 54px;
     position: absolute;
     border-width: 3px;
+    border-radius: 15px;
 }
-.create-itinerary-button {
-    left: 800px;
-    width: 74px;
-    bottom: 75px;
-    height: 45px;
-    position: absolute;
+.cssbuttons-io-button {
+  background: #000000;
+  color: #ffffff;
+  font-family: Arial;
+  padding: 0.35em;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 0.9em;
+  border-style: solid;
+  border-color: #000000;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #000000;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  left: 250px;
+  top: 850px;
+
 }
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #000000;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #000000;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
 .create-itinerary-text07 {
     top: 12px;
     left: 88px;
