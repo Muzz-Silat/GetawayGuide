@@ -7,7 +7,7 @@
     <div class="review-page">
       <h1 class="review-title">Getaway Guide</h1>
       <a
-        href="/homepage/"
+        href="../"
         rel="noreferrer noopener"
         class="review-home"
       >
@@ -27,10 +27,13 @@
       >
         Reviews
       </a>
-      <span class="review-more">
-        <span>More Coming Soon</span>
-        <br />
-      </span>
+      <a
+        href="/logout/"
+        rel="noreferrer noopener"
+        class="review-logout"
+      >
+        Logout
+        </a>
       <h1 class="review-customer">Customer Reviews</h1>
       <span class="review-short-para">
         At Getaway Guide, we value user feedback above all else. We understand
@@ -40,31 +43,39 @@
         valuable insight and help you make the most of your trip.
       </span>
       {% if reviews %}
-          <table class="review-table">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Rating</th>
-                <th>Comment</th>
-                <th>Date Posted</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for review in reviews %}
-              <tr>
-                <td>{{ review.user }}</td>
-                <td>{{ review.rating }}</td>
-                <td>{{ review.comment }}</td>
-                <td>{{ review.date_posted }}</td>
-                <td><a href="{% url 'review_delete' review.pk %}">Delete</a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          {% else %}
-          <p class= "no-reviews">No reviews yet.</p>
+  <table class="review-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Rating</th>
+        <th>Comment</th>
+        <th>Date Added</th>
+        {% if request.user.is_superuser %}
+          <th>Action</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+        <tr>
+          <td>{{ review.user.username }}</td>
+          <td>{% if review.rating > 5 %}5{% else %}{{ review.rating }}{% endif %}</td>
+          <td>{{ review.comment }}</td>
+          <td>{{ review.date_posted }}</td>
+          {% if request.user == review.user or request.user.is_superuser %}
+            <td><a href="{% url 'review_delete' review.pk %}">Delete</a></td>
           {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p class= "no-reviews">No reviews yet.</p>
+{% endif %}
           <button class="button review-button" onclick="window.location.href='/create-review/'">Add Review</button>
     </div>
   </div>
+  <footer class= "footer">
+    <p>Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed</p>
+</footer>
 </div>

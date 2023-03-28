@@ -490,14 +490,21 @@
   .homepage-link1:hover {
     color: #fb0101;
   }
-  .homepage-text {
+  .homepage-link3 {
     top: 37px;
-    right: 40px;
+    right: 156px;
     position: absolute;
     font-size: 20px;
     font-weight: 700;
     font-style: normal;
     font-family: Arial;
+    text-decoration: none;
+  }
+  .homepage-link3:visited { 
+    color: black; 
+  }
+  .homepage-link3:hover {
+    color: #fb0101;
   }
   .homepage-link2 {
     top: 37px;

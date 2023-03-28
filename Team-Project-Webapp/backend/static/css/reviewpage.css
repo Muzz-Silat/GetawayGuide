@@ -65,14 +65,21 @@
     font-weight: 700;
     text-decoration: none;
   }
-  .review-more {
-    top: 37px;
-    right: -120px;
+  .review-logout {
+    top: 35px;
+    right: -17px;
     position: absolute;
     font-size: 20px;
+    font-weight: 700;
     font-style: normal;
     font-family: Arial;
-    font-weight: 700;
+    text-decoration: none;
+  }
+  .review-logout:visited { 
+    color: black; 
+  }
+  .review-logout:hover {
+    color: #fb0101;
   }
   .review-customer {
     top: 163px;
@@ -131,4 +138,7 @@
   overflow: hidden;
   text-overflow: clip;
 }
-
+.footer {
+  font-size: 25px;
+  font-family: Arial;
+}

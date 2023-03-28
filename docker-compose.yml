@@ -13,3 +13,31 @@ services:
       
     ports:
       - 8000:8000
+# version: '3.8'
+
+# services:
+#   db:
+#     image: postgres:11
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data/
+#     environment:
+#       - POSTGRES_USER= postgres
+#       - POSTGRES_PASSWORD=Admin@123
+#       - POSTGRES_DB=GetawayGuide
+#   web:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+#     volumes:
+#       - ./Team-Project-Webapp/backend/templates:/Team-Project-Webapp/backend/templates
+#       - ./Team-Project-Webapp/backend/static:/Team-Project-Webapp/backend/static
+#       - ./Team-Project-Webapp:/Team-Project-Webapp/
+#     ports:
+#       - 8000:8000
+#     depends_on:
+#       - db
+
+# volumes:
+#   postgres_data:
+

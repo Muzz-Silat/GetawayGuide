@@ -77,6 +77,22 @@
       font-weight: 700;
       text-decoration: none;
     }
+    .create-review-link3 {
+      top: 35px;
+      right: -347px;
+      position: absolute;
+      font-size: 20px;
+      font-weight: 700;
+      font-style: normal;
+      font-family: Arial;
+      text-decoration: none;
+    }
+    .create-review-link3:visited { 
+      color: black; 
+    }
+    .create-review-link3:hover {
+      color: #fb0101;
+    }
     .create-review-text1 {
       top: 35px;
       right: -450px;
@@ -124,4 +140,9 @@
     select{
       position: absolute;
       left: 95px;
+    }
+
+    .footer {
+      font-size: 25px;
+      font-family: Arial;
     }

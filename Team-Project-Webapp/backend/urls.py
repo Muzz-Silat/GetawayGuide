@@ -1,15 +1,18 @@
-
-from django.urls import path, include
+from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('',views.login),
-    path('homepage/',views.homepage),
+    path('',views.homepage, name='home'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    #path('homepage/',views.homepage),
     path('create-itinerary/',views.create_itinerary),
     path('reviews/', views.reviews, name='reviews'),
     path('create-review/',views.create_review), 
-    path('reviews/create/', views.create_review, name='create_review'),
     path('review_delete/<int:pk>/', views.review_delete, name='review_delete'),
     path('gdpr/',views.gdpr),
-    path('',views.login),
 ]
+

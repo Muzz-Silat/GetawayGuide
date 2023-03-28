@@ -77,15 +77,22 @@
 .create-itinerary-link2:hover {
     color: #fb0101;
 }
-.create-itinerary-text {
+.create-itinerary-link3 {
     top: 27px;
-    right: -400px;
+    right: -297px;
     position: absolute;
     font-size: 20px;
     font-weight: 700;
     font-style: normal;
     font-family: Arial;
-}
+    text-decoration: none;
+  }
+.create-itinerary-link3:visited { 
+    color: black; 
+  }
+.create-itinerary-link3:hover {
+    color: #fb0101;
+  }
 .create-itinerary-create-itin {
     top: 121px;
     left: 700px;
@@ -252,5 +259,8 @@
     font-style: normal;
     font-family: Arial;
 }
-  
+.footer {
+    font-size: 25px;
+    font-family: Arial;
+  }  
   

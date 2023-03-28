@@ -1,217 +1,1197 @@
-.gdpr-container {
-    width: 1150px;
-    height: 4000px;
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    flex-direction: column;
-    border-color: black;
-    border-width: 2px;
-    background-color: #999999;
-  }
-    .gdpr-title {
-      top: 27px;
-      left: 258px;
-      position: absolute;
-      font-size: 40px;
-      font-family: Arial;
-    }
-    .gdpr-para1 {
-      top: 126px;
-      left: 99px;
-      width: 1000px;
-      height: 100px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para2 {
-      top: 254px;
-      left: 97px;
-      width: 1000px;
-      height: 130px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para3 {
-      top: 431px;
-      left: 92px;
-      width: 400px;
-      height: 400px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para4 {
-      top: 435px;
-      left: 594px;
-      width: 350px;
-      height: 350px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para5 {
-      top: 879px;
-      left: 98px;
-      width: 400px;
-      height: 450px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para6 {
-      top: 864px;
-      right: 72px;
-      width: 500px;
-      height: 500px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para7 {
-      top: 1375px;
-      left: 99px;
-      width: 400px;
-      height: 500px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para8 {
-      top: 1383px;
-      left: 574px;
-      width: 500px;
-      height: 400px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para9 {
-      top: 1909px;
-      left: 100px;
-      width: 900px;
-      height: 500px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para10 {
-      top: 2420px;
-      right: 24px;
-      width: 500px;
-      height: 680px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para11 {
-      top: 2433px;
-      left: 96px;
-      width: 500px;
-      height: 450px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para12 {
-      top: 2889px;
-      left: 99px;
-      width: 500px;
-      height: 200px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para13 {
-      left: 113px;
-      width: 450px;
-      bottom: 534px;
-      height: 350px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-para14 {
-      right: 59px;
-      width: 450px;
-      bottom: 544px;
-      height: 300px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-    .gdpr-text {
-      left: 113px;
-      width: 1000px;
-      bottom: 373px;
-      height: 150px;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-    }
-  
-  .gdpr-container {
-    width: 100%;
-    display: flex;
-    overflow: auto;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
-  }
-  .gdpr-bigsq {
-    flex: 0 0 auto;
-    width: 1200px;
-    height: 4050px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    position: relative;
-    border-style: solid;
-    background-color: #999999;
-  }
-  .home-button {
-    left: -200 px;
-    color: white;
-    width: 100px;
-    height: 35px;
-    position: absolute;
-    top: 3850px;
-    font-size: 20px;
-    font-style: normal;
-    text-align: center;
-    font-family: Arial;
-    font-weight: 700;
-    background-color: black;
-  }
+.gdpr-gdpr {
+  width: 100%;
+  height: 8500px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) ;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+  justify-content: center;
+  background-color: grey;
+}
+.gdpr-title {
+  top: 45px;
+  left: 600px;
+  color: rgb(255, 255, 255);
+  width: 700px;
+  height: auto;
+  position: absolute;
+  font-size: 48px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-short-para {
+  top: 129px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1093px;
+  height: auto;
+  position: absolute;
+  font-size: 32px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-topics {
+  top: 295px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1093px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text {
+  font-weight: 700;
+}
+.gdpr-text001 {
+  font-style: normal;
+}
+.gdpr-text002 {
+  font-style: normal;
+}
+.gdpr-text003 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text004 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text005 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text006 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text007 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text008 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text009 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text010 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text011 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text012 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text013 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text014 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text015 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text016 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text017 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text018 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text019 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text020 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text021 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text022 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text023 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text024 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text025 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text026 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text027 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text028 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text029 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-emails {
+  top: 929px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text030 {
+  font-weight: 700;
+}
+.gdpr-text031 {
+  font-style: normal;
+}
+.gdpr-text032 {
+  font-style: normal;
+}
+.gdpr-text033 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text034 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text035 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text036 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text037 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text038 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text039 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text040 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text041 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text042 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text043 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text044 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text045 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text046 {
+  font-size: 32px;
+  font-style: normal;
+}
+.gdpr-text047 {
+  font-style: normal;
+}
+.gdpr-what-data {
+  top: 1320px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text051 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text052 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text053 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text054 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text055 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text056 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text057 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text058 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text059 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-collect-data {
+  top: 1701px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text060 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.gdpr-text061 {
+  color: #ffffff;
+  font-size: 36px;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.gdpr-text062 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text063 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text064 {
+  color: #ffffff;
+  font-size: 32px;
+  font-style: normal;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+.gdpr-text065 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text066 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text067 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text068 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text069 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text070 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text071 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text072 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text073 {
+  color: #ffffff;
+  font-size: 32px;
+  font-style: normal;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+.gdpr-text074 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text075 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text076 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text077 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text078 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text079 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text080 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-use-data {
+  top: 2358px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text085 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text086 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text087 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text088 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text089 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text090 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text091 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text092 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text093 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text094 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text095 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text096 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text097 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text098 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text099 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text100 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text101 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text102 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text103 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text104 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text105 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-store-data {
+  top: 3162px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text107 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.gdpr-text108 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.gdpr-text109 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text110 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text111 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text112 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text113 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text114 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-marketing {
+  top: 3628px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text118 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text119 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text120 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text121 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text122 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text123 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text124 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text125 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text126 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text127 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text128 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text129 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text130 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text131 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text132 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text133 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text134 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text135 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text136 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text137 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-right-to {
+  top: 4392px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text139 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.gdpr-text140 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text141 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text142 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text143 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text144 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text145 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text146 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text147 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text148 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text149 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text150 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text151 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text152 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text153 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text154 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text155 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text156 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text157 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text158 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text159 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text160 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text161 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text162 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text163 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text164 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text165 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.gdpr-text166 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text167 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text168 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text169 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text170 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text171 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text172 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text173 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text174 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text175 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-last-para {
+  top: 5750px;
+  left: 53px;
+  color: rgb(255, 255, 255);
+  width: 1073px;
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.gdpr-text179 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text180 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text181 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text187 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text188 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text189 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text190 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text191 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text192 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text193 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text194 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text195 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text199 {
+  font-weight: 700;
+}
+.gdpr-text200 {
+  font-weight: 700;
+}
+.gdpr-text201 {
+  font-weight: 700;
+}
+.gdpr-text202 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text203 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text204 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text205 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text206 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text207 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text208 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text209 {
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text214 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text215 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text216 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text217 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text218 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text219 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text220 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text221 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text224 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text230 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text231 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text232 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text233 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text234 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text240 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text241 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.gdpr-text242 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+}
+.home-button {
+  right: 100 px;
+  color: white;
+  width: 200px;
+  height: 70px;
+  position: relative;
+  top: 8400px;
+  font-size: 40px;
+  font-style: normal;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 700;
+  background-color: black;
+  border-radius: 15px;
+}
+
+.footer {
+  font-size: 25px;
+  font-family: Arial;
+}
