@@ -1,13 +1,14 @@
+{% load static %}
 <head>
   <title>Getaway Guide</title>
 </head>
 <div>
-    <link href="../static/css/create-itinerary.css" rel="stylesheet" />
+  <link href="{% static 'css/create-itinerary.css' %}" rel="stylesheet" />
     <div class="create-itinerary-container">
       <div class="create-itinerary-container1">
         <div class="create-itinerary-container2">
           <a
-            href="../"
+            href="/"
             rel="noreferrer noopener"
             class="create-itinerary-link"
           >
@@ -36,11 +37,8 @@
           </a>
         </div>
         <h1 class="create-itinerary-create-itin">Create Itinerary</h1>
-        <input
-          type="text"
-          placeholder=" 🔍 Where to?"
-          class="input create-itinerary-whereto"
-        />
+        <input type="text" placeholder=" 🔍 Where to?" class="input create-itinerary-whereto" value="{{ country }}">
+        <button class ="recommend-button" onclick="window.location.href='/recommend/'">Recommend</button>
         <label class="create-itinerary-start">Start:</label>
         <input type="date" class="input create-itinerary-start-input" />
         <label class="create-itinerary-end">End:</label>

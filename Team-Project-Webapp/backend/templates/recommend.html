@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <div>
+        <link href="../static/css/recommend.css" rel="stylesheet" />
+        <div class="recommendations-container">
+          <h1 class="recommendations-title">Getaway Guide</h1>
+          <a
+            href="/"
+            rel="noreferrer noopener"
+            class="recommendations-home"
+          >
+            Home
+          </a>
+          <a
+            href="/create-itinerary/"
+            rel="noreferrer noopener"
+            class="recommendations-create-itinerary"
+          >
+            Create Itinerary
+          </a>
+          <a
+            href="/reviews/"
+            rel="noreferrer noopener"
+            class="recommendations-reviews"
+          >
+            Reviews
+          </a>
+          <span class="recommendations-more-soon">More Coming Soon</span>
+          <h1 class="recommendations-recommendation-title">
+            Getaway Guide: Recommends
+          </h1>
+          <span class="recommendations-short-para">
+            Ready to explore the world, but not sure where to start? Let Getaway Guide
+            Recommends be your travel matchmaker! Tell us your top 3 countries of
+            interest, and we&apos;ll serve up to 3 personalized recommendations just
+            for you. Whether you&apos;re craving a cultural immersion, scenic
+            landscapes, or adrenaline-pumping adventures, we&apos;ve got the perfect
+            country waiting. Get ready to pack your bags and discover your next dream
+            destination with us!
+          </span>  
+          <form method="POST" action="{% url 'recommend' %}">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form-field">
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+            {% endfor %}
+            <button type= "submit"
+                    class="cssbuttons-io-button"> Let's Go!
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+                </div>
+              </button>
+          </form>          
+          {% if recommendations %}
+          <h2 class="recommended-countries">Recommended countries:</h2>
+          <ul class="recommended-countries">
+            {% for country in recommendations|slice:":3" %}
+              <li><a href="{% url 'create_itinerary' country %}" class="recommended-country-{{ forloop.counter }}">{{ country }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        $(function() {
+            // Remove the selected country from the other dropdowns
+            $('select').change(function() {
+                var selected = $(this).val();
+                $('select').not(this).find('option[value="' + selected + '"]').remove();
+            });
+        });
+        </script>
+    </div>
+</html>
+

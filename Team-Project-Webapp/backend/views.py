@@ -21,8 +21,14 @@ from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Itinerary
 from .forms import LoginForm
+from django.shortcuts import render
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from scipy.spatial import distance
+from django import forms
+import csv
 
-# Create your views here.
 def homepage(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -33,9 +39,11 @@ def homepage(request):
     }
     return render(request,'homepage.html',details)
 
-def create_itinerary(request):
-    return render(request,'create-itinerary.html')
-
+def create_itinerary(request, country=None):
+    if country:
+        return render(request, 'create-itinerary.html', {'country': country})
+    else:
+        return render(request, 'create-itinerary.html')
 def reviews(request):
     reviews = Review.objects.all()
     return render(request,'reviewpage.html',{'reviews': reviews})
@@ -98,10 +106,93 @@ def logout_view(request):
     messages.info(request, "You have successfully logged out.")
     return redirect('home')
 
+def recommend(request):
+    recommendations = None
+    form = RecommendationForm()
+    if request.method == 'POST':
+        form = RecommendationForm(request.POST)
+        if form.is_valid():
+            # load the data from the CSV file
+            df = pd.read_csv('backend/data/Countries.csv', encoding='cp1252')
+            # create a scaler object
+            scaler = StandardScaler()
+
+            # scale the data
+            scaled_data = scaler.fit_transform(df[['Latitude', 'Longitude', 'Avg. Temp', 'No. of Tourists']])
+
+            # create a KMeans model with 3 clusters
+            kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+
+            # fit the model to the scaled data
+            kmeans.fit(scaled_data)
+
+            # add a new column to the dataframe with the cluster labels
+            df['Cluster'] = kmeans.labels_
+
+            # # Debugging: print a list of all the countries and their cluster labels
+            # countries_and_clusters = df[['Countries', 'Cluster']].values.tolist()
+            # print(countries_and_clusters)
+
+            # get input from the user
+            country1 = request.POST.get('country1')
+            country2 = request.POST.get('country2')
+            country3 = request.POST.get('country3')
+        
+            if country1 and country2 and country3:
+                # find the rows for the user's input
+                user_rows = df.loc[df['Countries'].isin([country1, country2, country3])]
+
+                if user_rows.empty:
+                    message = "Sorry, one or more of the entered countries could not be found."
+                else:
+                    # get the cluster labels for the user's countries
+                    user_clusters = user_rows['Cluster'].unique()
+
+                    # get the rows for all countries in the same clusters as the user's countries
+                    cluster_rows = df.loc[df['Cluster'].isin(user_clusters)]
+
+                    # if there are fewer than 3 countries in the cluster, get additional countries from the nearest clusters
+                    if len(cluster_rows) < 3:
+                        # calculate the distance between the user's countries and all other countries
+                        distances = []
+                        for index, row in df.iterrows():
+                            if row['Countries'] not in [country1, country2, country3]:
+                                dist = distance.euclidean(row[['Latitude', 'Longitude', 'Avg. Temp', 'No. of Tourists']], user_rows[['Latitude', 'Longitude', 'Avg. Temp', 'No. of Tourists']].mean())
+                                distances.append((row['Countries'], dist))
+
+                        # sort the distances and get the countries with the smallest distances
+                        distances.sort(key=lambda x: x[1])
+                        recommended_countries = [country for country, dist in distances[:3-len(cluster_rows)]]
+
+                        # get the rows for the recommended countries
+                        recommended_rows = df.loc[df['Countries'].isin(recommended_countries)]
+
+                        # concatenate the cluster rows and the recommended rows
+                        final_rows = pd.concat([cluster_rows, recommended_rows])
+                    else:
+                        final_rows = cluster_rows
+
+                    # sort the final rows by number of tourists in descending order and get the top 3
+                    recommended = final_rows.sort_values(by='No. of Tourists', ascending=False).head(3)
+                    recommended = recommended[~recommended['Countries'].isin([country1, country2, country3])] # filter out the user's input countries
+
+                    recommendations = recommended['Countries'].tolist()
+                
+    context = {'form': form,'recommendations': recommendations}
+    return render(request, 'recommend.html', context)
 
 
+def get_country_choices():
+    with open('backend/data/Countries.csv', 'r', encoding='cp1252') as f:
+        reader = csv.DictReader(f)
+        countries = sorted(set(row['Countries'] for row in reader))
+    return [(country, country) for country in countries]
 
-
+class RecommendationForm(forms.Form):
+    choices = [("", "--")] + get_country_choices()
+    country1 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country1-input', 'class': 'country1'}), label='Country 1')
+    country2 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country2-input', 'class': 'country2'}), label='Country 2')
+    country3 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country3-input', 'class': 'country3'}), label='Country 3')
 
 
 
