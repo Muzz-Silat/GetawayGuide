@@ -1,148 +1,67 @@
-.create-review-container {
-    width: 100%;
-    display: flex;
-    overflow: auto;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-size: cover;
-    background-image: url('../images/background.jpg');
-    height: 1000px;
-  }
-  .create-review-container1 {
-    top: -2px;
-      left: 0px;
-      right: -5px;
-      width: 1200px;
-      height: 1000px;
-      position: absolute;
-  }
-  .create-review-links-container {
-    top: 8px;
-      right: 28px;
-      width: 700px;
-      height: 101px;
-      position: absolute;
-  }
-    .create-review-text {
-      top: 25px;
-      left: 60px;
-      width: 367px;
-      height: 87px;
-      position: absolute;
-      font-size: 45px;
-      font-style: normal;
-      font-weight: 700;
-      font-family: Arial;
-    }
-    .create-review-link {
-      top: 35px;
-      right: 110px;
-      position: absolute;
-      font-size: 20px;
-      font-weight: 700;
-      font-family: Arial;
-      text-decoration: none;
-    }
-    .create-review-link:visited { 
-      color: black; 
-    }
-    .create-review-link:hover {
-      color: #fb0101;
-    }
-    .create-review-link1 {
-      top: 35px;
-      right: -87px;
-      position: absolute;
-      font-size: 20px;
-      font-family: Arial;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .create-review-link1:visited { 
-      color: black; 
-    }
-    .create-review-link1:hover {
-      color: #fb0101;
-    }
-    .create-review-link2 {
-      top: 35px;
-      right: -217px;
-      color: #fb0101;
-      position: absolute;
-      font-size: 20px;
-      font-style: normal;
-      font-family: Arial;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .create-review-link3 {
-      top: 35px;
-      right: -347px;
-      position: absolute;
-      font-size: 20px;
-      font-weight: 700;
-      font-style: normal;
-      font-family: Arial;
-      text-decoration: none;
-    }
-    .create-review-link3:visited { 
-      color: black; 
-    }
-    .create-review-link3:hover {
-      color: #fb0101;
-    }
-    .create-review-text1 {
-      top: 35px;
-      right: -450px;
-      position: absolute;
-      font-size: 20px;
-      font-weight: 700;
-      font-family: Arial
-    }
-    .create-review-title {
-      top: 176px;
-      left: 700px;
-      position: absolute;
-      font-size: 45px;
-      font-style: normal;
-      font-weight: 700;
-      font-family: Arial;
-    }
-    .create-review-button {
-      top: 270px;
-      left: 0px;
-      color: #ffffff;
-      width: 93px;
-      height: 35px;
-      position: absolute;
-      font-size: 20px;
-      text-align: center;
-      font-family: Arial;
-      background-color: black;
-    }
-  
-    form{
-      font-family: Arial;
-      font-weight: 700;
-      position: absolute;
-      top: 300px;
-      left: 700px;
-    }
-    input{
-      margin-left: 50px;
-    }
-    textarea{
-      position: absolute;
-      left: 95px;
-    }
-    select{
-      position: absolute;
-      left: 95px;
-    }
+.u-section-1 {
+  background-image: url("../images/background-1.jpg");
+}
 
-    .footer {
-      font-size: 25px;
-      font-family: Arial;
-    }
+.u-section-1 .u-sheet-1 {
+  min-height: 50vw;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 400;
+  font-size: 4.5rem;
+  margin: 92px auto 60px;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3rem;
+  }
+}
+
+.create-review-button {
+  top: 375px;
+  left: 95px;
+  position: absolute;
+  border-radius: 28px;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  font-size: 24px;
+  background: black;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.create-review-button:hover {
+  background-color: #ffffff;
+  text-decoration: none;
+  color: black;
+  border-color: #ffffff;
+}
+form{
+  font-size: larger;
+  font-family: Arial;
+  font-weight: 700;
+  position: absolute;
+  top: 50px;
+  left: 400px;
+}
+label{
+  font-size: 22px;
+}
+textarea{
+  position: absolute;
+  top: 150px;
+  left: 95px;
+  border-radius: 5px;
+}
+select{
+  position: absolute;
+  left: 95px;
+  border-radius: 5px;
+}

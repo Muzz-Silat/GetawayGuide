@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background-size: cover;
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/background-1.jpg');
 }
 .create-itinerary-container1 {
     flex: 0 0 auto;
