@@ -1,0 +1,80 @@
+.title {
+    position: relative;
+    font-size: 40px;
+}
+
+.location-title {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.location-box {
+    position: relative;
+}
+
+.place-title {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.place-para {
+    position: relative;
+    width: 500px;
+    font-size: 16px;
+    text-align: left;
+    background-color: blanchedalmond;
+    font-weight: 200;
+}
+
+.place-box {
+    position: relative;
+}
+
+.rest-title {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.rest-para {
+    position: relative;
+    width: 500px;
+    font-size: 16px;
+    text-align: left;
+    background-color: blanchedalmond;
+    font-weight: 200;
+}
+
+.rest-box {
+    position: relative;
+}
+
+.hotel-title {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.hotel-para {
+    position: relative;
+    width: 500px;
+    font-size: 16px;
+    text-align: left;
+    background-color: blanchedalmond;
+    font-weight: 200;
+}
+
+.hotel-box {
+    position: relative;
+}
+
+.press-search {
+    position: relative;
+    width: 100px;
+    font-size: 15px;
+    
+}

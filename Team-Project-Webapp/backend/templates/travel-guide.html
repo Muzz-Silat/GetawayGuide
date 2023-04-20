@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getaway Guide</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxB-MRxZKl_dBIUH8srCmRggdcSDQZfg"></script>
+    <style>
+      #map {
+        height: 600px;
+        width: 800px;
+        left: 300px;
+      }
+      .places-container {
+        display: flex;
+        overflow-x: auto;
+        {% comment %} padding: 1rem; {% endcomment %}
+        gap: 16px;
+        background-color:azure;
+      }
+      .place-item {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+        width: 400px;
+        background-color: #f1f1f1;
+        padding: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .website-url {
+        word-break: break-all;
+      }
+      .weather-info {
+        display: flex;
+        align-items: center;
+      }
+      .temperature {
+        font-size: 20px;
+        font-weight: 400px;
+        margin-right: 1rem;
+      }
+      .weather-icon {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const markersData = JSON.parse(document.getElementById('markers-data').textContent);
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: markersData[0].latitude, lng: markersData[0].longitude },
+          zoom: 12
+        });
+
+        markersData.forEach(markerData => {
+          const marker = new google.maps.Marker({
+            position: { lat: markerData.latitude, lng: markerData.longitude },
+            map: map,
+            title: markerData.name
+          });
+        });
+      }
+      function formatDateTime(date) {
+        const formattedDate = date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0');
+        const formattedTime = String(date.getHours()).padStart(2, '0') + ":" + String(date.getMinutes()).padStart(2, '0') + ":" + String(date.getSeconds()).padStart(2, '0');
+        return formattedDate + " " + formattedTime;
+      }
+      
+      function updateTime() {
+        const localTimeElement = document.getElementById('local_time');
+        const gmtTimeElement = document.getElementById('gmt_time');
+      
+        const localTime = new Date(localTimeElement.textContent);
+        const gmtTime = new Date(gmtTimeElement.textContent);
+      
+        localTime.setSeconds(localTime.getSeconds() + 1);
+        gmtTime.setSeconds(gmtTime.getSeconds() + 1);
+      
+        localTimeElement.textContent = formatDateTime(localTime);
+        gmtTimeElement.textContent = formatDateTime(gmtTime);
+      }      
+      setInterval(updateTime, 1000);
+           
+    </script>
+  </head>
+  <body onload="initMap()">
+    <h1>Travel Guide</h1>
+    <h2>Location: {{ location }}</h2>
+    <h1>Weather: </h1>
+    <div class="weather-info">
+      {% if temperature and weather_icon %}
+        <div class="temperature">{{ temperature }}&deg;C</div>
+        <img src="{{ weather_icon }}" alt="Current Weather" class="weather-icon">
+      {% endif %}
+    </div>
+    <h2>Time Zone: {{ timezone_id }}</h2>
+    <h2>Local Time: <span id="local_time">{{ local_time }}</span></h2>
+    <h2>GMT Time: <span id="gmt_time">{{ gmt_time }}</span></h2>
+    <h2>GMT Offset: {{ gmt_offset }}</h2>
+    <h2>UTC Offset: {{ utc_offset }} Hours</h2>
+    <h2>Daylight Saving Time Observed: {{ dst_observed }}</h2>
+    <h2>Currency: {{ currency }}</h2>
+    <h2>Languages:</h2>
+    <ul>
+      {% for language in languages %}
+        <li>{{ language }}</li>
+      {% endfor %}
+    </ul>
+    <h2>Population: {{ population }}</h2>
+    <h2>Flag:</h2>
+    <img src="{{ flag_url }}" alt="Flag of {{ location }}" width="100">
+    <h2>Calling Code: +{{ calling_code }}</h2>
+    {% comment %} <form method="post" action="{% url 'selected_places' %}">
+      {% csrf_token %} {% endcomment %}
+      {% for query, places in results.items %}
+        <h2>{{ query }}</h2>
+        {% if places %}
+          <div class="places-container">
+            {% for place in places %}
+              <div class="place-item">
+                {% comment %} <input type="checkbox" id="place-{{ forloop.counter }}" name="selected_places" value="{{ place.name }}|||{{ place.address }}|||{{ place.photo_url }}|||{{ place.website }}|||{{ place.opening_hours|join:';;;' }}">
+                <label for="place-{{ forloop.counter }}">Add to Trip</label> {% endcomment %}
+                <h3>{{ place.name }}</h3>
+                <p>{{ place.address }}</p>
+                {% if place.photo_url %}
+                  <img src="{{ place.photo_url }}" alt="{{ place.name }}">
+                {% endif %}
+                {% if place.website %}
+                  <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+                {% endif %}
+                <p>Rating: {{ place.rating }}/5</p>
+                {% if place.opening_hours %}
+                  <p>Opening hours:</p>
+                  <ul>
+                    {% for hour in place.opening_hours %}
+                      <li>{{ hour }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p>No places found for query "{{ query }}" in location "{{ location }}".</p>
+          {% endif %}
+        {% endfor %}
+        {% comment %} <input type="submit" value="View Selected Places"> {% endcomment %}
+        <br>
+        <br>
+      {% comment %} </form> {% endcomment %}
+      <div id="map"></div>
+      <div id="markers-data" style="display:none;">{{ markers|safe }}</div>
+      <br>
+      <br>
+      <br>
+    </body>
+  </html>

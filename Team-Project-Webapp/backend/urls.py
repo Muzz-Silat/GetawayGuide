@@ -16,6 +16,7 @@ urlpatterns = [
     path('create-review/',views.create_review), 
     path('review_delete/<int:pk>/', views.review_delete, name='review_delete'),
     path('gdpr/',views.gdpr),
-    path('recommend/',views.recommend, name="recommend")
+    path('recommend/',views.recommend, name="recommend"),
+    path('travel-guide/', views.travel_guide, name='travel-guide'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

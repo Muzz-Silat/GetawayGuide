@@ -28,6 +28,10 @@ from sklearn.preprocessing import StandardScaler
 from scipy.spatial import distance
 from django import forms
 import csv
+import requests
+from datetime import datetime, timedelta
+import json
+
 
 def homepage(request):
     if not request.user.is_authenticated:
@@ -193,6 +197,115 @@ class RecommendationForm(forms.Form):
     country1 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country1-input', 'class': 'country1'}), label='Country 1')
     country2 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country2-input', 'class': 'country2'}), label='Country 2')
     country3 = forms.ChoiceField(choices=choices, widget=forms.Select(attrs={'class': 'country3-input', 'class': 'country3'}), label='Country 3')
+    
+def format_utc_offset(seconds):
+    sign = '-' if seconds < 0 else '+'
+    hours, remainder = divmod(abs(seconds), 3600)
+    minutes, _ = divmod(remainder, 60)
+    return f'{sign}{hours:02d}:{minutes:02d}'
+
+def travel_guide(request):
+    api_key = 'AIzaSyBLxB-MRxZKl_dBIUH8srCmRggdcSDQZfg'
+    if request.method == 'POST':
+        location = request.POST['location']
+        # queries = request.POST.getlist('query')
+        # queries = request.POST.getlist('query') + ["event"]
+        queries = request.POST.getlist('query')
+        if "event" not in queries:
+            queries += ["Events"]
+        results = {}
+
+        # Get the coordinates for the location
+        geocode_url = f'https://maps.googleapis.com/maps/api/geocode/json?address={location}&key={api_key}'
+        geocode_response = requests.get(geocode_url)
+        geocode_data = geocode_response.json()
+        lat = geocode_data['results'][0]['geometry']['location']['lat']
+        lng = geocode_data['results'][0]['geometry']['location']['lng']
+
+        # Get the timezone for the location
+        timestamp = int(datetime.now().timestamp())
+        timezone_url = f'https://maps.googleapis.com/maps/api/timezone/json?location={lat},{lng}&timestamp={timestamp}&key={api_key}'
+        timezone_response = requests.get(timezone_url)
+        timezone_data = timezone_response.json()
+        timezone_id = timezone_data['timeZoneId']
+        timezone_offset = timezone_data['rawOffset']
+        dst_offset = timezone_data['dstOffset']
+        
+        # Get the country code for the location
+        address_components = geocode_data['results'][0]['address_components']
+        country_code = ''
+        for component in address_components:
+            if 'country' in component['types']:
+                country_code = component['short_name']
+                break
+
+        # Get the country details (currency and language)
+        country_url = f'https://restcountries.com/v2/alpha/{country_code.lower()}'
+        country_response = requests.get(country_url)
+        country_data = country_response.json()
+        currency = country_data['currencies'][0]['name']
+        languages = [lang['name'] for lang in country_data['languages']]
+        population = country_data['population']
+        flag_url = country_data['flag']
+        calling_code = country_data['callingCodes'][0]
+        
+        weather_api_key = '84a1a048b3304244957125921231303'
+        weather_url = f'http://api.weatherapi.com/v1/current.json?key={weather_api_key}&q={location}'
+        weather_response = requests.get(weather_url)
+        weather_data = weather_response.json()
+        temperature = weather_data['current']['temp_c']
+        weather_icon = weather_data['current']['condition']['icon']
+        
+
+        # Calculate the local time
+        utc_time = datetime.utcfromtimestamp(timestamp)
+        local_time = utc_time + timedelta(seconds=(timezone_offset + dst_offset))
+        # local_time = local_time.strftime('%d-%m-%Y %H:%M:%S')
+        
+        # gmt_time = datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S')
+        local_time = local_time.strftime('%Y-%m-%d %H:%M:%S')
+        gmt_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+
+
+        markers = []
+
+        for query in queries:
+            if not query.strip():
+                continue
+            if query.lower() == "place":
+                query = "Tourist Attractions"
+            url = f'https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}+in+{location}&key={api_key}'
+            response = requests.get(url)
+            data = response.json()
+            if 'results' in data:
+                places = []
+                for result in data['results']:
+                    details_url = f'https://maps.googleapis.com/maps/api/place/details/json?place_id={result["place_id"]}&fields=name,formatted_address,geometry,photo,website,opening_hours,rating&key={api_key}'
+                    details_response = requests.get(details_url)
+                    details_data = details_response.json()
+                    place = {
+                        'name': details_data['result']['name'],
+                        'address': details_data['result']['formatted_address'],
+                        'latitude': details_data['result']['geometry']['location']['lat'],
+                        'longitude': details_data['result']['geometry']['location']['lng'],
+                        'photo_url': None,
+                        'place_id': result['place_id'],
+                        'website': details_data['result'].get('website', ''),
+                        'opening_hours': details_data['result'].get('opening_hours', {}).get('weekday_text', []),
+                        'rating': details_data['result'].get('rating', None)
+                    }
+                    if 'photos' in details_data ['result']:
+                        photo_ref = details_data['result']['photos'][0]['photo_reference']
+                        place['photo_url'] = f'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_ref}&key={api_key}'
+                    places.append(place)
+                    markers.append({'name': place['name'], 'latitude': place['latitude'], 'longitude': place['longitude']})
+                results[query] = places
+            else:
+                results[query] = None
+
+        return render(request, 'travel-guide.html', {'results': results, 'location': location, 'markers': json.dumps(markers), 'timezone_id': timezone_id, 'local_time': local_time, 'gmt_time': gmt_time, 'gmt_offset': format_utc_offset(timezone_offset), 'currency': currency, 'languages': languages, 'population': population, 'flag_url': flag_url, 'calling_code': calling_code, 'utc_offset': format_utc_offset(timezone_offset), 'dst_observed': bool(dst_offset), 'temperature': temperature, 'weather_icon': weather_icon})
+    else:
+        return render(request, 'travel-guide-form.html')
 
 
 

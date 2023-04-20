@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getaway Guide </title>
+  </head>
+  <body>
+    <link href="../static/css/travel-guide-form.css" rel="stylesheet" />
+    <h1 class = "title">Travel Guide</h1>
+    <form method="post">
+      {% csrf_token %}
+      <label for="location" class="location-title">Location You Want To Visit:</label>
+      <input type="text" id="location" name="location" class="location-box">
+      <br><br>
+      <label for="query1" class="place-title">Enter type of place:</label>
+      <input type="text" id="query1" name="query" class = "place-box">
+      <p class = "place-para"> Enter any type of place you are looking for ranging from types such as:<br> -Museums <br> -Theme Parks <br> -Beach  <br> -Kids Place <br> Or simply if you want to view list of Places, Type in Place. </p>
+      <br>
+      <label for="query2" class="rest-title">Enter restaurant type:</label>
+      <input type="text" id="query2" name="query" class= "rest-box">
+      <p class = "rest-para">Enter any type of restaurant you are looking for ranging from cuisines such as: <br> -Japanese <br> -Arabic<br>to dietary restrictions such as: <br> -Halal <br>-Vegan <br>-Kosher <br>make sure to include restaurant at the end, e.g: Vegan Restaurant <br>Or simply if you want to view list of all restaurants type in Restaurant.</p>
+      <br>
+      <label for="query3" class="hotel-title">Enter hotel type:</label>
+      <input type="text" id="query3" name="query" class = "hotel-box">
+      <p class = "hotel-para"> Enter any type of hotel you are looking for ranging from types such as: <br> -Resorts <br> -Hostels <br> -Hotel Apartments <br> Or simply if you want to view list of all Hotels, Type in Hotel.</p>
+      <input type="submit" value="Search" class = "press-search">
+    </form>
+  </body>
+</html>
