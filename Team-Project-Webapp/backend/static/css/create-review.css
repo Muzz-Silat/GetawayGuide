@@ -25,7 +25,7 @@
 }
 
 .create-review-button {
-  top: 375px;
+  top: 470px;
   left: 95px;
   position: absolute;
   border-radius: 28px;
@@ -56,12 +56,13 @@ label{
 }
 textarea{
   position: absolute;
-  top: 150px;
-  left: 95px;
+  top: 125px;
+  left: 0px;
   border-radius: 5px;
 }
 select{
   position: absolute;
   left: 95px;
+  top: 7px;
   border-radius: 5px;
 }

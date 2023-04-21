@@ -2,8 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Review
 from .forms import ReviewForm
-from django.contrib import messages
-import pip._vendor.requests 
+from django.contrib import messages 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import SignupForm
@@ -36,12 +35,7 @@ import json
 def homepage(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    response = pip._vendor.requests.get('http://api.weatherapi.com/v1/current.json?key=84a1a048b3304244957125921231303&q=Dubai&aqi=no').json()
-    details= {
-        'location': response['location'],
-        'current' : response['current'],
-    }
-    return render(request,'homepage.html',details)
+    return render(request,'homepage.html')
 
 def create_itinerary(request, country=None):
     if country:
