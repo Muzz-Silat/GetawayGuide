@@ -17648,7 +17648,7 @@ section.u-opacity-25:before,
 .u-opacity-25 > .u-container-layout:before,
 .u-opacity-25 > .u-inner-container-layout:before,
 .u-opacity-25.u-sidenav:before {
-  opacity: 0.25;
+  opacity: 0.5;
 }
 a.u-opacity-25,
 span.u-opacity-25,

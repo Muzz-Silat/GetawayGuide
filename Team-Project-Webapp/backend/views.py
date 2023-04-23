@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import Review
 from .forms import ReviewForm
 from django.contrib import messages 
@@ -29,7 +29,10 @@ from django import forms
 import csv
 import requests
 from datetime import datetime, timedelta
-import json
+import json, openai
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import UserProfileForm
 
 
 def homepage(request):
@@ -38,10 +41,118 @@ def homepage(request):
     return render(request,'homepage.html')
 
 def create_itinerary(request, country=None):
-    if country:
-        return render(request, 'create-itinerary.html', {'country': country})
+    # if country:
+    #     return render(request, 'create-itinerary.html', {'country': country})
+    # else:
+    #     return render(request, 'create-itinerary.html')
+    
+    API_KEY = 'AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI'
+    dietary_restriction = request.GET.get('dietary-restriction')
+    location = request.GET.get('location')
+    accessibility = request.GET.get('accessibility')
+    start_date = request.GET.get('start-date')
+    end_date = request.GET.get('end-date')
+
+    if start_date and end_date:
+        start_date_obj = datetime.strptime(start_date, "%Y-%m-%d")
+        end_date_obj = datetime.strptime(end_date, "%Y-%m-%d")
+        date_difference = (end_date_obj - start_date_obj).days
+        days_range = list(range(1, date_difference + 1))
     else:
-        return render(request, 'create-itinerary.html')
+        date_difference = None
+        days_range = None
+        
+        
+    accessible_attractions = []
+    if location:
+        # Search for tourist attractions in the user's location
+        attraction_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attractions+in+{}&key={}'.format(location, API_KEY)
+        attraction_response = requests.get(attraction_url)
+        attractions = json.loads(attraction_response.content)['results']
+        for place in attractions:
+            # Retrieve more details about the place
+            detail_url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id={}&fields=name,rating,formatted_address,opening_hours,website,photo&key={}'.format(place['place_id'], API_KEY)
+            detail_response = requests.get(detail_url)
+            detail = json.loads(detail_response.content)['result']
+            place.update(detail)
+
+        if accessibility:
+            # Search for accessible tourist attractions in the user's location
+            accessible_attraction_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attractions+in+{}&key={}'.format(accessibility, location, API_KEY)
+            accessible_attraction_response = requests.get(accessible_attraction_url)
+            accessible_attractions = json.loads(accessible_attraction_response.content)['results']
+            for place in accessible_attractions:
+                # Retrieve more details about the place
+                detail_url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id={}&fields=name,rating,formatted_address,opening_hours,website,photo&key={}'.format(place['place_id'], API_KEY)
+                detail_response = requests.get(detail_url)
+                detail = json.loads(detail_response.content)['result']
+                place.update(detail)
+
+        # (Continue with the rest of the original code for dietary restriction, restaurants, and hotels)
+        # Create the query based on the user's dietary restriction
+        if dietary_restriction == 'halal':
+            query = 'halal+restaurants+in+{}'.format(location)
+        elif dietary_restriction == 'vegan':
+            query = 'vegan+restaurants+in+{}'.format(location)
+        elif dietary_restriction == 'kosher':
+            query = 'kosher+restaurants+in+{}'.format(location)
+        else:
+            query = 'restaurants+in+{}'.format(location)
+
+         # Create the query based on the user's accessibility requirement
+        if accessibility == 'wheelchair':
+            accessibility_query = '+wheelchair+accessible'
+        elif accessibility == 'vision-impaired':
+            accessibility_query = '+vision+impaired+accessible'
+        else:
+            accessibility_query = ''
+
+        # Search for restaurants in the user's location
+        restaurant_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query={}&key={}'.format(query, API_KEY)
+        restaurant_response = requests.get(restaurant_url)
+        restaurants = json.loads(restaurant_response.content)['results']
+        for place in restaurants:
+            # Retrieve more details about the place
+            detail_url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id={}&fields=name,rating,formatted_address,opening_hours,website,photo&key={}'.format(place['place_id'], API_KEY)
+            detail_response = requests.get(detail_url)
+            detail = json.loads(detail_response.content)['result']
+            place.update(detail)
+
+        # Search for hotels in the user's location
+        hotel_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+{}&key={}'.format(location, API_KEY)
+        hotel_response = requests.get(hotel_url)
+        hotels = json.loads(hotel_response.content)['results']
+        for place in hotels:
+            # Retrieve more details about the place
+            detail_url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id={}&fields=name,rating,formatted_address,opening_hours,website,photo&key={}'.format(place['place_id'], API_KEY)
+            detail_response = requests.get(detail_url)
+            detail = json.loads(detail_response.content)['result']
+            place.update(detail)
+            
+        custom_results = []
+        custom_query = request.GET.get('custom-query')
+
+        if custom_query:
+            custom_query_with_location = '{}+in+{}'.format(custom_query, location)
+            custom_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query={}&key={}'.format(custom_query_with_location, API_KEY)
+            custom_response = requests.get(custom_url)
+            custom_results = json.loads(custom_response.content)['results']
+            for place in custom_results:
+                detail_url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id={}&fields=name,rating,formatted_address,opening_hours,website,photo&key={}'.format(place['place_id'], API_KEY)
+                detail_response = requests.get(detail_url)
+                detail = json.loads(detail_response.content)['result']
+                place.update(detail)
+
+        return render(request, 'create-trip.html', {'attractions': attractions, 'accessible_attractions': accessible_attractions, 'restaurants': restaurants, 'hotels': hotels, 'location': location, 'dietary_restriction': dietary_restriction, 'accessibility': accessibility, 'custom_results': custom_results, 'custom_query': custom_query, 'date_difference': date_difference, 'days_range': days_range})
+    return render(request, 'create-itinerary.html')
+    
+def trip_summary(request):
+    itinerary_data = request.POST.getlist('itinerary[]')
+    context = {
+        'itinerary_data': itinerary_data,
+    }
+    return render(request, 'trip-summary.html', context)
+
 def reviews(request):
     reviews = Review.objects.all()
     return render(request,'reviewpage.html',{'reviews': reviews})
@@ -198,8 +309,25 @@ def format_utc_offset(seconds):
     minutes, _ = divmod(remainder, 60)
     return f'{sign}{hours:02d}:{minutes:02d}'
 
+def get_price_range(establishment_type, place_name, country):
+    prompt = f"Can you give me only the price range of the {establishment_type} {place_name} in {country} in the format '$XXX-$XXX', without any other text besides the format"
+    openai.api_key = "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"
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=50,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    price_range = response.choices[0].text.strip()
+    # Remove the "?" character from the price range string
+    price_range = price_range.replace("?", "")
+
+    return price_range
+
 def travel_guide(request):
-    api_key = 'AIzaSyBLxB-MRxZKl_dBIUH8srCmRggdcSDQZfg'
+    api_key = 'AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI'
     if request.method == 'POST':
         location = request.POST['location']
         # queries = request.POST.getlist('query')
@@ -286,11 +414,15 @@ def travel_guide(request):
                         'place_id': result['place_id'],
                         'website': details_data['result'].get('website', ''),
                         'opening_hours': details_data['result'].get('opening_hours', {}).get('weekday_text', []),
-                        'rating': details_data['result'].get('rating', None)
+                        'rating': details_data['result'].get('rating', None),
+                        'price_range': None
                     }
                     if 'photos' in details_data ['result']:
                         photo_ref = details_data['result']['photos'][0]['photo_reference']
                         place['photo_url'] = f'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_ref}&key={api_key}'
+                    query_lower = query.lower()
+                    if "restaurant" in query_lower or "hotel" in query_lower:
+                        place['price_range'] = get_price_range(query, place['name'], location)    
                     places.append(place)
                     markers.append({'name': place['name'], 'latitude': place['latitude'], 'longitude': place['longitude']})
                 results[query] = places
@@ -303,3 +435,74 @@ def travel_guide(request):
 
 
 
+def create_profile(request, mode="view"):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    try:
+        profile = request.user.profile
+    except ObjectDoesNotExist:
+        profile = None
+
+    if request.method == 'POST' and mode == "edit":
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            return redirect('create-profile', mode='view')
+    else:
+        form = UserProfileForm(instance=profile)
+
+    if mode == 'view':
+        template_name = 'view-profile.html'
+    else:
+        template_name = 'edit-profile.html'
+
+    return render(request, template_name, {'form': form, 'mode': mode})
+
+@login_required
+def get_user_profile(request):
+    try:
+        profile = request.user.profile
+        data = {
+            'budget': profile.budget,
+            'dietary_restrictions': profile.dietary_restrictions,
+            'accessibility_needs': profile.accessibility_needs,
+            'preferences': profile.preferences,
+        }
+        return JsonResponse(data)
+    except ObjectDoesNotExist:
+        return JsonResponse({'error': 'Profile not found'})
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Please correct the error(s) below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change-password.html', {'form': form})
+
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        password = request.POST.get("password", "")
+        if request.user.check_password(password):
+            request.user.delete()
+            logout(request)
+            messages.success(request, 'Account successfully deleted.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Incorrect password. Please try again.')
+
+    return render(request, 'delete-account.html')
+
+def settings(request):
+  return render(request, 'settings.html')

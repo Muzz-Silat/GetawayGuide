@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+
+        .places-container, .day-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+        }
+
+        .place-item {
+            flex: 0 0 auto;
+            margin-right: 1rem;
+            width: 400px;
+            background-color: #f1f1f1;
+            padding: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: move;
+            transition: 0.2s;
+        }
+        .place-item:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-container {
+            min-height: 100px;
+            padding: 8px;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            position: relative; /* Add this line */
+            z-index: 1; /* Add this line */
+        }
+        .ui-draggable-dragging {
+            z-index: 2 !important; /* Add this line */
+        }
+        .website-url {
+            word-break: break-all;
+        }
+
+        img {
+            max-height: 300px;
+            width: auto;
+        }
+
+        .remove-item {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background-color: #ccc;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    
+        .remove-item:hover {
+            background-color: #bbb;
+        }
+
+        .place-item-container {
+            position: relative;
+        }
+        .day-wrapper {
+            position: relative;
+        }
+
+        .rest-day-btn {
+            position: absolute;
+            right: 16px;
+            top: 0;
+            background-color: #ccc;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .rest-day-btn:hover {
+            background-color: #bbb;
+        }
+
+        .rest-day-message {
+            display: none;
+            font-style: Arial;
+        }
+
+
+    </style>    
+    <script>
+        $(function() {
+            var gridWidth = 416; // 400px place-item width + 16px gap
+
+            $(".place-item").draggable({
+                helper: 'clone',
+                snap: ".day-container",
+                snapMode: "outer",
+                snapTolerance: 16,
+                start: function(event, ui) {
+                    $(this).css('opacity', 0.5);
+                },
+                stop: function(event, ui) {
+                    $(this).css('opacity', 1);
+                }
+            });
+
+            $(".day-container").droppable({
+                accept: ".place-item",
+                tolerance: "intersect",
+                greedy: true,
+                drop: function(event, ui) {
+                    var draggable = ui.draggable;
+                    var clone = draggable.clone();
+                    clone.draggable({
+                        helper: 'clone',
+                        snap: ".day-container",
+                        snapMode: "outer",
+                        snapTolerance: 16
+                    });
+                    clone = $('<div class="place-item-container" style="z-index: 1;"></div>').append(clone); // Add inline style
+                    $(this).append(clone);
+
+                    // Add the "x" button
+                    var removeButton = $('<span class="remove-item">x</span>');
+                    clone.append(removeButton);
+                    removeButton.click(function() {
+                        clone.remove();
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Tourist Attractions in {{ location }}</h1>
+    <div class="places-container">
+        {% for place in attractions %}
+        <div class="place-item">
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.formatted_address }}</p>
+            {% if place.photos %}
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{ place.photos.0.photo_reference }}&key=AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI" alt="{{ place.name }} photo">
+            {% endif %}
+            {% if place.website %}
+            <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+            {% endif %}
+            {% if place.rating %}
+            <p>Rating: {{ place.rating }}/5</p>
+            {% endif %}
+            {% if place.opening_hours %}
+            <p>Opening hours:</p>
+            <ul>
+                {% for day in place.opening_hours.weekday_text %}
+                <li>{{ day }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% if accessibility %}
+    <h1>{{ accessibility|title }} Accessible Tourist Attractions in {{ location }}</h1>
+    <div class="places-container">
+        {% for place in accessible_attractions %}
+        <div class="place-item">
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.formatted_address }}</p>
+            {% if place.photos %}
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{ place.photos.0.photo_reference }}&key=AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI" alt="{{ place.name }} photo">
+            {% endif %}
+            {% if place.website %}
+            <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+            {% endif %}
+            {% if place.rating %}
+            <p>Rating: {{ place.rating }}/5</p>
+            {% endif %}
+            {% if place.opening_hours %}
+            <p>Opening hours:</p>
+            <ul>
+                {% for day in place.opening_hours.weekday_text %}
+                <li>{{ day }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+     
+    {% if custom_results %}
+    <h1>{{ custom_query|title }} in {{ location }}</h1>
+    <div class="places-container">
+        {% for place in custom_results %}
+        <div class="place-item">
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.formatted_address }}</p>
+            {% if place.photos %}
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{ place.photos.0.photo_reference }}&key=AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI" alt="{{ place.name }} photo">
+            {% endif %}
+            {% if place.website %}
+            <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+            {% endif %}
+            {% if place.rating %}
+            <p>Rating: {{ place.rating }}/5</p>
+            {% endif %}
+            {% if place.opening_hours %}
+            <p>Opening hours:</p>
+            <ul>
+                {% for day in place.opening_hours.weekday_text %}
+                <li>{{ day }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    {% if dietary_restriction %}
+    <h1>{{ dietary_restriction|title }} Restaurants in {{ location }}</h1>
+    {% else %}
+    <h1>Restaurants in "{{ location }}"</h1>
+    {% endif %}
+    <div class="places-container">
+        {% for place in restaurants %}
+        <div class="place-item">
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.formatted_address }}</p>
+            {% if place.photos %}
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{ place.photos.0.photo_reference }}&key=AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI" alt="{{ place.name }} photo">
+            {% endif %}
+            {% if place.website %}
+            <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+            {% endif %}
+            {% if place.rating %}
+            <p>Rating: {{ place.rating }}/5</p>
+            {% endif %}
+            {% if place.opening_hours %}
+            <p>Opening hours:</p>
+            <ul>
+                {% for day in place.opening_hours.weekday_text %}
+                <li>{{ day }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <h1>Hotels in {{ location }}</h1>
+    <div class="places-container">
+    {% for place in hotels %}
+    <div class="place-item">
+        <h2>{{ place.name }}</h2>
+        <p>{{ place.formatted_address }}</p>
+        {% if place.photos %}
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{ place.photos.0.photo_reference }}&key=AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI" alt="{{ place.name }} photo">
+        {% endif %}
+        {% if place.website %}
+        <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
+        {% endif %}
+        {% if place.rating %}
+        <p>Rating: {{ place.rating }}/5</p>
+        {% endif %}
+        {% if place.opening_hours %}
+        <p>Opening hours:</p>
+        <ul>
+            {% for day in place.opening_hours.weekday_text %}
+            <li>{{ day }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+
+
+    {% comment %} <h1>Tourist Attractions in {{ location }}</h1>
+    <h2>Your trip duration: {{ days_difference }} days</h2>
+    <div>
+        {% for day in days_range %}
+        <h3>Day {{ day }}</h3>
+        <div class="day-container"></div>
+        {% endfor %}
+    </div> {% endcomment %}
+
+    <h1>Tourist Attractions in {{ location }}</h1>
+    <h2>Your trip duration: {{ date_difference }} days</h2>
+    <div>
+        {% for day in days_range %}
+        <h3>Day {{ day }}</h3>
+        <div class="day-wrapper">
+            <div class="day-container"></div>
+            <button class="rest-day-btn">Rest Day</button>
+            <div class="rest-day-message">Rest Day</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        $(".rest-day-btn").on("click", function() {
+            var dayWrapper = $(this).closest(".day-wrapper");
+            var dayContainer = dayWrapper.find(".day-container");
+            var restDayMessage = dayWrapper.find(".rest-day-message");
+
+            if (dayContainer.is(":visible")) {
+                dayContainer.hide();
+                $(this).text("Cancel Rest Day");
+                restDayMessage.show();
+            } else {
+                dayContainer.show();
+                $(this).text("Rest Day");
+                restDayMessage.hide();
+            }
+        });
+    </script>
+    <br>
+    <br>
+    <form id="itinerary-form" action="{% url 'trip-summary' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="itinerary[]" id="itinerary-data">
+        <button type="submit">Final Trip</button>
+    </form> 
+    <script>
+        $("#itinerary-form").on("submit", function() {
+            var itinerary = [];
+            $(".day-container").each(function() {
+                var day = [];
+                $(this).find(".place-item").each(function() {
+                    day.push($(this).html());
+                });
+                itinerary.push(day);
+            });
+            $("#itinerary-data").val(JSON.stringify(itinerary));
+        });
+    </script>
+</body>
+</html>
+            
+

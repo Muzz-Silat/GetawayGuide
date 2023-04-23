@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+import os
 
 
 class Review(models.Model):
@@ -44,16 +45,28 @@ class Itinerary(models.Model):
 
 
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255, blank=True)
-#     age = models.IntegerField(blank=True, null=True)
-#     budget = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
-#     dietary_restrictions = models.CharField(max_length=100, null=True, blank=True, choices=Itinerary.DIETARY_CHOICES)
-#     accessibility_needs = models.CharField(max_length=100, null=True, blank=True, choices=Itinerary.ACCESSIBILITY_CHOICES)
-#     preferences = models.CharField(max_length=100, null=True, blank=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
+    age = models.IntegerField(blank=True, null=True)
+    budget = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
+    dietary_restrictions = models.CharField(max_length=100, null=True, blank=True, choices=Itinerary.DIETARY_CHOICES)
+    accessibility_needs = models.CharField(max_length=100, null=True, blank=True, choices=Itinerary.ACCESSIBILITY_CHOICES)
+    preferences = models.CharField(max_length=100, null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
 
-#     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
+    def save(self, *args, **kwargs):
+    # If the profile already has an existing profile picture and it's not the same as the new one
+        if self.pk:
+            old_profile = Profile.objects.get(pk=self.pk)
+            old_profile_picture = old_profile.profile_picture
+            new_profile_picture = self.profile_picture
+            if old_profile_picture != new_profile_picture:
+                if old_profile_picture and os.path.isfile(old_profile_picture.path):
+                    os.remove(old_profile_picture.path)
 
-#     def __str__(self):
-#         return f'{self.user.username} Profile'
+        super(Profile, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

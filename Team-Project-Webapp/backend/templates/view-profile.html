@@ -1,0 +1,41 @@
+{% load static %}
+  <link rel="stylesheet" href="{% static '../static/css/view-profile.css' %}">
+  <h1 style="text-align: center;">View Profile</h1>
+{% if user.is_authenticated %}
+<p style="text-align: center;">Hello, {{ user.username }}!</p>
+
+<div class="profile-container">
+  {% if form.instance.profile_picture %}
+    <img src="{{ form.instance.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+  {% endif %}
+
+  <div class="fields-container">
+    {% if form.instance.first_name %}
+      <p class="view-profile-field"><strong>First Name:</strong> {{ form.instance.first_name }}</p>
+    {% endif %}
+    {% if form.instance.last_name %}
+    <p class="view-profile-field"><strong>Last Name:</strong> {{ form.instance.last_name }}</p>
+  {% endif %}
+    {% if form.instance.age %}
+      <p class="view-profile-field"><strong>Age:</strong> {{ form.instance.age }}</p>
+    {% endif %}
+    {% if form.instance.budget %}
+      <p class="view-profile-field"><strong>Budget:</strong> {{ form.instance.budget }}</p>
+    {% endif %}
+    {% if form.instance.dietary_restrictions %}
+      <p class="view-profile-field"><strong>Dietary Restrictions:</strong> {{ form.instance.get_dietary_restrictions_display }}</p>
+    {% endif %}
+    {% if form.instance.accessibility_needs %}
+      <p class="view-profile-field"><strong>Accessibility Needs:</strong> {{ form.instance.get_accessibility_needs_display }}</p>
+    {% endif %}
+    {% if form.instance.preferences %}
+      <p class="view-profile-field"><strong>Preferences:</strong> {{ form.instance.preferences }}</p>
+    {% endif %}
+  </div>
+
+  <a href="{% url 'create-profile' mode='edit' %}" class="edit-button">Edit Profile</a>
+</div>
+{% else %}
+<p style="text-align: center;">Please <a href="{% url 'login' %}">log in</a> to view your profile.</p>
+{% endif %}
+

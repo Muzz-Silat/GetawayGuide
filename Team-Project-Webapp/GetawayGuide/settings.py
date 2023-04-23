@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'backend.context_processors.user_profile'
             ],
         },
     },
@@ -137,6 +138,9 @@ LOGIN_REDIRECT_URL = 'home' # replace 'home' with the name of your home page URL
 LOGOUT_REDIRECT_URL = 'home' # replace 'home' with the name of your home page URL pattern
 LOGIN_URL = 'home' # replace 'login' with the name of your login page URL pattern
 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_TRUSTED_ORIGINS = ['https://teamdai57-22.bham.team']

@@ -34,7 +34,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Travel Guide">
     <meta name="description" content="">
-    <title>Create review</title>
+    <title>Travel Guide</title>
     <link rel="stylesheet" href="../static/css/main.css" media="screen">
 <link rel="stylesheet" href="../static/css/travel-guide-form.css" media="screen">
     <script class="u-script" type="text/javascript" src="../static/src/jquery.js" defer=""></script>
@@ -72,6 +72,19 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a>
 </li></ul>
+          {% if user.is_authenticated %}
+          {% with user.profile.profile_picture as profile_picture %}
+            {% if profile_picture %}
+              <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
+                <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+              </a>
+            {% else %}
+              <a href="{% url 'create-profile' mode='view' %}">
+                <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
+              </a>
+            {% endif %}
+          {% endwith %}
+          {% endif %}
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -82,6 +95,19 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a>
 </li></ul>
+              {% if user.is_authenticated %}
+              {% with user.profile.profile_picture as profile_picture %}
+                {% if profile_picture %}
+                  <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
+                    <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                  </a>
+                {% else %}
+                  <a href="{% url 'create-profile' mode='view' %}">
+                    <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
+                  </a>
+                {% endif %}
+              {% endwith %}
+              {% endif %}
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>

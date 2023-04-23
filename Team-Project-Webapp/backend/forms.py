@@ -1,7 +1,5 @@
 from django import forms
-from .models import Review
-from .models import Itinerary
-from django import forms
+from .models import Review, Itinerary, Profile
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 
 class SignupForm(UserCreationForm):
@@ -15,16 +13,15 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter password'}))
 
 
-# class UserProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ('name', 'age', 'budget', 'dietary_restrictions', 'accessibility_needs', 'preferences', 'profile_picture')
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'age', 'budget', 'dietary_restrictions', 'accessibility_needs', 'preferences', 'profile_picture')
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['rating', 'comment']
-
         
 class ItineraryForm(forms.ModelForm):
     class Meta:

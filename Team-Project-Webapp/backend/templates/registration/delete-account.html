@@ -1,0 +1,11 @@
+<h1>Confirm Delete Account</h1>
+    <p>Please enter your password to confirm account deletion:</p>
+
+    <form method="post" action="{% url 'delete-account' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Account</button>
+    </form>

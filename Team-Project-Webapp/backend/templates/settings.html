@@ -1,0 +1,10 @@
+<h1>Settings</h1>
+    <div class="settings-options">
+        <h2>Account</h2>
+        <ul>
+            <li><a href="{% url 'create-profile' mode='edit' %}">Update Profile</a></li>
+            <li><a href="{% url 'change-password' %}">Change Password</a></li>
+            <li><a href="{% url 'delete-account' %}">Delete Account</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>    

@@ -1,0 +1,41 @@
+{% load static %}
+  <link rel="stylesheet" href="{% static '../static/css/edit-profile.css' %}">
+  <h1 style="text-align: center;">Edit Profile</h1>
+{% if user.is_authenticated %}
+<p style="text-align: center;">Hello, {{ user.username }}!</p>
+
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div class="content-container">
+    <div class="profile-container">
+      {% if form.instance.profile_picture %}
+        <img src="{{ form.instance.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+      {% else %}
+        <div class="profile-picture" style="background-color: #ccc;"></div>
+      {% endif %}
+      <input type="file" class="custom-file-input" id="{{ form.profile_picture.auto_id }}" name="{{ form.profile_picture.html_name }}">
+      <label for="{{ form.profile_picture.auto_id }}" class="edit-profile-picture"><i class="fa fa-camera"></i></label>
+    </div>
+
+<div class="form-container">
+  {% for field in form %}
+    {% if field.name != 'profile_picture' %}
+      <div class="form-field">
+        <label for="{{ field.auto_id }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+    
+    <div style="text-align: center;">
+      <button type="submit" class="save-changes-button">Save Changes</button>
+    </div>
+  </div>
+</form>
+{% else %}
+<p style="text-align: center;">Please <a href="{% url 'login' %}">log in</a> to edit your profile.</p>
+{% endif %}

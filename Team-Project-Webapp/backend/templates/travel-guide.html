@@ -76,6 +76,19 @@
           <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
           <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
         </ul>
+        {% if user.is_authenticated %}
+        {% with user.profile.profile_picture as profile_picture %}
+          {% if profile_picture %}
+            <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
+              <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+            </a>
+          {% else %}
+            <a href="{% url 'create-profile' mode='view' %}">
+              <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+        {% endwith %}
+      {% endif %}  
       </div>
       <div class="u-custom-menu u-nav-container-collapse">
         <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -86,6 +99,19 @@
               <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
               <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
             </ul>
+            {% if user.is_authenticated %}
+              {% with user.profile.profile_picture as profile_picture %}
+                {% if profile_picture %}
+                  <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
+                    <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                  </a>
+                {% else %}
+                  <a href="{% url 'create-profile' mode='view' %}">
+                    <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
+                  </a>
+                {% endif %}
+              {% endwith %}
+            {% endif %}
           </div>
         </div>
         <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
@@ -110,7 +136,7 @@
                 </ul>
                 <h4>Population: {{ population }}</h2>
                 <h4>Flag:</h2>
-                <img src="{{ flag_url }}" alt="Flag of {{ location }}" width="100">
+                <img src="{{ flag_url }}" alt="Flag of {{ location }}" class="flag">
                 <h4>Calling Code: +{{ calling_code }}</h2>
               </div>
             </div>

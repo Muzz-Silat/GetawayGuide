@@ -16,7 +16,14 @@ urlpatterns = [
     path('create-review/',views.create_review), 
     path('review_delete/<int:pk>/', views.review_delete, name='review_delete'),
     path('gdpr/',views.gdpr),
-    path('recommend/',views.recommend, name="recommend"),
+    path('recommend/',views.recommend, name='recommend'),
     path('travel-guide/', views.travel_guide, name='travel-guide'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('create-trip/',views.create_itinerary, name= 'create-trip'),
+    path('trip-summary/',views.trip_summary, name= 'trip-summary'),
+    path('create-profile/<str:mode>/', views.create_profile, name='create-profile'),
+    path('get-user-profile/', views.get_user_profile, name='get-user-profile'),
+    path('change-password/', views.change_password, name='change-password'),
+    path('delete-account/', views.delete_account, name='delete-account'),
+    path('settings/', views.settings, name='settings'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
