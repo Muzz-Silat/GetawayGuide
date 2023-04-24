@@ -506,3 +506,9 @@ def delete_account(request):
 
 def settings(request):
   return render(request, 'settings.html')
+
+def previous_trips(request):
+    return render(request, 'previous-trips.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')

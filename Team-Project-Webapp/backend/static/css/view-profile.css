@@ -1,13 +1,9 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 50%;
+  margin: 0 auto 10%;
   background-color: #f1f1f1;
   padding: 20px;
   border-radius: 10px;
@@ -16,6 +12,9 @@ body {
 
 .profile-picture {
   border-radius: 50%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
   width: 150px;
   height: 150px;
   object-fit: cover;
@@ -35,11 +34,15 @@ body {
   flex-direction: column;
   margin-bottom: 15px;
   font-size: 18px;
-  text-align: left;
+  text-align: center;
+}
+
+.preferences{
+  word-wrap: break-word;
 }
 
 .edit-button {
-  background-color: #7b7c7e;
+  background-color: black;
   color: #fff;
   padding: 8px 16px;
   border: none;
@@ -48,4 +51,30 @@ body {
   cursor: pointer;
   margin-top: 20px;
   text-decoration: none;
+}
+
+.u-section-1 {
+  background-image: url("../images/background-1.jpg");
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 50vw;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 400;
+  font-size: 4.5rem;
+  margin: 92px auto 60px;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3rem;
+  }
 }

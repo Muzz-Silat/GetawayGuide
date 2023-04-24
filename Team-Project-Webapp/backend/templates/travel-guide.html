@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="en"><head>
+<html style="font-size: 16px;" lang="en">
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Travel Guide">
@@ -17,8 +18,8 @@
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "",
-		"logo": "../static/images/logo.jpg"
-}   </script>
+		"logo": "../static/images/logo.jpg"}
+    </script>
     <script>
       function initMap() {
         const markersData = JSON.parse(document.getElementById('markers-data').textContent);
@@ -57,67 +58,74 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Travel Guide">
     <meta property="og:type" content="website">
-    <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-  <body class="u-body u-xl-mode" data-lang="en" onload="initMap()"><header class="u-clearfix u-header u-white u-header" id="sec-804c"><div class="u-clearfix u-sheet u-sheet-1">
-    <a href="/" class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
-      <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
-    </a>
-    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-      <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-        <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-          <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-          <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
+    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en" onload="initMap()">
+    <header class="u-clearfix u-header u-white u-header" id="sec-804c">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+          <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
         </a>
-      </div>
-      <div class="u-custom-menu u-nav-container">
-        <ul class="u-nav u-unstyled u-nav-1">
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
-        </ul>
-        {% if user.is_authenticated %}
-        {% with user.profile.profile_picture as profile_picture %}
-          {% if profile_picture %}
-            <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
-              <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
-            </a>
-          {% else %}
-            <a href="{% url 'create-profile' mode='view' %}">
-              <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
-            </a>
-          {% endif %}
-        {% endwith %}
-      {% endif %}  
-      </div>
-      <div class="u-custom-menu u-nav-container-collapse">
-        <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-          <div class="u-inner-container-layout u-sidenav-overflow">
-            <div class="u-menu-close"></div>
-            <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
-            </ul>
-            {% if user.is_authenticated %}
-              {% with user.profile.profile_picture as profile_picture %}
-                {% if profile_picture %}
-                  <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
-                    <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
-                  </a>
-                {% else %}
-                  <a href="{% url 'create-profile' mode='view' %}">
-                    <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
-                  </a>
-                {% endif %}
-              {% endwith %}
-            {% endif %}
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+            <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <rect y="1" width="16" height="2"></rect>
+                <rect y="7" width="16" height="2"></rect>
+                <rect y="13" width="16" height="2"></rect>
+              </g>
+            </svg>
+          </a>
           </div>
-        </div>
-        <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
+              {% if user.is_authenticated %}
+                {% with user.profile.profile_picture as profile_picture %}
+                  {% if profile_picture %}
+                    <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                      <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
+                    </a>
+                  {% else %}
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
+                  {% endif %}
+                {% endwith %}
+              {% endif %}
+            </ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
+                  {% if user.is_authenticated %}
+                    {% with user.profile.profile_picture as profile_picture %}
+                      {% if profile_picture %}
+                        <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                          <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                        </a>
+                      {% else %}
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'dashboard' %}">Profile</a></li>
+                      {% endif %}
+                    {% endwith %}
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
       </div>
-    </nav>
-  </div></header>
+    </header>
     <section class="u-clearfix u-image u-section-1" id="sec-a1c7" data-image-width="1280" data-image-height="680">
       <div class="u-clearfix u-sheet u-valign-bottom u-sheet-1">
         <h1 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-title u-text-1">Travel Guide<br></h1>
@@ -166,30 +174,6 @@
         </div>
         <br>
         <br>
-        {% comment %}<div class="u-list u-list-2">
-          <div class="u-repeater u-repeater-2">
-            <div class="u-container-style u-custom-item u-grey-10 u-list-item u-radius-5 u-repeater-item u-shape-round" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-              <div class="u-container-layout u-similar-container u-container-layout-4">
-                <h4 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-6">Place:</h4>
-              </div>
-            </div>
-            <div class="u-container-style u-custom-item u-grey-10 u-list-item u-radius-5 u-repeater-item u-shape-round" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-              <div class="u-container-layout u-similar-container u-container-layout-5">
-                <h4 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-7">Restaurants:</h4>
-              </div>
-            </div>
-            <div class="u-container-style u-custom-item u-grey-10 u-list-item u-radius-5 u-repeater-item u-shape-round" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-              <div class="u-container-layout u-similar-container u-container-layout-6">
-                <h4 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-8">Hotel:</h4>
-              </div>
-            </div>
-            <div class="u-container-style u-custom-item u-grey-10 u-list-item u-radius-5 u-repeater-item u-shape-round" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-              <div class="u-container-layout u-similar-container u-container-layout-7">
-                <h4 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-9">Events:</h4>
-              </div>
-            </div>
-          </div>
-        </div> {% endcomment %}
         {% for query, places in results.items %}
         <h2>{{ query }}: </h2>
         {% if places %}
@@ -199,7 +183,7 @@
                 <h3>{{ place.name }}</h3>
                 <p>{{ place.address }}</p>
                 {% if place.photo_url %}
-                  <img src="{{ place.photo_url }}" alt="{{ place.name }}">
+                  <img src="{{ place.photo_url }}" alt="{{ place.name }}" class="place-image">
                 {% endif %}
                 {% if place.website %}
                   <p class="website-url">Website: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a></p>
@@ -232,8 +216,10 @@
         </div>
       </div>
     </section>
-    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea"><p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p><a  class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea"><p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p>
+      <a  class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
         <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
-      </a><a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a></footer>
+      </a>
+      <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a></footer>
   </body>
 </html>

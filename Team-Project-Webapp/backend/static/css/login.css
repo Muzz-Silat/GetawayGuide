@@ -29,8 +29,12 @@ body {
 }
 
 form input[type="text"], form input[type="password"] {
-  color: #000;
+  color: white;
 }
+input[type=text]:focus {
+  border: 2px solid white;
+}
+
 
 input[type=text] {
     background-color: #1A2226;
@@ -56,7 +60,7 @@ margin: 30px;
 }
 .form-control:focus {
     box-shadow: none;
-    background-color: #1A2226;
+    background-color: white;
     color: #ECF0F5;
 }
 .form-control-label {

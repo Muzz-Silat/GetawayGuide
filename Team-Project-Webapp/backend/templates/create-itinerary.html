@@ -1,255 +1,146 @@
-{% comment %} {% load static %}
-<head>
-  <title>Getaway Guide</title>
-</head>
-<div>
-  <link href="{% static 'css/create-itinerary.css' %}" rel="stylesheet" />
-    <div class="create-itinerary-container">
-      <div class="create-itinerary-container1">
-        <div class="create-itinerary-container2">
-          <a
-            href="/"
-            rel="noreferrer noopener"
-            class="create-itinerary-link"
-          >
-            Home
-          </a>
-          <a
-            href="/create-itinerary/"
-            rel="noreferrer noopener"
-            class="create-itinerary-link1"
-          >
-            Create Itinerary
-          </a>
-          <a
-            href="/reviews"
-            rel="noreferrer noopener"
-            class="create-itinerary-link2"
-          >
-            Reviews
-          </a>
-          <a
-            href="/logout/"
-            rel="noreferrer noopener"
-            class="create-itinerary-link3"
-          >
-            Logout
-          </a>
-        </div>
-        <h1 class="create-itinerary-create-itin">Create Itinerary</h1>
-        <input type="text" placeholder=" 🔍 Where to?" class="input create-itinerary-whereto" value="{{ country }}">
-        <button class ="recommend-button" onclick="window.location.href='/recommend/'">Recommend</button>
-        <label class="create-itinerary-start">Start:</label>
-        <input type="date" class="input create-itinerary-start-input" />
-        <label class="create-itinerary-end">End:</label>
-        <input type="date" class="input create-itinerary-end-input" />
-        <input
-          type="text"
-          placeholder="Budget Range: $"
-          class="input create-itinerary-budget"
-        />
-        <span class="create-itinerary-text03">Additional Preferences</span>
-        <select size="0" class="create-itinerary-dietary">
-          <option selected>Dietary Restrictions</option>
-          <option value="Option 2">Halal</option>
-          <option value="New Option">Vegan</option>
-          <option value="New Option">Vegetarian</option>
-          <option value="New Option">Kosher</option>
-          <option value="New Option">Carnivore</option>
-        </select>
-        <select size="0" class="create-itinerary-accessibility">
-          <option selected>Accessibility</option>
-          <option value="Option 2">Impaired vision</option>
-          <option value="New Option">impaired hearing</option>
-          <option value="New Option">wheel-chair bound</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Preferences e.g. religion, hobbies"
-          class="input create-itinerary-preference"
-        />
-        <button class="cssbuttons-io-button"> Save
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Create Itinerary">
+    <meta name="description" content="">
+    <title>Create Itinerary</title>
+    <link rel="stylesheet" href="../static/css/main.css" media="screen">
+    <link rel="stylesheet" href="../static/css/create-itinerary.css" media="screen">
+    <script class="u-script" type="text/javascript" src="../static/src/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="../static/src/main.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.7.9, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Oswald:200,300,400,500,600,700">   
+    <script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "",
+    "logo": "../static/images/logo.jpg"
+    }
+    </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Create Itinerary">
+    <meta property="og:type" content="website">
+    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+  </head>
+  <body class="u-body u-overlap u-xl-mode" data-lang="en">
+    <header class="u-clearfix u-header u-white u-header" id="sec-804c">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+          <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </g>
+              </svg>
+            </a>
           </div>
-        </button>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
+              {% if user.is_authenticated %}
+                {% with user.profile.profile_picture as profile_picture %}
+                  {% if profile_picture %}
+                    <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                      <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
+                    </a>
+                  {% else %}
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
+                  {% endif %}
+                {% endwith %}
+              {% endif %}
+            </ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
+                  {% if user.is_authenticated %}
+                    {% with user.profile.profile_picture as profile_picture %}
+                      {% if profile_picture %}
+                        <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                          <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                        </a>
+                      {% else %}
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'dashboard' %}">Profile</a></li>
+                      {% endif %}
+                    {% endwith %}
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
       </div>
-      <h1 class="create-itinerary-text07">
-        <span>Getaway Guide</span>
-        <br />
-        <br />
-      </h1>
-    </div>
-    <footer class= "footer">
-      <p>Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed</p>
-  </footer>
-  </div>
-   {% endcomment %}
-
-   <!DOCTYPE html>
-   <html style="font-size: 16px;" lang="en"><head>
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta charset="utf-8">
-       <meta name="keywords" content="Create Itinerary">
-       <meta name="description" content="">
-       <title>Create Itinerary</title>
-       <link rel="stylesheet" href="../static/css/main.css" media="screen">
-   <link rel="stylesheet" href="../static/css/create-itinerary.css" media="screen">
-       <script class="u-script" type="text/javascript" src="../static/src/jquery.js" defer=""></script>
-       <script class="u-script" type="text/javascript" src="../static/src/main.js" defer=""></script>
-       <meta name="generator" content="Nicepage 5.7.9, nicepage.com">
-       <meta name="referrer" content="origin">
-       <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-       <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Oswald:200,300,400,500,600,700">
-       
-       
-       <script type="application/ld+json">{
-       "@context": "http://schema.org",
-       "@type": "Organization",
-       "name": "",
-       "logo": "../static/images/logo.jpg"
-   }</script>
-       <meta name="theme-color" content="#478ac9">
-       <meta property="og:title" content="Create Itinerary">
-       <meta property="og:type" content="website">
-     <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-     <body class="u-body u-overlap u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-white u-header" id="sec-804c"><div class="u-clearfix u-sheet u-sheet-1">
-           <a href="/" class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
-             <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
-           </a>
-           <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-             <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-               <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-                 <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-                 <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-   </g></svg>
-               </a>
-             </div>
-             <div class="u-custom-menu u-nav-container">
-               <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a>
-   </li></ul>
-             {% if user.is_authenticated %}
-               {% with user.profile.profile_picture as profile_picture %}
-                 {% if profile_picture %}
-                   <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
-                     <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
-                   </a>
-                 {% else %}
-                   <a href="{% url 'create-profile' mode='view' %}">
-                     <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
-                   </a>
-                 {% endif %}
-               {% endwith %}
-             {% endif %}
-             </div>
-             <div class="u-custom-menu u-nav-container-collapse">
-               <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                 <div class="u-inner-container-layout u-sidenav-overflow">
-                   <div class="u-menu-close"></div>
-                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a>
-   </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a>
-   </li></ul>
-                 {% if user.is_authenticated %}
-                   {% with user.profile.profile_picture as profile_picture %}
-                     {% if profile_picture %}
-                       <a href="{% url 'create-profile' mode='view' %}" class="profile-picture-icon">
-                         <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
-                       </a>
-                     {% else %}
-                       <a href="{% url 'create-profile' mode='view' %}">
-                         <i class="fa fa-user profile-icon profile-picture-icon" aria-hidden="true"></i>
-                       </a>
-                     {% endif %}
-                   {% endwith %}
-                 {% endif %}
-                 </div>
-               </div>
-               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-             </div>
-           </nav>
-         </div></header>
-       <section class="u-clearfix u-image u-section-1" id="sec-9124" data-image-width="1280" data-image-height="680">
-         <div class="u-clearfix u-sheet u-sheet-1">
-           <div class="u-align-center u-container-style u-group u-opacity u-opacity-25 u-palette-1-light-3 u-radius-30 u-shape-round u-group-1">
-             <div class="u-container-layout u-container-layout-1">
-               <h1 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-title u-text-1">Create Itinerary </h1>
-               <div class="u-form u-form-1">
-                 <form action="{% url 'create-trip' %}" method="get" style="padding: 50px;">
-                   <input type="text" name="location" id="location" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" placeholder="🔍 where to?">
-                     <label for="start-date">        
-                       <p class="u-custom-font u-font-oswald u-text u-text-default u-text-2">Start:</p>
-                     </label>
-                     <input type="date" name="start-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="start-date">
-                     <label for= "end-date">        
-                       <p class="u-custom-font u-font-oswald u-text u-text-4">End: </p>
-                     </label>
-                     <input type="date" name="end-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="end-date">      
-                     <h1 class="u-custom-font u-font-oswald u-text u-text-default u-title u-text-3">Additional Preferences:</h1>
-                     <div class="u-form-select-wrapper">
-                       <select name="dietary-restriction" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="dietary-restriction">
-                           <option value="">No Dietary Restriction</option>
-                           <option value="halal">Halal Restaurants</option>
-                           <option value="vegan">Vegan Restaurants</option>
-                           <option value="kosher">Kosher Restaurants</option>
-                       </select>
-                       <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
-                     </div>
-                     <div class="u-form-select-wrapper">
-                       <select name="accessibility" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="accessibility">
-                         <option value="">No Accessibility Requirement</option>
-                         <option value="wheelchair">Wheelchair Accessible Place</option>
-                         <option value="vision-impaired">Vision Impaired</option>
-                       </select>
-                       <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
-                     </div>
-                     <input type="text" name="custom-query" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="custom-query" placeholder="Preferences e.g. religion, hobbies">
-                   <div class="u-align-center u-form-group u-form-submit">
-                     <button type="submit" class="submit-button">Get Started!</button>
-                   </div>
-                 </form>
-               </div>
-             </div>
-           </div>
-         </div>
-       </section>
-       <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea"><p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p><a class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
-           <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
-         </a><a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a></footer>
-   </body></html>
-   
-   
-   
-   
-   {% comment %} <form action="{% url 'search_places' %}" method="get">
-     <label for="location">Enter a location:</label>
-     <input type="text" name="location" id="location">
-     <br><br>
-     <label for="start-date">Start Date:</label>
-     <br><br>
-     <label for="end-date">End Date:</label>
-     <br><br>
-     <label for="dietary-restriction">Dietary Restriction:</label>
-     <select name="dietary-restriction" id="dietary-restriction">
-         <option value="">No Dietary Restriction</option>
-         <option value="halal">Halal Restaurants</option>
-         <option value="vegan">Vegan Restaurants</option>
-         <option value="kosher">Kosher Restaurants</option>
-     </select>
-     <br><br>
-     <label for="accessibility">Accessibility:</label>
-     <select name="accessibility" id="accessibility">
-         <option value="">No Accessibility Requirement</option>
-         <option value="wheelchair">Wheelchair Accessible Place</option>
-         <option value="vision-impaired">Vision Impaired</option>
-     </select>
-     <br><br>
-     <label for="custom-query">Custom Query:</label>
-     <input type="text" name="custom-query" id="custom-query">
-     <br><br>
-     <button type="submit">Search</button>
-   </form> {% endcomment %}
+    </header>
+    <section class="u-clearfix u-image u-section-1" id="sec-9124" data-image-width="1280" data-image-height="680">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-align-center u-container-style u-group u-opacity u-opacity-25 u-palette-1-light-3 u-radius-30 u-shape-round u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <h1 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-title u-text-1">Create Itinerary </h1>
+            <div class="u-form u-form-1">
+              <form action="{% url 'create-trip' %}" method="get" style="padding: 50px;">
+                <input type="text" name="location" id="location" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" placeholder="🔍 where to?">
+                  <label for="start-date">        
+                    <p class="u-custom-font u-font-oswald u-text u-text-default u-text-2">Start:</p>
+                  </label>
+                  <input type="date" name="start-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="start-date">
+                  <label for= "end-date">        
+                    <p class="u-custom-font u-font-oswald u-text u-text-4">End: </p>
+                  </label>
+                  <input type="date" name="end-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="end-date">      
+                  <h1 class="u-custom-font u-font-oswald u-text u-text-default u-title u-text-3">Additional Preferences:</h1>
+                  <div class="u-form-select-wrapper">
+                    <select name="dietary-restriction" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="dietary-restriction">
+                        <option value="">No Dietary Restriction</option>
+                        <option value="halal">Halal Restaurants</option>
+                        <option value="vegan">Vegan Restaurants</option>
+                        <option value="kosher">Kosher Restaurants</option>
+                    </select>
+                    <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                  </div>
+                  <div class="u-form-select-wrapper">
+                    <select name="accessibility" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="accessibility">
+                      <option value="">No Accessibility Requirement</option>
+                      <option value="wheelchair">Wheelchair Accessible Place</option>
+                      <option value="vision-impaired">Vision Impaired</option>
+                    </select>
+                    <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                  </div>
+                  <input type="text" name="custom-query" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="custom-query" placeholder="Preferences e.g. religion, hobbies">
+                <div class="u-align-center u-form-group u-form-submit">
+                  <button type="submit" class="submit-button">Get Started!</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea"><p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p>
+      <a class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+        <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
+      </a>
+      <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a>
+    </footer>
+  </body>
+</html>

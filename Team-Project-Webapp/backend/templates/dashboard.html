@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Dashboard">
+    <meta name="description" content="">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/css/main.css" media="screen">
+    <link rel="stylesheet" href="../static/css/dashboard.css" media="screen">
+    <script class="u-script" type="text/javascript" src="../static/src/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="../static/src/main.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.7.9, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "",
+    "logo": "../static/images/logo.jpg"
+    }
+    </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Create review">
+    <meta property="og:type" content="website">
+    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+    </head>
+    <body class="u-body u-xl-mode" data-lang="en">
+    <header class="u-clearfix u-header u-white u-header" id="sec-804c">
+        <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+            <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+                <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"></rect>
+                    <rect y="13" width="16" height="2"></rect>
+                </g>
+                </svg>
+            </a>
+            </div>
+            <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
+                {% if user.is_authenticated %}
+                {% with user.profile.profile_picture as profile_picture %}
+                {% if profile_picture %}
+                    <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                    <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
+                    </a>
+                {% else %}
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
+                {% endif %}
+                {% endwith %}
+            {% endif %}
+            </ul>
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
+                    {% if user.is_authenticated %}
+                        {% with user.profile.profile_picture as profile_picture %}
+                        {% if profile_picture %}
+                            <a href="{% url 'dashboard' %}" class="profile-picture-icon">
+                            <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                            </a>
+                        {% else %}
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'dashboard' %}">Profile</a></li>
+                        {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                    </ul>
+                </div>
+                </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <section class="u-clearfix u-image u-section-1" id="sec-0815" data-image-width="1280" data-image-height="680">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h1 class="u-custom-font u-font-roboto-slab u-text u-text-default u-title u-text-1">Dashboard</h1>
+            <br>
+            <div class="options-container">
+                <div class="profile card">
+                    <div class="profile-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" style="width: 100px; height: 100px; margin-top: 5%;"><path d="M222 801q63-40 124.5-60.5T480 720q72 0 134 20.5T739 801q44-54 62.5-109T820 576q0-145-97.5-242.5T480 236q-145 0-242.5 97.5T140 576q0 61 19 116t63 109Zm257.814-195Q422 606 382.5 566.314q-39.5-39.686-39.5-97.5t39.686-97.314q39.686-39.5 97.5-39.5t97.314 39.686q39.5 39.686 39.5 97.5T577.314 566.5q-39.686 39.5-97.5 39.5Zm-.219 370q-83.146 0-156.275-31.5t-127.225-86Q142 804 111 731.159 80 658.319 80 575.5q0-82.819 31.5-155.659Q143 347 197.5 293t127.341-85.5Q397.681 176 480.5 176q82.819 0 155.659 31.5Q709 239 763 293t85.5 127Q880 493 880 575.734q0 82.734-31.5 155.5T763 858.5q-54 54.5-127.129 86T479.595 976Z"/></svg>
+                    </div>
+                    <div class="profile-body">
+                        <a class="profile-text" href="/create-profile/view">Profile</a>
+                    </div>
+                </div>
+                <div class="settings card">
+                    <div class="settings-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" style="width: 100px; height: 100px; margin-top: 5%;"><path d="m388 976-20-126q-19-7-40-19t-37-25l-118 54-93-164 108-79q-2-9-2.5-20.5T185 576q0-9 .5-20.5T188 535L80 456l93-164 118 54q16-13 37-25t40-18l20-127h184l20 126q19 7 40.5 18.5T669 346l118-54 93 164-108 77q2 10 2.5 21.5t.5 21.5q0 10-.5 21t-2.5 21l108 78-93 164-118-54q-16 13-36.5 25.5T592 850l-20 126H388Zm92-270q54 0 92-38t38-92q0-54-38-92t-92-38q-54 0-92 38t-38 92q0 54 38 92t92 38Z"/></svg>
+                    </div>
+                    <div class="settings-body">
+                        <a class="settings-text" href="/settings/">Settings</a>
+                    </div>
+                </div>
+                <div class="previous-trips card">
+                    <div class="previous-trips-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" style="width: 100px; height: 100px; margin-top: 5%;"><path d="m263 793 290-143 143-290-290 143-143 290Zm217-177q-17 0-28.5-11.5T440 576q0-17 11.5-28.5T480 536q17 0 28.5 11.5T520 576q0 17-11.5 28.5T480 616Zm0 360q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Z"/></svg>
+                    </div>
+                    <div class="previous-trips-body">
+                        <a class="previous-trips-text" href="/previous-trips/">Previous Trips</a>
+                    </div>
+                </div>
+                <div class="logout card">
+                    <div class="logout-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" style="width: 100px; height: 100px; margin-top: 5%;"><path d="M180 936q-24 0-42-18t-18-42V276q0-24 18-42t42-18h291v60H180v600h291v60H180Zm486-185-43-43 102-102H375v-60h348L621 444l43-43 176 176-174 174Z"/></svg>
+                    </div>
+                    <div class="logout-body">
+                        <a class="logout-text" href="/logout/">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea">
+        <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p>
+        <a class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
+        <img src="../static/images/logo.jpg" class="u-logo-image u-logo-image-1">
+        </a>
+        <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a>
+    </footer>
+    </body>
+</html>

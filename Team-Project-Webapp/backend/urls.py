@@ -25,5 +25,7 @@ urlpatterns = [
     path('change-password/', views.change_password, name='change-password'),
     path('delete-account/', views.delete_account, name='delete-account'),
     path('settings/', views.settings, name='settings'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('previous-trips/', views.previous_trips, name= 'previous-trips')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

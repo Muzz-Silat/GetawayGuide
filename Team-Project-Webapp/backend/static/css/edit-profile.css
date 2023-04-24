@@ -36,6 +36,7 @@ body {
     align-items: center;
     width: 32px;
     height: 32px;
+    cursor: pointer;
   }
   
   .form-container {
@@ -58,7 +59,7 @@ body {
   }
   
   .save-changes-button {
-    background-color: #7b7c7e;
+    background-color: black;
     color: #fff;
     padding: 8px 16px;
     border: none;
@@ -68,13 +69,43 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .save-changes-button:hover{
+    color: #478ac9;
+  }
   
   .content-container {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 50%;
+    margin: 0 auto 10%;
     background-color: #f1f1f1;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .u-section-1 {
+    background-image: url("../images/background-1.jpg");
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 50vw;
+  }
+  
+  .u-section-1 .u-text-1 {
+    font-weight: 400;
+    font-size: 4.5rem;
+    margin: 92px auto 60px;
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3.75rem;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3rem;
+    }
   }
   
