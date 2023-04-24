@@ -135,6 +135,8 @@
 }
 
 .places-container {
+  position: relative;
+  right: 20%;
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -144,7 +146,7 @@
   scrollbar-width: thin;
   scrollbar-color: #ddd #fff;
   scroll-snap-type: x mandatory;
-  width: calc(100% - 16px);
+  width: 1548px;
   scroll-snap-align: center;
   height: 100vh;
 }
@@ -218,6 +220,10 @@
   height: 300px;
   width: 100%;
   object-fit: cover;
+}
+.query{
+  position: relative;
+  right: 20%;
 }
 #map{
   position: relative;
