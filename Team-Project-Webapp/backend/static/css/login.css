@@ -1,11 +1,10 @@
 body {
-  background-color: #071014;
-  background-image: -webkit-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: -moz-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: -o-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: linear-gradient(160deg, #071014 0%, #0db8de 100%);  
-    font-family: 'Arial', sans-serif;
-    height: 100vh;
+  background-image: url("../images/login-bg.jpg"); 
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  background-repeat: no-repeat;
 }
 .login-box {
     margin-top: 75px;
@@ -141,6 +140,11 @@ cursor: pointer;
   padding: 10px;
 }
 
+.bi-eye{
+  position: relative;
+  left: 85%;
+  bottom: 30%;
+}
 .btn-primary {
   background-color: #007bff;
   border: none;

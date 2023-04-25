@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link href="../../static/css/login.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../../static/images/favicon.ico" type="image/x-icon">
 </head>
 <body class="d-flex align-items-center">
   <div class="container">
@@ -24,7 +25,8 @@
               {{ form.username }}
             </div>
             <div class="form-group">
-              <label for="{{ form.password.id_for_label }}">Password:</label>
+              <label for="{{ form.password.id_for_label }}">Password:
+              </label>
               {{ form.password }}
             </div>
             <div class="col-12 login-btm login-button justify-content-center d-flex">
