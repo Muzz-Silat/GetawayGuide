@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('',views.homepage, name='home'),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('delete-account/', views.delete_account, name='delete-account'),
     path('settings/', views.settings, name='settings'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('previous-trips/', views.previous_trips, name= 'previous-trips')
+    path('previous-trips/', views.previous_trips, name= 'previous-trips'),
+    path("travel-recommendations/", views.travel_recommendations, name="travel-recommendations"),
+    path("travel/", TemplateView.as_view(template_name="travel-recommendations.html"), name="travel"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
