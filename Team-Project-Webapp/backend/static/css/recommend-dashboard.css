@@ -1,0 +1,138 @@
+.u-section-1 {
+    background-image: url("../images/background-1.jpg");
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 50vw;
+  }
+  
+  .u-section-1 .u-text-1 {
+    font-weight: 400;
+    font-size: 4.5rem;
+    margin: 92px auto 60px;
+  }
+  .btn1-text{
+    color: #ffffff;
+  }
+  .btn1-text:hover{
+    color: #ffffff !important;
+  }
+  .card{
+    background-color: white;
+    border-radius: 16px;
+    padding: 0 0 10px 0;
+    height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 20%;
+  }
+.ML-header{
+    text-align: center;
+    background-color: #59788E;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 70%;
+}
+.ML-body{
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+}
+.ML-text{
+    font-size: 24px;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+}
+.OPENAI-header{
+    text-align: center;
+    background-color: #59788E;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 70%;
+}
+.OPENAI-body{
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+}
+.OPENAI-text{
+    font-size: 24px;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+}
+
+.options-container{
+    margin-top: 15%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 50px;
+    height: 500px;
+  }
+   .btn1 {
+    --color: #00A97F;
+    --color2: black;
+    padding: 0.8em 1.75em;
+    background-color: #222222;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 500;
+    font-size: 15px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+    margin: 20% 0 10% 10%;
+   }
+   
+   .btn1::after, .btn1::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    /* background-color: var(--color); */
+    background-image: linear-gradient(to right, #11998e, #38ef7d);
+   }
+   
+   .btn1::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn1:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn1:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btn1:hover {
+    color: var(--color2);
+   }
+   
+   .btn1:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+   
+  
+  @media (max-width: 767px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3.75rem;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3rem;
+    }
+  }
+  

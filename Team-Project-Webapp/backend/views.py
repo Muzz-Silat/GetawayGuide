@@ -750,3 +750,6 @@ def travel_recommendations(request):
         return JsonResponse({"response": formatted_response})
     else:
         return JsonResponse({"error": "Invalid request method"})
+    
+def recommend_dashboard(request):
+    return render(request, "recommend-dashboard.html") 

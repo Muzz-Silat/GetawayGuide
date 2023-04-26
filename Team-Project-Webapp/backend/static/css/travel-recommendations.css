@@ -12,6 +12,14 @@
     margin: 92px auto 60px;
   }
 
+  .short-para{
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    font-family: "Open Sans" sans-serif;
+    padding: 10 10 10 10;
+  }
+
    .card-1{
     font-family: 'Poppins', sans-serif;
     border-radius: 16px;
