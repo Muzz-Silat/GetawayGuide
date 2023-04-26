@@ -1,12 +1,12 @@
 {% load json_filters %}
 
 {% block content %}
-    <h1>Previous Trips</h1>
+    <h1>Past Trips</h1>
     <ul>
-        {% for previous_trip in previous_trips %}
+        {% for past_trip in past_trips %}
             <li>
-                <h3>{{ previous_trip.created_at|date:"F j, Y" }}</h3>
-                {% with itinerary_data=previous_trip.summary|json_decode %}
+                <h3>{{ past_trip.created_at|date:"F j, Y" }}</h3>
+                {% with itinerary_data=past_trip.summary|json_decode %}
                     {% for day in itinerary_data %}
                         <h4>Day {{ forloop.counter }}</h4>
                         <div>

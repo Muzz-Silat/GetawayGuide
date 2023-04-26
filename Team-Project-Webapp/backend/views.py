@@ -147,15 +147,166 @@ def create_itinerary(request, country=None):
     return render(request, 'create-itinerary.html')
     
 def trip_summary(request):
-    itinerary_data = request.POST.getlist('itinerary[]')
+    context = {}
+    if request.method == 'POST':
+        itinerary_data_raw = request.POST.getlist('itinerary[]')
+        itinerary_data = []
+
+        for day_obj_str in itinerary_data_raw:
+            day_obj_list = json.loads(day_obj_str)
+
+            for day_obj in day_obj_list:
+                print(day_obj)
+
+                day_number = day_obj.get('day', None)
+                day_items = day_obj.get('items', [])
+                is_rest_day = day_obj.get('is_rest_day', False)
+
+                day_data = {
+                    'day_number': day_number,
+                    'attractions': [],
+                    'restaurants': [],
+                    'hotels': [],
+                    'is_rest_day': is_rest_day
+                }
+
+                if not is_rest_day:
+                    for item in day_items:
+                        if isinstance(item, str):
+                            soup = BeautifulSoup(item, 'html.parser')
+                            process_item(soup, day_data)
+
+                itinerary_data.append(day_data)
+
+        total_price = 0
+
+
+        for day_data in itinerary_data:
+            for category in ['attractions', 'restaurants', 'hotels']:
+                for item in day_data[category]:
+                    price_range = item.get('price_range')
+                    if price_range and len(price_range.split("-")) == 2:
+                        # Remove newline characters and split the price range string
+                        price_range = price_range.strip().split("-")
+
+                        # Convert the price range values to floats and calculate the average
+                        price = (float(price_range[0][1:]) + float(price_range[1][1:])) / 2
+
+                        total_price += price
+
+                        # Print the price range for debugging purposes
+                        print(f"{item['title']} - Price Range: {price_range}")
+
+        print("Total Price (in view function):", total_price)
+
+
+        context = {
+            'itinerary_data': itinerary_data,
+            'total_price': total_price,
+        }
+
+
+        # Save the trip summary to the database
+        if request.user.is_authenticated:
+            summary_json = json.dumps(itinerary_data)  # Convert to JSON
+            previous_trip = PreviousTrip(user=request.user, summary=summary_json)  # Save JSON to the database
+            previous_trip.save()
+            return redirect('display-trip-summary', trip_id=previous_trip.id)
+    return render(request, 'trip-summary.html', context)
+
+
+def process_item(soup, day_data):
+    title = soup.find('h2').text.strip()
+    address = soup.find('p').text.strip()
+    img_src = soup.find('img')['src']
+
+    website_url_element = soup.find(class_='website-url')
+    website = website_url_element.find('a')['href'] if website_url_element else None
+
+    paragraphs = soup.find_all('p')
+    try:
+        rating = paragraphs[2].text.strip()
+    except IndexError:
+        rating = None
+
+
+    # Find the opening hours
+    opening_hours_element = soup.find(class_='opening-hours')
+    if opening_hours_element:
+        opening_hours = [li.text.strip() for li in opening_hours_element.find_all('li')]
+    else:
+        opening_hours = []
+
+    # Determine the category based on the presence of specific elements in the HTML
+    if soup.find(class_='hotel-rating'):
+        category = 'hotels'
+    elif soup.find(class_='restaurant-rating'):
+        category = 'restaurants'
+    else:
+        category = 'attractions'
+
+    # Get the price range using the get_price_range function
+    if title and address:
+        establishment_type = category[:-1].capitalize()
+        place_name = title
+        country = address.split(', ')[-1]
+        price_range = get_price_range(establishment_type, place_name, country)
+    else:
+        price_range = None
+
+    data = {
+        'title': title,
+        'address': address,
+        'img_src': img_src,
+        'website': website,
+        'rating': rating,
+        'opening_hours': opening_hours,
+        'price_range': price_range  # Include the price range in the data
+    }
+
+    day_data[category].append(data)
+
+
+
+
+
+from bs4 import BeautifulSoup
+
+def display_trip_summary(request, trip_id):
+    previous_trip = get_object_or_404(PreviousTrip, id=trip_id)
+    itinerary_data = json.loads(previous_trip.summary)  # Parse JSON to a dictionary
+
+    total_price = 0
+    for day_data in itinerary_data:
+        for category in ['attractions', 'restaurants', 'hotels']:
+            for item in day_data[category]:
+                price_range = item.get('price_range')
+                if price_range and len(price_range.split("-")) == 2:
+                    price_range = price_range.strip().split("-")
+                    price = (float(price_range[0][1:]) + float(price_range[1][1:])) / 2
+                    total_price += price
+
     context = {
         'itinerary_data': itinerary_data,
+        'total_price': total_price,
     }
+
     return render(request, 'trip-summary.html', context)
+
+
+import json
+from bs4 import BeautifulSoup
+from django.template.loader import render_to_string
+
+
+from .models import PreviousTrip
+
+
 
 def reviews(request):
     reviews = Review.objects.all()
     return render(request,'reviewpage.html',{'reviews': reviews})
+
 
 @login_required
 def create_review(request):
@@ -466,12 +617,13 @@ def get_user_profile(request):
     try:
         profile = request.user.profile
         data = {
-            'budget': profile.budget,
             'dietary_restrictions': profile.dietary_restrictions,
             'accessibility_needs': profile.accessibility_needs,
             'preferences': profile.preferences,
         }
+        print(data)
         return JsonResponse(data)
+        
     except ObjectDoesNotExist:
         return JsonResponse({'error': 'Profile not found'})
 
@@ -508,7 +660,11 @@ def settings(request):
   return render(request, 'settings.html')
 
 def previous_trips(request):
-    return render(request, 'previous-trips.html')
+    if request.user.is_authenticated:
+        previous_trips = PreviousTrip.objects.filter(user=request.user).order_by('-created_at')
+        return render(request, 'previous-trips.html', {'previous_trips': previous_trips})
+    else:
+        return redirect('login')
 
 def dashboard(request):
     return render(request, 'dashboard.html')

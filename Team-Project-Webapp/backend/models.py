@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 import os
+import json
 
 
 class Review(models.Model):
@@ -24,25 +25,23 @@ class Review(models.Model):
 class Itinerary(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     DIETARY_CHOICES = [
-        ('Halal', 'Halal'),
-        ('Vegan', 'Vegan'),
-        ('Vegetarian', 'Vegetarian'),
-        ('Kosher', 'Kosher'),
-        ('Carnivore', 'Carnivore')
+        ('No Dietary Restriction', 'No Dietary Restriction'),
+        ('Halal Restaurants', 'Halal Restaurants'),
+        ('Vegan Restaurants', 'Vegan Restaurants'),
+        ('Kosher Restaurants', 'Kosher Restaurants')
     ]
     ACCESSIBILITY_CHOICES = [
-        ('Impaired vision', 'Impaired vision'),
-        ('Impaired hearing', 'Impaired hearing'),
-        ('Wheel-chair bound', 'Wheel-chair bound')
+        ('No Accessibility Requirement', 'No Accessibility Requirement'),
+        ('Wheelchair Accessible Place', 'Wheelchair Accessible Place'),
+        ('Vision Impaired', 'Vision Impaired')
     ]
     destination = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
     budget = models.DecimalField(max_digits=10, decimal_places=0)
-    dietary_restrictions = models.CharField(max_length=100, choices=DIETARY_CHOICES, default='No dietary restrictions')
-    accessibility_needs = models.CharField(max_length=100, choices=ACCESSIBILITY_CHOICES, default='No accessibility needs')
+    dietary_restrictions = models.CharField(max_length=100, choices=DIETARY_CHOICES, default='No Dietary Restriction')
+    accessibility_needs = models.CharField(max_length=100, choices=ACCESSIBILITY_CHOICES, default='No Accessibility Requirement')
     preferences = models.CharField(max_length=100)
-
 
 
 class Profile(models.Model):
@@ -70,3 +69,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    
+
+class PreviousTrip(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    summary = models.TextField()
+    itinerary_data = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.summary
+
+    def itinerary_data_list(self):
+        return json.loads(self.itinerary_data)
+

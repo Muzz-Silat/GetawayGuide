@@ -297,16 +297,6 @@
     {% endfor %}
     </div>
 
-
-    {% comment %} <h1>Tourist Attractions in {{ location }}</h1>
-    <h2>Your trip duration: {{ days_difference }} days</h2>
-    <div>
-        {% for day in days_range %}
-        <h3>Day {{ day }}</h3>
-        <div class="day-container"></div>
-        {% endfor %}
-    </div> {% endcomment %}
-
     <h1>Tourist Attractions in {{ location }}</h1>
     <h2>Your trip duration: {{ date_difference }} days</h2>
     <div>
@@ -347,15 +337,32 @@
     <script>
         $("#itinerary-form").on("submit", function() {
             var itinerary = [];
-            $(".day-container").each(function() {
-                var day = [];
-                $(this).find(".place-item").each(function() {
-                    day.push($(this).html());
+            $(".day-wrapper").each(function(index) {
+                var dayContainer = $(this).find(".day-container");
+                var dayItems = [];
+                dayContainer.find(".place-item").each(function() {
+                    dayItems.push($(this).html());
                 });
-                itinerary.push(day);
+        
+                var isRestDay = dayContainer.css('display') === 'none';
+        
+                itinerary.push({ "day": index + 1, "items": dayItems, "is_rest_day": isRestDay });
             });
+        
+            // Check if the itinerary array is empty or contains only empty days
+            var isEmpty = itinerary.every(function(dayObj) {
+                return dayObj.items.length === 0;
+            });
+        
+            // If the itinerary is empty, add a single empty day to avoid KeyError
+            if (isEmpty) {
+                itinerary = [{ "day": 1, "items": [] }];
+            }
+        
+            console.log("Itinerary data before submitting:", itinerary);
             $("#itinerary-data").val(JSON.stringify(itinerary));
         });
+        
     </script>
 </body>
 </html>

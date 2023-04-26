@@ -1,6 +1,9 @@
+{% load custom_filters %}
 <!DOCTYPE html>
 <html>
+   
 <head>
+    
     <title>Trip Summary</title>
     <style>
         body {
@@ -33,9 +36,88 @@
     <div class="itinerary-container">
         {% for day in itinerary_data %}
             <div class="day-item">
-                {{ day|safe }}
+                <h2>Day {{ day.day_number }}
+                {% if day.is_rest_day %}
+                (Rest Day)
+                {% endif %}</h2>
+                {% if not day.is_rest_day %}
+                <h3>Results:</h3>
+                <ul>
+                    {% for attraction in day.attractions %}
+                        <li>
+                            <h5>{{ attraction.title }}</h5>
+                            <p>{{ attraction.address }}</p>
+                            <img src="{{ attraction.img_src }}" alt="{{ attraction.title }} photo">
+                            <p>Website: <a href="{{ attraction.website }}" target="_blank">{{ attraction.website }}</a></p>
+                            <p>{{ attraction.rating|split:': '|last }}</p>
+                            <p>Price Range: {{ attraction.price_range }}</p>
+                            {% if attraction.opening_hours %}
+                                <div class="opening-hours">
+                                    <strong>Opening Hours:</strong>
+                                    <ul>
+                                    {% for hour in attraction.opening_hours %}
+                                        <li>{{ hour }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h3> </h3>
+                <ul>
+                    {% for restaurant in day.restaurants %}
+                        <li>
+                            <h5>{{ restaurant.title }}</h5>
+                            <p>{{ restaurant.address }}</p>
+                            <img src="{{ restaurant.img_src }}" alt="{{ restaurant.title }} photo">
+                            <p>Website: <a href="{{ restaurant.website }}" target="_blank">{{ restaurant.website }}</a></p>
+                            <p>{{ restaurant.rating|split:': '|last }}</p>
+                            {% if restaurant.opening_hours %}
+                            <p>Price Range: {{ restaurant.price_range }}</p>
+                                <div class="opening-hours">
+                                    <strong>Opening Hours:</strong>
+                                    <ul>
+                                    {% for hour in restaurant.opening_hours %}
+                                        <li>{{ hour }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                        
+                    {% endfor %}
+                </ul>
+                <h3> </h3>
+                <ul>
+                    {% for hotel in day.hotels %}
+                        <li>
+                            <h5>{{ hotel.title }}</h5>
+                            <p>{{ hotel.address }}</p>
+                            <img src="{{ hotel.img_src }}" alt="{{ hotel.title }} photo">
+                            <p>Website: <a href="{{ hotel.website }}" target="_blank">{{ hotel.website }}</a></p>
+                            <p>{{ hotel.rating|split:': '|last }}</p>
+                            {% if hotel.opening_hours %}
+                            <p>Price Range: {{ hotel.price_range }}</p>
+                                <div class="opening-hours">
+                                    <strong>Opening Hours:</strong>
+                                    <ul>
+                                    {% for hour in hotel.opening_hours %}
+                                        <li>{{ hour }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         {% endfor %}
+        Total Price Estimate: ${{ total_price }}
+
     </div>
 </body>
+
+
 </html>
