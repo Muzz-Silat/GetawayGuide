@@ -46,7 +46,7 @@ def create_itinerary(request, country=None):
     # else:
     #     return render(request, 'create-itinerary.html')
     
-    API_KEY = 'AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI'
+    API_KEY = 'AIzaSyCdQMF13dD7iNdbYEMNXddruacxqhlZkvo'
     dietary_restriction = request.GET.get('dietary-restriction')
     location = request.GET.get('location')
     accessibility = request.GET.get('accessibility')
@@ -478,7 +478,7 @@ def get_price_range(establishment_type, place_name, country):
     return price_range
 
 def travel_guide(request):
-    api_key = 'AIzaSyC20xZiIEWNdxKMsa-HMY8eATSaJ2JfgxI'
+    api_key = 'AIzaSyCdQMF13dD7iNdbYEMNXddruacxqhlZkvo'
     if request.method == 'POST':
         location = request.POST['location']
         # queries = request.POST.getlist('query')

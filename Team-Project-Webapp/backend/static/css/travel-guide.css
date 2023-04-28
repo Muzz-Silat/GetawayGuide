@@ -173,7 +173,7 @@
   border-radius: 25px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.places-container::-webkit-scrollbar-thumb:hover {
   background: gray;
 }
 
@@ -233,6 +233,7 @@
   margin: 56px auto 0;
   padding-bottom: 20px;
 }
+
 @media (max-width: 1199px) {
   .u-section-1 .u-sheet-1 {
     min-height: 3582px;
