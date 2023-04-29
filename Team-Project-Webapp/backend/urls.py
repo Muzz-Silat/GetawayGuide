@@ -31,6 +31,8 @@ urlpatterns = [
     path("travel-recommendations/", views.travel_recommendations, name="travel-recommendations"),
     path("travel/", TemplateView.as_view(template_name="travel-recommendations.html"), name="travel"),
     path('trip-summary/<int:trip_id>/', views.display_trip_summary, name='display-trip-summary'),
-    path('recommend-dashboard/',views.recommend_dashboard,name="recommend-dashboard")
+    path('recommend-dashboard/',views.recommend_dashboard,name="recommend-dashboard"),
+    path('delete-trip/<int:trip_id>/', views.delete_trip, name='delete_trip'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

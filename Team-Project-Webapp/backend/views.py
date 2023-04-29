@@ -33,6 +33,10 @@ import json, openai
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserProfileForm
+from django.shortcuts import redirect, get_object_or_404
+from .models import PreviousTrip
+
+from django.http import Http404
 
 
 def homepage(request):
@@ -665,6 +669,20 @@ def previous_trips(request):
         return render(request, 'previous-trips.html', {'previous_trips': previous_trips})
     else:
         return redirect('login')
+    
+
+
+def delete_trip(request, trip_id):
+    if request.user.is_authenticated:
+        try:
+            trip = PreviousTrip.objects.get(id=trip_id, user=request.user)
+        except PreviousTrip.DoesNotExist:
+            raise Http404("No PreviousTrip matches the given query.")
+        trip.delete()
+        return redirect('previous-trips')
+    else:
+        return redirect('login')
+
 
 def dashboard(request):
     return render(request, 'dashboard.html')

@@ -7,37 +7,47 @@
             <li>
                 <h3>{{ previous_trip.created_at|date:"F j, Y" }}</h3>
                 {% with itinerary_data=previous_trip.summary|json_decode %}
+                <form action="{% url 'delete_trip' previous_trip.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this trip?');">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
                     {% for day in itinerary_data %}
                         <h4>Day {{ forloop.counter }}</h4>
-                        <div>
-                            <h5>Attractions:</h5>
-                            <ul>
-                                {% for attraction in day.attractions %}
-                                    <li>
-                                        <div>{{ attraction.title }}</div>
-                                        <img src="{{ attraction.img_src }}" alt="{{ attraction.title }}">
-                                        <div>{{ attraction.address }}</div>
-                                        {% if attraction.website %}
-                                            <div>
-                                                <a href="{{ attraction.website }}" target="_blank">Website</a>
-                                            </div>
-                                        {% endif %}
-                                        <div>{{ attraction.rating }}</div>
-                                        <p>Price Range: {{ attraction.price_range }}</p>
-                                        {% if attraction.opening_hours %}
-                                            <div>
-                                                <h6>Opening hours:</h6>
-                                                <ul>
-                                                    {% for hour in attraction.opening_hours %}
-                                                        <li>{{ hour }}</li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                        {% if day.attractions %}
+                            <div>
+                                <h5>Attractions:</h5>
+                                <ul>
+                                    {% for attraction in day.attractions %}
+                                        <li>
+                                            <div>{{ attraction.title }}</div>
+                                            <img src="{{ attraction.img_src }}" alt="{{ attraction.title }}">
+                                            <div>{{ attraction.address }}</div>
+                                            {% if attraction.website %}
+                                                <div>
+                                                    <a href="{{ attraction.website }}" target="_blank">Website</a>
+                                                </div>
+                                            {% endif %}
+                                            <div>{{ attraction.rating }}</div>
+                                            <p>Price Range: {{ attraction.price_range }}</p>
+                                            {% if attraction.opening_hours %}
+                                                <div>
+                                                    <h6>Opening hours:</h6>
+                                                    <ul>
+                                                        {% for hour in attraction.opening_hours %}
+                                                            <li>{{ hour }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% else %}
+                            <div>
+                                <h5>Rest Day</h5>
+                            </div>
+                        {% endif %}
                         {# Add sections for restaurants and hotels in a similar way #}
                     {% endfor %}
                 {% endwith %}
