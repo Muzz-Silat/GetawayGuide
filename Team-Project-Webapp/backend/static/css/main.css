@@ -24192,7 +24192,7 @@ h6 {
 .u-overlap.u-overlap-transparent .u-header,
 .u-image,
 .u-gradient {
-  color: #111111;
+  color: black;
 }
 .u-shading,
 .u-overlap.u-overlap-contrast .u-header {
@@ -24200,7 +24200,7 @@ h6 {
 }
 .u-body {
   color: #111111;
-  background-color: #ffffff;
+  background-color: var(--primary-home-sec6-background);
   --effect-scale: 1.1;
 }
 /*end-variables color*/
@@ -26810,7 +26810,7 @@ section.u-palette-1-light-1:before,
 .u-container-layout.u-container-layout.u-palette-1-light-1:before,
 .u-table-alt-palette-1-light-1 tr:nth-child(even) {
   color: #ffffff;
-  background-color: #77aad9;
+  background-color: var(--primary-home-sec3-background);
 }
 .u-input.u-palette-1-light-1,
 .u-field-input.u-palette-1-light-1,
@@ -26868,7 +26868,7 @@ section.u-palette-1-light-2:before,
 .u-container-layout.u-container-layout.u-palette-1-light-2:before,
 .u-table-alt-palette-1-light-2 tr:nth-child(even) {
   color: #111111;
-  background-color: #adcce9;
+  background-color: var(--primary-home-sec1-background);
 }
 .u-input.u-palette-1-light-2,
 .u-field-input.u-palette-1-light-2,
@@ -26925,8 +26925,8 @@ section.u-palette-1-light-3:before,
 .u-palette-1-light-3.u-sidenav:before,
 .u-container-layout.u-container-layout.u-palette-1-light-3:before,
 .u-table-alt-palette-1-light-3 tr:nth-child(even) {
-  color: #111111;
-  background-color: #e9f2fa;
+  color: var(--primary-home-sec2-font-color);
+  background-color: var(--primary-home-sec2-background);
 }
 .u-input.u-palette-1-light-3,
 .u-field-input.u-palette-1-light-3,
@@ -26984,7 +26984,7 @@ section.u-palette-1-base:before,
 .u-container-layout.u-container-layout.u-palette-1-base:before,
 .u-table-alt-palette-1-base tr:nth-child(even) {
   color: #ffffff;
-  background-color: #478ac9;
+  background-color: var(--primary-home-last-background);
 }
 .u-input.u-palette-1-base,
 .u-field-input.u-palette-1-base,
@@ -29303,9 +29303,38 @@ section.u-white:before,
 .u-white.u-sidenav:before,
 .u-container-layout.u-container-layout.u-white:before,
 .u-table-alt-white tr:nth-child(even) {
-  color: #111111;
-  background-color: #ffffff;
+  color: var(--primary-nav-font-color);
+  background-color: var(--primary-nav-background);
 }
+
+:root {
+  --primary-nav-background: white;
+  --primary-nav-font-color: #111111;
+  --primary-home-sec1-background: #adcce9;
+  --primary-home-sec2-background: #e9f2fa;
+  --primary-home-sec2-font-color: #111111;
+  --primary-home-sec3-background: #77aad9;
+  --primary-home-last-background: #478ac9;
+  --primary-home-sec6-background: #ffffff;
+  --primary-setting-font-color: #111111;
+  --primary-travel-form-color: #ffffff;
+  --primary-recommend-font-color: black;
+}
+
+.dark-theme{
+  --primary-nav-background: black;
+  --primary-nav-font-color: white;
+  --primary-home-sec1-background: black;
+  --primary-home-sec2-background: black;
+  --primary-home-sec2-font-color: white;
+  --primary-home-sec3-background: black;
+  --primary-home-last-background: #478ac9;
+  --primary-home-sec6-background: black;
+  --primary-setting-font-color: white;
+  --primary-travel-form-color: #464646;
+  --primary-recommend-font-color: white;
+}
+
 .u-input.u-white,
 .u-field-input.u-white,
 .u-button-style.u-white,
@@ -39256,7 +39285,7 @@ li.active > a.u-button-style.u-text-black,
 li.active > a.u-button-style.u-text-black[class*="u-border-"],
 a.u-button-style.u-text-black,
 a.u-button-style.u-text-black[class*="u-border-"] {
-  color: #000000 !important;
+  color: var(--primary-nav-font-color);
 }
 a.u-button-style.u-text-black:hover,
 a.u-button-style.u-text-black[class*="u-border-"]:hover,
@@ -41271,11 +41300,12 @@ a.u-link.u-text-hover-grey-90:hover {
         }
         h2:not(.u-subtitle)
         {
-        font-weight: 400;
-        font-size: 3rem;
+        font-weight: 500;
+        font-size: 3.5rem;
         line-height: 1.1;
         margin-top: 20px;
         margin-bottom: 20px;
+        color: var(--primary-recommend-font-color);
         }
         h3
         {
@@ -41666,7 +41696,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-input
         {
         border-color: #b3b3b3;
-        background-color: #ffffff;
+        background-color: var(--primary-travel-form-color);
         }
         /** color-rules **/
 

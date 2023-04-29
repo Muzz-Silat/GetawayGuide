@@ -59,8 +59,10 @@
                     <a href="{% url 'dashboard' %}" class="profile-picture-icon">
                       <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
                     </a>
+                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 2px;  padding 10px 20px; margin-left: 20px;">
                   {% else %}
                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
+                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 2px;  padding 10px 20px; margin-left: 20px;">
                   {% endif %}
                 {% endwith %}
               {% endif %}
@@ -145,6 +147,18 @@
       </a>
       <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a>
     </footer>
+    <script>
+      var icon = document.getElementById("icon");
+
+      icon.onclick = function() {
+          document.body.classList.toggle("dark-theme");
+          if(document.body.classList.contains("dark-theme")) {
+              icon.src = "../static/images/sun.png";
+          } else{
+              icon.src = "../static/images/moon.png"
+          }
+      }
+  </script>
   </body>
 </html>
 

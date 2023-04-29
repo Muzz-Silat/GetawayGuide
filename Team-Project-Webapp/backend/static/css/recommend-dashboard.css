@@ -1,5 +1,19 @@
+:root {
+  --primary-background-image: url("../images/background-1.jpg");
+  --primary-text-color: black;
+  --primary-card-background: white;
+  --primary-font-color: black;
+}
+
+.dark-theme {
+  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-text-color: white;
+  --primary-card-background: black;
+  --primary-font-color: white;
+}
+
 .u-section-1 {
-    background-image: url("../images/background-1.jpg");
+    background-image: var(--primary-background-image);
   }
   
   .u-section-1 .u-sheet-1 {
@@ -10,6 +24,7 @@
     font-weight: 400;
     font-size: 4.5rem;
     margin: 92px auto 60px;
+    color: var(--primary-font-color);
   }
   .btn1-text{
     color: #ffffff;
@@ -18,7 +33,7 @@
     color: #ffffff !important;
   }
   .card{
-    background-color: white;
+    background-color:var(--primary-card-background);
     border-radius: 16px;
     padding: 0 0 10px 0;
     height: 300px;
@@ -38,7 +53,7 @@
 }
 .ML-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-text-color);
     font-family: "Open Sans", sans-serif;
 }
 .OPENAI-header{
@@ -54,7 +69,7 @@
 }
 .OPENAI-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-text-color);
     font-family: "Open Sans", sans-serif;
 }
 

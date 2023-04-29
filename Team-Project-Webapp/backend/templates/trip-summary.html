@@ -33,6 +33,7 @@
 </head>
 <body>
     <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script>
+    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 2px;  padding 10px 20px; margin-left: 20px;">
     <h1>Trip Summary</h1>
     <div class="itinerary-container">
         {% for day in itinerary_data %}
@@ -118,7 +119,17 @@
         Total Price Estimate: ${{ total_price }}
 
     </div>
+    <script>
+        var icon = document.getElementById("icon");
+  
+        icon.onclick = function() {
+            document.body.classList.toggle("dark-theme");
+            if(document.body.classList.contains("dark-theme")) {
+                icon.src = "../static/images/sun.png";
+            } else{
+                icon.src = "../static/images/moon.png"
+            }
+        }
+    </script>
 </body>
-
-
 </html>

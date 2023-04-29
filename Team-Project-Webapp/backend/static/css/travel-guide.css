@@ -1,5 +1,25 @@
 .u-section-1 {
-  background-image: url("../images/background-1.jpg");
+  background-image: var(--primary-background-image);
+}
+
+:root {
+  --primary-background-image: url("../images/background-1.jpg");
+  --primary-font-color: black;
+}
+
+.dark-theme {
+  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-font-color: white;
+}
+
+.big-title {
+  color: var(--primary-font-color);
+  font-weight: 500;
+}
+
+.guide-title {
+  color: var(--primary-font-color);
+  font-weight: 500;
 }
 
 .u-section-1 .u-sheet-1 {

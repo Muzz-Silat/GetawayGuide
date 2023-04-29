@@ -114,11 +114,22 @@
       animation-delay: 8s;
     }
   }
-  
+
+:root {
+  --primary-background-image: url("../images/background-1.jpg");
+  --primary-background-color: #478ac9;
+  --primary-background-color1: #387cbd;
+}
+
+.dark-theme {
+  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-background-color: black;
+  --primary-background-color1: black;
+}  
   
 .u-section-1 .u-image-1 {
     min-height: 1024px;
-    background-image: url("../images/background-1.jpg");
+    background-image: var( --primary-background-image);
     background-position: 50% 50%;
   }
   
@@ -177,12 +188,12 @@
     border-radius: 0;
     align-self: flex-start;
     border-radius: 20px;
-    background-color: #478ac9;
+    background-color: var(--primary-background-color);
     color: #ffffff;
     border-width: 0;
 }
 .press-search:hover{
-    background-color: #387cbd;
+    background-color: var(--primary-background-color1);
     color: #e6e6e6;
 }
 label{

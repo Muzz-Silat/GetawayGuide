@@ -1,6 +1,22 @@
 .u-section-1 {
-    background-image: url("../images/background-1.jpg");
-  }
+  background-image: var(--primary-background-image);
+}
+
+:root {
+  --primary-background-image: url("../images/background-1.jpg");
+  --primary-font-color: black;
+  --primary-card-background: white;
+}
+
+.dark-theme {
+  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-font-color: white;
+  --primary-card-background: black;
+}
+
+.set-name {
+  color: var(--primary-font-color);
+}
   
   .u-section-1 .u-sheet-1 {
     min-height: 50vw;
@@ -20,7 +36,7 @@
     margin-bottom: 20%;
   }
   .card{
-    background-color: white;
+    background-color:var(--primary-card-background);
     border-radius: 16px;
     padding: 0 0 10px 0;
     height: 100%;
@@ -39,7 +55,7 @@
 }
 .update-profile-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-font-color);
     font-family: "Open Sans", sans-serif;
 }
 
@@ -56,7 +72,7 @@
 }
 .change-pass-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-font-color);
     font-family: "Open Sans", sans-serif;
 }
 .delete-account-header{
@@ -73,7 +89,7 @@
 }
 .delete-account-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-font-color);
     font-family: "Open Sans", sans-serif;
 }
 
@@ -90,7 +106,7 @@
 }
 .logout-text{
     font-size: 24px;
-    color: black;
+    color: var(--primary-font-color);
     font-family: "Open Sans", sans-serif;
 }
 

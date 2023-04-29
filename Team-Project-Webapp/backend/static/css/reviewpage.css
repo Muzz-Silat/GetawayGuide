@@ -7,7 +7,24 @@
   height: auto;
   margin-top: 8px;
   margin-bottom: 0;
-  background-image: url("../images/background-1.jpg");
+  background-image: var(--primary-background-image);
+}
+:root {
+  --primary-background-image: url("../images/background-1.jpg");
+  --primary-font-color: black;
+}
+
+.dark-theme {
+  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-font-color: white;
+}
+
+.cust-rev {
+  color: var(--primary-font-color);
+}
+
+.cust-bigrev {
+  color: var(--primary-font-color);
 }
 
 
@@ -107,6 +124,7 @@
   height: 300px;
   overflow-wrap: break-word;
   scroll-snap-align: start;
+  color: black;
 }
 
 .review-header {
@@ -122,6 +140,7 @@
   font-weight: 700;
   font-size: 24px;
   margin: 0;
+  color: black;
 }
 
 .review-header p {
@@ -129,6 +148,7 @@
   font-size: 14px;
   margin: 0;
   padding-top: 5px;
+  color: black;
 }
 
 .review-body {
@@ -138,6 +158,7 @@
   font-family: Arial;
   font-weight: 700;
   font-size: 18px;
+  color: black;
 }
 
 .review-footer {
@@ -147,12 +168,14 @@
   justify-content: space-between;
   height: 20px;
   margin-top: 20px;
+  color: black;
 }
 
 .review-footer p {
   font-family: Arial;
   font-weight: 700;
   margin: 0;
+  color: black;
 }
 
 .review-footer a {

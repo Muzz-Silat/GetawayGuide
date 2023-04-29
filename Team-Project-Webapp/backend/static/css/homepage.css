@@ -1,7 +1,17 @@
 .u-section-1 {
-  background-image: url("../images/page1.jpg");
+  background-image: var(--primary-background-image1);
   background-position: 0% 50%;
   min-height: 929px;
+}
+
+:root {
+  --primary-background-image1: url("../images/page1.jpg");
+  --primary-background-image2: url("../images/greece.jpg");
+}
+
+.dark-theme {
+  --primary-background-image1: url("../images/page1-night.jpg");
+  --primary-background-image2: url("../images/greece-night.jpg");
 }
 
 .u-section-1 .u-group-1 {
@@ -1086,7 +1096,7 @@ html{
     margin-left: 0;
   }
 } .u-section-7 {
-  background-image: url("../images/greece.jpg");
+  background-image: var(--primary-background-image2);
   background-position: 50% 50%;
 }
 
