@@ -92,10 +92,10 @@
                     <a href="{% url 'dashboard' %}" class="profile-picture-icon">
                       <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
                     </a>
-                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 2px;  padding 10px 20px; margin-left: 20px;">
+                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
                   {% else %}
                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
-                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 2px;  padding 10px 20px; margin-left: 20px;">
+                    <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
                   {% endif %}
                 {% endwith %}
               {% endif %}
@@ -218,6 +218,8 @@
         <div id="markers-data" style="display:none;">{{ markers|safe }}</div>
         </div>
       </div>
+      <br>
+      <br>
     </section>
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-black u-clearfix u-footer u-footer" id="sec-ffea"><p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Alpha Project Disclaimer: This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g. financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed.</p>
       <a  class="u-image u-logo u-image-1" data-image-width="809" data-image-height="308">
@@ -226,15 +228,22 @@
       <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a></footer>
       <script>
         var icon = document.getElementById("icon");
-  
-        icon.onclick = function() {
-            document.body.classList.toggle("dark-theme");
-            if(document.body.classList.contains("dark-theme")) {
-                icon.src = "../static/images/sun.png";
-            } else{
-                icon.src = "../static/images/moon.png"
-            }
+        var body = document.body;
+        var isDarkMode = localStorage.getItem("darkMode");
+        if (isDarkMode === "true") {
+          body.classList.add("dark-theme");
+          icon.src = "../static/images/sun.png";
         }
+        icon.onclick = function() {
+          body.classList.toggle("dark-theme");
+          if (body.classList.contains("dark-theme")) {
+            icon.src = "../static/images/sun.png";
+            localStorage.setItem("darkMode", "true");
+          } else {
+            icon.src = "../static/images/moon.png";
+            localStorage.setItem("darkMode", "false");
+          }
+        };
     </script>
   </body>
 </html>
