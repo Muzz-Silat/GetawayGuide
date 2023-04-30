@@ -1,1 +1,238 @@
-/* need to do still */
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.6;
+    background-image: url("../images/background-1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+}
+.day, .days-message {
+    font-family: "Open Sans", sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+}
+.trip-to{
+    font-family: "Open Sans", sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+}
+.places-container, .day-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+}
+
+.places-container{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.place-item {
+    flex: 0 0 auto;
+    margin-right: 1rem;
+    width: 400px;
+    background-color: #f1f1f1;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: move;
+    transition: 0.2s;
+    opacity: none;
+}
+.place-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.day-container {
+    min-height: 400px;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    position: relative; /* Add this line */
+    z-index: 1; /* Add this line */
+    background-color: #98c1d9;
+}
+.ui-draggable-dragging {
+    z-index: 2 !important; /* Add this line */
+}
+.website-url {
+    word-break: break-all;
+}
+
+img {
+    max-height: 300px;
+    width: auto;
+}
+
+.remove-item {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.remove-item:hover {
+    background-color: #bbb;
+}
+
+.place-item-container {
+    position: relative;
+}
+.day-wrapper {
+    position: relative;
+}
+.rest-day-btn {
+    position: absolute;
+    right: 2%;
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #1A1A1A;
+    border-radius: 0.9375em;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 3.75em;
+    min-width: 0;
+    outline: none;
+    padding: 1em 2.3em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+    z-index: 10;
+}
+
+.rest-day-btn:disabled {
+    pointer-events: none;
+}
+
+.rest-day-btn:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.rest-day-btn:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.rest-day-message {
+    display: none;
+    font-style: "Open Sans" sans-serif;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+}
+.background-image-container {
+    background-image: url("../images/background-1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.places-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.places-container::-webkit-scrollbar-thumb {
+    background-color: #4070f4;
+    border-radius: 25px;
+}
+
+.places-container::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+.places-container::-webkit-scrollbar-track{
+    background-color: white;
+}
+.final-btn {
+    position: relative;
+    left: 45%;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 0.8em 1.3em 0.8em 0.9em;
+    color: black;
+    background: #ffffff;
+    border: 3px solid black;
+    letter-spacing: 0.05em;
+    border-radius: 16px;
+  }
+  
+  .final-btn svg {
+    margin-right: 3px;
+    transform: rotate(30deg);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  .final-btn span {
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  .final-btn:hover svg {
+    transform: translateX(5px) rotate(90deg);
+  }
+  
+  .final-btn:hover span {
+    transform: translateX(7px);
+  }
+  .back-btn {
+    position: absolute;
+    left: 5%;
+    top: 8%;
+    height: 3.5em;
+    width: 200px;
+    align-items: center;
+    justify-content: center; 
+    background-color: #eeeeee4b;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: 3px solid black;
+    background: #fff;
+    font-size: 22px;
+   }
+   
+   .back-btn > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 32px;
+    font-weight: 400;
+    transition: all 0.4s ease-in;
+   }
+   
+   .back-btn:hover > svg {
+    font-size: 1.6em;
+    font-weight: 400;
+    transform: translateX(-5px);
+   }
+   
+   .back-btn:hover {
+    transform: translateY(-2px);
+   }

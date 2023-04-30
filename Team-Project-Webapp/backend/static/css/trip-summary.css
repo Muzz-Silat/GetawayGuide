@@ -1,0 +1,147 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.days-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    width: 1500px;
+}
+
+.day-card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.scrollable-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.card-list {
+    display: inline-flex;
+    gap: 16px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.card-item {
+    flex: 0 0 auto;
+}
+
+.card {
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 500px;
+    min-width: 500px;
+    border-radius: 10px;
+}
+
+.card h5 {
+    margin-bottom: 5px;
+}
+
+.card p {
+    margin-bottom: 10px;
+}
+
+.card img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.opening-hours {
+    margin-top: 10px;
+}
+
+.opening-hours ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.cost-estimate-card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.cost-estimate-card h2 {
+    margin-bottom: 10px;
+}
+
+.cost-estimate-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cost-estimate-card ul li {
+    margin-bottom: 10px;
+}
+
+.cost-estimate-card h5 {
+    margin-bottom: 5px;
+}
+.card .address {
+    margin-bottom: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.day-text{
+    text-align: center;
+}
+
+.scrollable-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #222222;
+    border-radius: 25px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover{
+    background: gray;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+.u-section-1 {
+    background-image: url("../images/background-1.jpg");
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 50vw;
+  }
+  
+  .u-section-1 .u-text-1 {
+    font-weight: 400;
+    font-size: 4.5rem;
+    margin: 92px auto 60px;
+  }
+  
+@media (max-width: 767px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3.75rem;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3rem;
+    }
+  }
+  
