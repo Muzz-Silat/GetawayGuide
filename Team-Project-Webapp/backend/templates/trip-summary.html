@@ -191,16 +191,16 @@
     </div>
 </body>
 </html> {% endcomment %}
+{% load static %}
 {% load custom_filters %}
-{% load static%}
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Create Review">
+    <meta name="keywords" content="Trip Summary">
     <meta name="description" content="">
-    <title>Create review</title>
+    <title>Trip Summary</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/trip-summary.css' %}" media="screen">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -217,7 +217,7 @@
     }
     </script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Create review">
+    <meta property="og:title" content="Trip Summary">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
   </head>
@@ -360,15 +360,15 @@
         var isDarkMode = localStorage.getItem("darkMode");
         if (isDarkMode === "true") {
           body.classList.add("dark-theme");
-          icon.src = "../static/images/sun.png";
+          icon.src = "{% static 'images/sun.png' %}";
         }
         icon.onclick = function() {
           body.classList.toggle("dark-theme");
           if (body.classList.contains("dark-theme")) {
-            icon.src = "../static/images/sun.png";
+            icon.src = "{% static 'images/moon.png' %}";
             localStorage.setItem("darkMode", "true");
           } else {
-            icon.src = "../static/images/moon.png";
+            icon.src = "{% static 'images/moon.png' %}";
             localStorage.setItem("darkMode", "false");
           }
         };

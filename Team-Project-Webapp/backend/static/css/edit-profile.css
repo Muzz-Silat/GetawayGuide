@@ -30,6 +30,7 @@ body {
   z-index: -1;
 }
 
+
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -78,11 +79,12 @@ body {
 
 .form-field label {
   margin-bottom: 5px;
+  color: var(--primary-font-color);
 }
 
 .save-changes-button {
-  background-color: black;
-  color: #fff;
+  background-color: var(--primary-btn-background-color);
+  color: var(--primary-btn-font-color);
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
@@ -98,7 +100,7 @@ body {
 .content-container {
   max-width: 50%;
   margin: 0 auto 10%;
-  background-color: #f1f1f1;
+  background-color: var(--primary-card-background);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -112,11 +114,18 @@ body {
 :root {
   --primary-background-image: url("../images/background-1.jpg");
   --primary-font-color: black;
+  --primary-card-background: #f1f1f1;
+  --primary-btn-background-color: black;
+  --primary-btn-font-color: rgb(255, 255, 255);
 }
 
 .dark-theme {
   --primary-background-image: url("../images/background-1-1.jpg");
   --primary-font-color: white;
+  --primary-card-background: black;
+  --primary-btn-background-color: white;
+  --primary-btn-font-color: black;
+
 }
 
 .edit-prof {

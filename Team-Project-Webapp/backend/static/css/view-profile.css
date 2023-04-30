@@ -4,7 +4,7 @@
   align-items: center;
   max-width: 50%;
   margin: 0 auto 10%;
-  background-color: #f1f1f1;
+  background-color: var(--primary-card-background);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -35,6 +35,7 @@
   margin-bottom: 15px;
   font-size: 18px;
   text-align: center;
+  color: var(--primary-card-font-color);
 }
 
 .preferences{
@@ -42,8 +43,8 @@
 }
 
 .edit-button {
-  background-color: black;
-  color: #fff;
+  background-color: var(--primary-btn-background-color);
+  color: var(--primary-btn-font-color);
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
@@ -60,11 +61,19 @@
 :root {
   --primary-background-image: url("../images/background-1.jpg");
   --primary-font-color: black;
+  --primary-card-background: #f1f1f1;
+  --primary-card-font-color: black;
+  --primary-btn-background-color: black;
+  --primary-btn-font-color: rgb(255, 255, 255);
 }
 
 .dark-theme {
   --primary-background-image: url("../images/background-1-1.jpg");
   --primary-font-color: white;
+  --primary-card-background: black;
+  --primary-card-font-color: white;
+  --primary-btn-background-color: white;
+  --primary-btn-font-color: black;
 }
 
 .prof-title {
