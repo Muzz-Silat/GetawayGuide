@@ -14,7 +14,7 @@
 }
 
 .day-card {
-    background-color: #f1f1f1;
+    background-color: var(--primary-card-background);
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -39,7 +39,7 @@
 }
 
 .card {
-    background-color: #fff;
+    background-color:#f1f1f1;
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -72,10 +72,18 @@
 }
 
 .cost-estimate-card {
-    background-color: #f1f1f1;
+    background-color: var(--primary-card-background);
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+}
+
+.cost-name {
+    color: var(--primary-font-color) !important;
+}
+
+.trip-name{
+    color: var(--primary-trip-main-color) !important;
 }
 
 .cost-estimate-card h2 {
@@ -101,6 +109,7 @@
 }
 .day-text{
     text-align: center;
+    color: var(--primary-font-color) !important;
 }
 
 .scrollable-container::-webkit-scrollbar {
@@ -119,12 +128,51 @@
 .scrollable-container::-webkit-scrollbar-track {
     background-color: #f1f1f1;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    font-size: 36px;
+    line-height: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .back-to-top:hover {
+    background-color: #555;
+  }
+
+  :root {
+    --primary-background-image: url("../images/background-1.jpg");
+    --primary-font-color: black;
+    --primary-card-background: #f1f1f1;
+    --primary-trip-main-color: black;
+  }
+  
+  .dark-theme {
+    --primary-background-image: url("../images/background-1-1.jpg");
+    --primary-font-color: black;
+    --primary-card-background: #a5a5a5;
+    --primary-trip-main-color: white;
+  }
+
+
 .u-section-1 {
-    background-image: url("../images/background-1.jpg");
+    background-image: var(--primary-background-image);
   }
   
   .u-section-1 .u-sheet-1 {
     min-height: 50vw;
+    color: var(--primary-font-color);
   }
   
   .u-section-1 .u-text-1 {

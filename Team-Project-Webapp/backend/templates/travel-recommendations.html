@@ -141,7 +141,27 @@
         }
       };
   </script>
-  </body>
+  <button onclick="scrollToTop()" class="back-to-top">↑</button>
+  <script>
+    window.addEventListener("scroll", function() {
+      var button = document.querySelector(".back-to-top");
+  
+      // Show the button when scrolling down
+      if (window.scrollY > 0) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    });
+  
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Use smooth scrolling animation
+      });
+    }
+  </script>
+</body>
 </html>
   
    

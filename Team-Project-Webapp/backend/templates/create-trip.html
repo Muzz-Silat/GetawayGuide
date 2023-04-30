@@ -52,6 +52,9 @@
     </script>
 </head>
 <body>
+    <div style="display: grid; justify-items: end;">
+        <img src="../static/images/moon.png" id="icon" height="30" width="30.5" style="position: relative; top: 7px; padding: 10px 20px;">
+    </div>      
     <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script>
         <p class="trip-to">Trip To {{ location }}</p>
         <button class="back-btn" onclick="history.back()">
@@ -271,7 +274,46 @@
             </div>
             {% endfor %}
             </div>
-        </div>   
+        </div>
+        <script>
+            var icon = document.getElementById("icon");
+            var body = document.body;
+            var isDarkMode = localStorage.getItem("darkMode");
+            if (isDarkMode === "true") {
+              body.classList.add("dark-theme");
+              icon.src = "../static/images/sun.png";
+            }
+            icon.onclick = function() {
+              body.classList.toggle("dark-theme");
+              if (body.classList.contains("dark-theme")) {
+                icon.src = "../static/images/sun.png";
+                localStorage.setItem("darkMode", "true");
+              } else {
+                icon.src = "../static/images/moon.png";
+                localStorage.setItem("darkMode", "false");
+              }
+            };
+        </script> 
+        <button onclick="scrollToTop()" class="back-to-top">↑</button>
+        <script>
+          window.addEventListener("scroll", function() {
+            var button = document.querySelector(".back-to-top");
+        
+            // Show the button when scrolling down
+            if (window.scrollY > 0) {
+              button.style.display = "block";
+            } else {
+              button.style.display = "none";
+            }
+          });
+        
+          function scrollToTop() {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth" // Use smooth scrolling animation
+            });
+          }
+        </script>  
 </body>
 </html>
        

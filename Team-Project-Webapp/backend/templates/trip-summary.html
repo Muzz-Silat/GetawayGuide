@@ -253,8 +253,10 @@
                   <a href="{% url 'dashboard' %}" class="profile-picture-icon">
                     <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
                   </a>
+                  <img src="{% static 'images/moon.png' %}" id="icon" height="30" width="30.5" style="position: relative; top: 7px; padding: 10px 20px; margin-left: 20px;">
                 {% else %}
                   <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
+                  <img src="{% static 'images/moon.png' %}" id="icon" height="30" width="30.5" style="position: relative; top: 7px; padding: 10px 20px; margin-left: 20px;">
                 {% endif %}
               {% endwith %}
             {% endif %}
@@ -290,7 +292,7 @@
     </header>
     <section class="u-clearfix u-image u-section-1" id="sec-0815" data-image-width="1280" data-image-height="680">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-custom-font u-font-roboto-slab u-text u-text-default u-title u-text-1">Trip Summary</h1> 
+        <h1 class="u-custom-font u-font-roboto-slab u-text u-text-default u-title u-text-1 trip-name">Trip Summary</h1> 
         <div class="container">
             <div class="days-container">
                 {% for day in itinerary_data %}
@@ -300,7 +302,7 @@
                         (Rest Day)
                         {% endif %}</h2>
                         {% if not day.is_rest_day %}
-                        <h3>Itinerary</h3>
+                        <h3 class = "cost-name">Itinerary</h3>
                         <div class="scrollable-container">
                             <ul class="card-list">
                                 {% for attraction in day.attractions %}
@@ -334,7 +336,7 @@
                 {% endfor %}
             </div>
             <div class="cost-estimate-card">
-                <h2>Cost Estimate</h2>
+                <h2 class= "cost-name">Cost Estimate</h2>
                 <ul>
                     <li>
                         <h5>Total</h5>
@@ -352,7 +354,43 @@
       </a>
       <a href="/gdpr/" class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-2 u-radius-50 u-white u-btn-1">GDPR</a>
     </footer>
-  </body>
+    <script>
+        var icon = document.getElementById("icon");
+        var body = document.body;
+        var isDarkMode = localStorage.getItem("darkMode");
+        if (isDarkMode === "true") {
+          body.classList.add("dark-theme");
+          icon.src = "../static/images/sun.png";
+        }
+        icon.onclick = function() {
+          body.classList.toggle("dark-theme");
+          if (body.classList.contains("dark-theme")) {
+            icon.src = "../static/images/sun.png";
+            localStorage.setItem("darkMode", "true");
+          } else {
+            icon.src = "../static/images/moon.png";
+            localStorage.setItem("darkMode", "false");
+          }
+        };
+    </script>
+    <button onclick="scrollToTop()" class="back-to-top">↑</button>
+    <script>
+        window.addEventListener("scroll", function() {
+            var button = document.querySelector(".back-to-top");
+            if (window.scrollY > 0) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth" // Use smooth scrolling animation
+            });
+        }
+    </script>
+</body>
 </html>
   
    

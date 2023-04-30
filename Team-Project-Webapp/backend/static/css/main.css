@@ -29319,6 +29319,8 @@ section.u-white:before,
   --primary-setting-font-color: #111111;
   --primary-travel-form-color: #ffffff;
   --primary-recommend-font-color: black;
+  --primary-input-field-background: #ffffff;
+  --primary-input-field-font:#111111;
 }
 
 .dark-theme{
@@ -29333,14 +29335,17 @@ section.u-white:before,
   --primary-setting-font-color: white;
   --primary-travel-form-color: #464646;
   --primary-recommend-font-color: white;
+  --primary-input-field-background: #464646;
+  --primary-input-field-font: white;
 }
 
 .u-input.u-white,
 .u-field-input.u-white,
 .u-button-style.u-white,
 .u-button-style.u-white[class*="u-border-"] {
-  color: #111111 !important;
-  background-color: #ffffff !important;
+  color: var(--primary-input-field-font) !important;
+  /* background-color: #ffffff !important; */
+  background-color: var(--primary-input-field-background) !important; 
 }
 .u-button-style.u-white:hover,
 .u-button-style.u-white[class*="u-border-"]:hover,
