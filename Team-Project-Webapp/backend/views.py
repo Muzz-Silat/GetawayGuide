@@ -42,10 +42,9 @@ from django.http import Http404
 google_maps_key = 'AIzaSyCbcAtnFhp9_I9SXJEJoli4h544I93DqpE'
 
 def homepage(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
     return render(request,'homepage.html')
 
+@login_required
 def create_itinerary(request):
     API_KEY = google_maps_key
     dietary_restriction = request.GET.get('dietary-restriction')
@@ -147,6 +146,7 @@ def create_itinerary(request):
         return render(request, 'create-trip.html', {'attractions': attractions, 'accessible_attractions': accessible_attractions, 'restaurants': restaurants, 'hotels': hotels, 'location': location, 'dietary_restriction': dietary_restriction, 'accessibility': accessibility, 'custom_results': custom_results, 'custom_query': custom_query, 'date_difference': date_difference, 'days_range': days_range})
     return render(request, 'create-itinerary.html')
     
+@login_required
 def trip_summary(request):
     context = {}
     if request.method == 'POST':
@@ -157,8 +157,6 @@ def trip_summary(request):
             day_obj_list = json.loads(day_obj_str)
 
             for day_obj in day_obj_list:
-                print(day_obj)
-
                 day_number = day_obj.get('day', None)
                 day_items = day_obj.get('items', [])
                 is_rest_day = day_obj.get('is_rest_day', False)
@@ -177,35 +175,15 @@ def trip_summary(request):
                             soup = BeautifulSoup(item, 'html.parser')
                             process_item(soup, day_data)
 
+                day_data['total_price'] = calculate_total_price(day_data)  # Add total price to day_data
                 itinerary_data.append(day_data)
 
-        total_price = 0
-
-
-        for day_data in itinerary_data:
-            for category in ['attractions', 'restaurants', 'hotels']:
-                for item in day_data[category]:
-                    price_range = item.get('price_range')
-                    if price_range and len(price_range.split("-")) == 2:
-                        # Remove newline characters and split the price range string
-                        price_range = price_range.strip().split("-")
-
-                        # Convert the price range values to floats and calculate the average
-                        price = (float(price_range[0][1:]) + float(price_range[1][1:])) / 2
-
-                        total_price += price
-
-                        # Print the price range for debugging purposes
-                        print(f"{item['title']} - Price Range: {price_range}")
-
-        print("Total Price (in view function):", total_price)
-
+        total_price = sum(day_data['total_price'] for day_data in itinerary_data)  # Calculate the overall total price
 
         context = {
             'itinerary_data': itinerary_data,
             'total_price': total_price,
         }
-
 
         # Save the trip summary to the database
         if request.user.is_authenticated:
@@ -215,6 +193,25 @@ def trip_summary(request):
             return redirect('display-trip-summary', trip_id=previous_trip.id)
     return render(request, 'trip-summary.html', context)
 
+
+from bs4 import BeautifulSoup
+
+@login_required
+def display_trip_summary(request, trip_id):
+    previous_trip = get_object_or_404(PreviousTrip, id=trip_id)
+    itinerary_data = json.loads(previous_trip.summary)  # Parse JSON to a dictionary
+
+    total_price = 0
+    for day_data in itinerary_data:
+        day_data['total_price'] = calculate_total_price(day_data)
+        total_price += day_data['total_price']
+
+    context = {
+        'itinerary_data': itinerary_data,
+        'total_price': total_price,
+    }
+
+    return render(request, 'trip-summary.html', context)
 
 def process_item(soup, day_data):
     title = soup.find('h2').text.strip()
@@ -268,31 +265,21 @@ def process_item(soup, day_data):
     day_data[category].append(data)
 
 
+def calculate_total_price(day_data):
+    total_price = 0
+    for category in ['attractions', 'restaurants', 'hotels']:
+        for item in day_data[category]:
+            price_range = item.get('price_range')
+            if price_range and len(price_range.split("-")) == 2:
+                price_range = price_range.strip().split("-")
+                price = (float(price_range[0][1:]) + float(price_range[1][1:])) / 2
+                total_price += price
+    return total_price
 
 
 
 from bs4 import BeautifulSoup
 
-def display_trip_summary(request, trip_id):
-    previous_trip = get_object_or_404(PreviousTrip, id=trip_id)
-    itinerary_data = json.loads(previous_trip.summary)  # Parse JSON to a dictionary
-
-    total_price = 0
-    for day_data in itinerary_data:
-        for category in ['attractions', 'restaurants', 'hotels']:
-            for item in day_data[category]:
-                price_range = item.get('price_range')
-                if price_range and len(price_range.split("-")) == 2:
-                    price_range = price_range.strip().split("-")
-                    price = (float(price_range[0][1:]) + float(price_range[1][1:])) / 2
-                    total_price += price
-
-    context = {
-        'itinerary_data': itinerary_data,
-        'total_price': total_price,
-    }
-
-    return render(request, 'trip-summary.html', context)
 
 
 import json
@@ -586,7 +573,7 @@ def travel_guide(request):
         return render(request, 'travel-guide-form.html')
 
 
-
+@login_required
 def create_profile(request, mode="view"):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -622,13 +609,13 @@ def get_user_profile(request):
             'accessibility_needs': profile.accessibility_needs,
             'preferences': profile.preferences,
         }
-        print(data)
         return JsonResponse(data)
         
     except ObjectDoesNotExist:
         return JsonResponse({'error': 'Profile not found'})
 
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -657,9 +644,11 @@ def delete_account(request):
 
     return render(request, 'delete-account.html')
 
+@login_required
 def settings(request):
   return render(request, 'settings.html')
 
+@login_required
 def previous_trips(request):
     if request.user.is_authenticated:
         previous_trips = PreviousTrip.objects.filter(user=request.user).order_by('-created_at')
@@ -680,7 +669,7 @@ def delete_trip(request, trip_id):
     else:
         return redirect('login')
 
-
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 

@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home' # replace 'home' with the name of your home page URL pattern
 LOGOUT_REDIRECT_URL = 'home' # replace 'home' with the name of your home page URL pattern
-LOGIN_URL = 'home' # replace 'login' with the name of your login page URL pattern
+LOGIN_URL = 'login' # replace 'login' with the name of your login page URL pattern
 
 
 MEDIA_URL = '/media/'

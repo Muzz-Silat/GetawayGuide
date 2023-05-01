@@ -16,7 +16,7 @@ class LoginForm(AuthenticationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'age', 'budget', 'dietary_restrictions', 'accessibility_needs', 'preferences', 'profile_picture')
+        fields = ('first_name', 'last_name', 'age', 'dietary_restrictions', 'accessibility_needs', 'preferences', 'profile_picture')
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -26,5 +26,5 @@ class ReviewForm(forms.ModelForm):
 class ItineraryForm(forms.ModelForm):
     class Meta:
         model = Itinerary
-        fields = ['destination', 'start_date', 'end_date', 'budget', 'dietary_restrictions', 'accessibility_needs', 'preferences']
+        fields = ['destination', 'start_date', 'end_date',  'dietary_restrictions', 'accessibility_needs', 'preferences']
 

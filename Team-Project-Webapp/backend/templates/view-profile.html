@@ -118,9 +118,6 @@
               {% if form.instance.age %}
                 <p class="view-profile-field"><strong>Age:</strong> {{ form.instance.age }}</p>
               {% endif %}
-              {% if form.instance.budget %}
-                <p class="view-profile-field"><strong>Budget:</strong> {{ form.instance.budget }}</p>
-              {% endif %}
               {% if form.instance.dietary_restrictions %}
                 <p class="view-profile-field"><strong>Dietary Restrictions:</strong> {{ form.instance.get_dietary_restrictions_display }}</p>
               {% endif %}

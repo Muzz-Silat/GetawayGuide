@@ -1,0 +1,45 @@
+<section class="u-clearfix u-image u-section-1" id="sec-9124" data-image-width="1280" data-image-height="680">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-align-center u-container-style u-group u-opacity u-opacity-25 u-palette-1-light-3 u-radius-30 u-shape-round u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <h1 class="u-custom-font u-font-roboto-condensed u-text u-text-default u-title u-text-1">Create Itinerary </h1>
+          <div class="u-form u-form-1">
+            <form action="{% url 'create-trip' %}" method="get" style="padding: 50px;" id="itinerary-form">
+              <input type="text" name="location" id="location" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" placeholder="🔍 where to?" required ""> 
+                <label for="start-date">        
+                  <p class="u-custom-font u-font-oswald u-text u-text-default u-text-2">Start:</p>
+                </label>
+                <input type="date" name="start-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="start-date">
+                <label for= "end-date">        
+                  <p class="u-custom-font u-font-oswald u-text u-text-4">End: </p>
+                </label>
+                <input type="date" name="end-date" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="end-date">      
+                <h1 class="u-custom-font u-font-oswald u-text u-text-default u-title u-text-3">Additional Preferences:</h1>
+                <div class="u-form-select-wrapper">
+                  <select name="dietary-restriction" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="dietary-restriction">
+                      <option value="">No Dietary Restriction</option>
+                      <option value="halal">Halal Restaurants</option>
+                      <option value="vegan">Vegan Restaurants</option>
+                      <option value="kosher">Kosher Restaurants</option>
+                  </select>
+                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                </div>
+                <div class="u-form-select-wrapper">
+                  <select name="accessibility" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15 u-white" id="accessibility">
+                    <option value="">No Accessibility Requirement</option>
+                    <option value="wheelchair">Wheelchair Accessible Place</option>
+                    <option value="vision-impaired">Vision Impaired</option>
+                  </select>
+                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                </div>
+                <input type="text" name="custom-query" class="u-border-3 u-border-black u-input u-input-rectangle u-radius-15" id="custom-query" placeholder="Preferences e.g. religion, hobbies">
+              <div class="u-align-center u-form-group u-form-submit">
+                <button type="submit" class="submit-button">Get Started!</button>
+                <button type="button" id="import-from-profile" onclick="importFromProfile()" class="button import-from-profile-button">Import from Profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
