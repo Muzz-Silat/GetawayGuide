@@ -97,18 +97,19 @@
             <ul class="u-nav u-unstyled u-nav-1">
               <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
               <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
-              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
               <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/recommend-dashboard/" style="padding: 10px 20px;">Recommendations</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
               {% if user.is_authenticated %}
               {% with user.profile.profile_picture as profile_picture %}
                 {% if profile_picture %}
                   <a href="{% url 'dashboard' %}" class="profile-picture-icon">
                     <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
                   </a>
-                  <img src="{% static 'images/moon.png' %}" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
+                  <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
                 {% else %}
                   <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
-                  <img src="{% static 'images/moon.png' %}" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
+                  <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
                 {% endif %}
               {% endwith %}
             {% endif %}
@@ -121,8 +122,9 @@
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/recommend-dashboard/">Recommendations</a></li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
                     {% if user.is_authenticated %}
                       {% with user.profile.profile_picture as profile_picture %}
                         {% if profile_picture %}

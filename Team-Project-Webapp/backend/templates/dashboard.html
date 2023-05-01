@@ -36,64 +36,66 @@
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
             <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
                 <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
                 <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-                <g>
+                  <g>
                     <rect y="1" width="16" height="2"></rect>
                     <rect y="7" width="16" height="2"></rect>
                     <rect y="13" width="16" height="2"></rect>
-                </g>
+                  </g>
                 </svg>
-            </a>
+              </a>
             </div>
             <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1">
+              <ul class="u-nav u-unstyled u-nav-1">
                 <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/" style="padding: 10px 20px;">Home</a></li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/create-itinerary/" style="padding: 10px 20px;">Create Itinerary</a></li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/travel-guide/" style="padding: 10px 20px;">Travel Guide</a></li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/recommend-dashboard/" style="padding: 10px 20px;">Recommendations</a></li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="/reviews/" style="padding: 10px 20px;">Reviews</a></li>
                 {% if user.is_authenticated %}
                 {% with user.profile.profile_picture as profile_picture %}
-                {% if profile_picture %}
+                  {% if profile_picture %}
                     <a href="{% url 'dashboard' %}" class="profile-picture-icon">
-                    <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
+                      <img src="{{ profile_picture.url }}" alt="Profile Picture" width="40" height="40" style="border-radius: 50%; border: 2px solid black; position: relative; top: 15px; padding 10px 20px; margin-left: 20px">
                     </a>
                     <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
-                {% else %}
+                  {% else %}
                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-1-base" href="{% url 'dashboard' %}" style="padding: 10px 20px;">Profile</a></li>
                     <img src="../static/images/moon.png" id="icon" height="30" width"30.5" style= "position: relative; top: 7px;  padding 10px 20px; margin-left: 20px;">
-                {% endif %}
+                  {% endif %}
                 {% endwith %}
-            {% endif %}
-            </ul>
+              {% endif %}
+              </ul>
             </div>
             <div class="u-custom-menu u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                 <div class="u-inner-container-layout u-sidenav-overflow">
-                <div class="u-menu-close"></div>
+                  <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
-                    {% if user.is_authenticated %}
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/create-itinerary/">Create Itinerary</a></li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/travel-guide/">Travel Guide</a></li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/recommend-dashboard/">Recommendations</a></li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/reviews/">Reviews</a></li>
+                      {% if user.is_authenticated %}
                         {% with user.profile.profile_picture as profile_picture %}
-                        {% if profile_picture %}
+                          {% if profile_picture %}
                             <a href="{% url 'dashboard' %}" class="profile-picture-icon">
-                            <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
+                              <img src="{{ profile_picture.url }}" alt="Profile Picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black; position: relative; top: 10px;">
                             </a>
-                        {% else %}
+                          {% else %}
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'dashboard' %}">Profile</a></li>
-                        {% endif %}
+                          {% endif %}
                         {% endwith %}
-                    {% endif %}
+                      {% endif %}
                     </ul>
+                  </div>
                 </div>
-                </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-        </nav>
+          </nav>
         </div>
     </header>
     <section class="u-clearfix u-image u-section-1" id="sec-0815" data-image-width="1280" data-image-height="680">
