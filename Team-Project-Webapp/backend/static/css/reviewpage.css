@@ -12,11 +12,13 @@
 :root {
   --primary-background-image: url("../images/background-1.jpg");
   --primary-font-color: black;
+  --primary-btn-background: black;
 }
 
 .dark-theme {
-  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
   --primary-font-color: white;
+  --primary-btn-background: #464646;
 }
 
 .cust-rev {
@@ -76,6 +78,7 @@
   letter-spacing: 1px;
   background-image: none;
   margin: 59px auto 0;
+  background-color: var(--primary-btn-background) !important;
 }
 
 @media (max-width: 1199px) {

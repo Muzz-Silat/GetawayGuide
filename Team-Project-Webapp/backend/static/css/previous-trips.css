@@ -78,13 +78,15 @@
     --primary-font-color: black;
     --primary-card-background: #f1f1f1;
     --primary-title-color: black;
+    --primary-btn-color: black;
   }
   
   .dark-theme {
-    --primary-background-image: url("../images/background-1-1.jpg");
+    --primary-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
     --primary-font-color: black;
     --primary-card-background: #a5a5a5;
     --primary-title-color: white;
+    --primary-btn-color: white;
   }
 
   .day-title{
@@ -271,6 +273,7 @@
     background-color: transparent;
     position: relative;
     border: none;
+    fill: var(--primary-btn-color);
   }
   
   .btn::after {

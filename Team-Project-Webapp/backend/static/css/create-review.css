@@ -5,11 +5,14 @@
 :root {
   --primary-background-image: url("../images/background-1.jpg");
   --primary-font-color: black;
+  --primary-btn-background:black;
 }
 
 .dark-theme {
-  --primary-background-image: url("../images/background-1-1.jpg");
+  --primary-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
   --primary-font-color: white;
+  --primary-btn-background: #464646;
+
 }
 
 .add-rev {
@@ -90,7 +93,7 @@ html{
   font-family: 'Open Sans', sans-serif;
   color: #ffffff;
   font-size: 24px;
-  background: black;
+  background: var(--primary-btn-background);
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
@@ -110,6 +113,7 @@ form{
 }
 label{
   font-size: 22px;
+  color:var(--primary-font-color);
 }
 textarea{
   position: absolute;
@@ -122,4 +126,5 @@ select{
   left: 95px;
   top: 7px;
   border-radius: 5px;
+  color: black;
 }

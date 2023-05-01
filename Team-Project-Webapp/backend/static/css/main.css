@@ -29402,8 +29402,8 @@ section.u-black:before,
 .u-field-input.u-black,
 .u-button-style.u-black,
 .u-button-style.u-black[class*="u-border-"] {
-  color: #ffffff !important;
-  background-color: #000000 !important;
+  color: #ffffff;
+  background-color: #000000;
 }
 .u-button-style.u-black:hover,
 .u-button-style.u-black[class*="u-border-"]:hover,

@@ -299,10 +299,16 @@
 
 :root {
 --primary-create-background-image: url("../images/background-1.jpg");
+--primary-submit-btn-background:#000000;
+--primary-submit-btn-font-color:#ffffff;
+--primary-submit-hover: #ffffff;
 }
 
 .dark-theme {
---primary-create-background-image: url("../images/background-1-1.jpg");
+--primary-create-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
+--primary-submit-btn-background:#464646;
+--primary-submit-btn-font-color:white;
+--primary-submit-hover: white;
 }
 
 .u-section-1 .u-sheet-1 {
@@ -387,15 +393,15 @@ input, select{
 }
 .submit-button{
   border-radius: 19px;
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--primary-submit-btn-font-color);
+  background-color: var(--primary-submit-btn-background);
   padding: 10px 20px 10px 20px;
   border-width: 0;
 }
 
 .submit-button:hover{
   color: #000000;
-  background-color: #ffffff;
+  background-color: var(--primary-submit-hover);
   cursor: pointer;
 }
 
