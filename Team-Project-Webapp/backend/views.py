@@ -46,12 +46,7 @@ def homepage(request):
         return redirect('login')
     return render(request,'homepage.html')
 
-def create_itinerary(request, country=None):
-    # if country:
-    #     return render(request, 'create-itinerary.html', {'country': country})
-    # else:
-    #     return render(request, 'create-itinerary.html')
-    
+def create_itinerary(request):
     API_KEY = google_maps_key
     dietary_restriction = request.GET.get('dietary-restriction')
     location = request.GET.get('location')

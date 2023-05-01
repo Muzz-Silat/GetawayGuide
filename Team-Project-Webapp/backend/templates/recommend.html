@@ -213,7 +213,7 @@
           <h2 class="recommended-countries-title">Recommended countries:</h2>
           <ul class="recommended-countries">
             {% for country in recommendations|slice:":3" %}
-              <li><a href="{% url 'create_itinerary' country %}" class="recommended-country-{{ forloop.counter }}">{{ country }}</a></li>
+              <li class="recommended-country-{{ forloop.counter }}">{{ country }}</li>
               <br>
             {% endfor %}
           </ul>

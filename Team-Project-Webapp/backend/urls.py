@@ -11,7 +11,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', views.signup, name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('create-itinerary/<str:country>/', views.create_itinerary, name='create_itinerary'),
     path('create-itinerary/', views.create_itinerary, name='create_itinerary'),
     path('reviews/', views.reviews, name='reviews'),
     path('create-review/',views.create_review), 
