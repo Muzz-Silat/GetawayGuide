@@ -117,14 +117,18 @@
 
 :root {
   --primary-background-image: url("../images/background-1.jpg");
-  --primary-background-color: #478ac9;
-  --primary-background-color1: #387cbd;
+  --primary-btn-background: #000000;
+  --primary-btn-font-color: #ffffff;
+  --primary-btn-hover-background: #ffffff;
+  --primary-btn-hover-font-color: #000000;
 }
 
 .dark-theme {
   --primary-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
-  --primary-background-color: black;
-  --primary-background-color1: black;
+  --primary-btn-background: #464646;
+  --primary-btn-font-color: #ffffff;
+  --primary-btn-hover-background: #ffffff;
+  --primary-btn-hover-font-color: #000000;
 }
 
 .back-to-top {
@@ -210,13 +214,13 @@
     border-radius: 0;
     align-self: flex-start;
     border-radius: 20px;
-    background-color: var(--primary-background-color);
-    color: #ffffff;
+    background-color: var(--primary-btn-background);
+    color: var(--primary-btn-font-color);
     border-width: 0;
 }
 .press-search:hover{
-    background-color: var(--primary-background-color1);
-    color: #e6e6e6;
+    background-color: var(--primary-btn-hover-background);
+    color: var(--primary-btn-hover-font-color);
 }
 label{
     font-weight: 700;

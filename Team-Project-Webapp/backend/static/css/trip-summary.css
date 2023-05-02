@@ -180,6 +180,28 @@
     font-size: 4.5rem;
     margin: 92px auto 60px;
   }
+  html{
+    overflow: overlay;
+    }
+  body::-webkit-scrollbar {
+    width: 20px;
+  }
+    
+  body::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+    
+  body::-webkit-scrollbar-thumb {
+    background-color: #767676;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+    
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #03fafe;
+  }
+  
   
 @media (max-width: 767px) {
     .u-section-1 .u-text-1 {

@@ -189,6 +189,35 @@
     background-color: #222222;
 
   }
+  .helper-text{
+    color: #9b9b9b;
+    position: relative;
+    top: 75px;
+    margin-left: -228px;
+    font-size: 14px !important;
+  }
+  html{
+    overflow: overlay;
+  }
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #767676;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #03fafe;
+  }
+  
   
   @media (max-width: 767px) {
     .u-section-1 .u-text-1 {

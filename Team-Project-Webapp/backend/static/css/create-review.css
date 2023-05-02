@@ -5,14 +5,17 @@
 :root {
   --primary-background-image: url("../images/background-1.jpg");
   --primary-font-color: black;
-  --primary-btn-background:black;
+  --primary-submit-btn-background:#000000;
+  --primary-submit-btn-font-color:#ffffff;
+  --primary-submit-hover: #ffffff;
 }
 
 .dark-theme {
   --primary-background-image: linear-gradient(180deg, rgb(0, 29, 56) 0%, rgba(0,15,28,1) 55%, rgba(0,12,24,1) 100%);
   --primary-font-color: white;
-  --primary-btn-background: #464646;
-
+  --primary-submit-btn-background:#464646;
+  --primary-submit-btn-font-color:white;
+  --primary-submit-hover: white;
 }
 
 .add-rev {
@@ -54,6 +57,9 @@
 html{
   overflow: overlay;
 }
+body{
+  overflow-x: hidden;
+}
 ::-webkit-scrollbar {
   width: 20px;
 }
@@ -86,23 +92,20 @@ html{
 }
 
 .create-review-button {
-  top: 470px;
+  top: 450px;
   left: 95px;
   position: absolute;
-  border-radius: 28px;
-  font-family: 'Open Sans', sans-serif;
-  color: #ffffff;
-  font-size: 24px;
-  background: var(--primary-btn-background);
+  border-radius: 15px;
+  color: var(--primary-submit-btn-font-color);
+  background-color: var(--primary-submit-btn-background);
   padding: 10px 20px 10px 20px;
-  text-decoration: none;
+  border-width: 0;
 }
 
 .create-review-button:hover {
-  background-color: #ffffff;
-  text-decoration: none;
-  color: black;
-  border-color: #ffffff;
+  color: #000000;
+  background-color: var(--primary-submit-hover);
+  cursor: pointer;
 }
 form{
   font-size: larger;

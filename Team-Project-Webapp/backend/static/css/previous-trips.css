@@ -79,6 +79,7 @@
     --primary-card-background: #f1f1f1;
     --primary-title-color: black;
     --primary-btn-color: black;
+    --primary-scroll-color: #222222;
   }
   
   .dark-theme {
@@ -87,6 +88,7 @@
     --primary-card-background: #a5a5a5;
     --primary-title-color: white;
     --primary-btn-color: white;
+    --primary-scroll-color: #f1f1f1;
   }
 
   .day-title{
@@ -257,7 +259,7 @@
 }
 
 .day-container::-webkit-scrollbar-thumb, .card::-webkit-scrollbar-thumb {
-    background-color: #222222;
+    background-color: var(--primary-scroll-color);
     border-radius: 25px;
 }
 
@@ -266,7 +268,28 @@
 }
 
 .day-container::-webkit-scrollbar-track, .card::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: transparent;
+}
+html{
+  overflow: overlay;
+  }
+body::-webkit-scrollbar {
+  width: 20px;
+}
+  
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+  
+body::-webkit-scrollbar-thumb {
+  background-color: #767676;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+  
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #03fafe;
 }
 
 .btn {
