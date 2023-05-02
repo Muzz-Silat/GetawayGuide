@@ -106,8 +106,7 @@
 .review-cards {
   position: absolute;
   top: 600px;
-  /* left: 150px; */
-  margin: 0 18%;
+  left: 150px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
