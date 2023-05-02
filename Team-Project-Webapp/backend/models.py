@@ -15,7 +15,7 @@ class Review(models.Model):
     ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     rating = models.IntegerField(choices=RATINGS)
-    comment = models.TextField()
+    comment = models.TextField(max_length=150) 
     date_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -26,14 +26,14 @@ class Itinerary(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     DIETARY_CHOICES = [
         ('No Dietary Restriction', 'No Dietary Restriction'),
-        ('Halal Restaurants', 'Halal Restaurants'),
-        ('Vegan Restaurants', 'Vegan Restaurants'),
-        ('Kosher Restaurants', 'Kosher Restaurants')
+        ('Halal', 'Halal'),
+        ('Vegan', 'Vegan'),
+        ('Kosher', 'Kosher')
     ]
     ACCESSIBILITY_CHOICES = [
         ('No Accessibility Requirement', 'No Accessibility Requirement'),
-        ('Wheelchair Accessible Place', 'Wheelchair Accessible Place'),
-        ('Vision Impaired', 'Vision Impaired')
+        ('Wheelchair', 'Wheelchair'),
+        ('Vision-impaired', 'Vision-impaired')
     ]
     destination = models.CharField(max_length=100)
     start_date = models.DateField()

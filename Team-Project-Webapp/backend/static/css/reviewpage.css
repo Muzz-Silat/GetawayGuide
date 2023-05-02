@@ -63,11 +63,11 @@
 }
 
 .u-section-1 .u-text-2 {
-  position: relative;
-  left: 500px;
+  /* position: relative;
+  left: 500px; */
   font-weight: 400;
   font-size: 1.5rem;
-  margin: 46px 0 0;
+  margin: 46px auto 0;
   max-width: 800px;
 }
 
@@ -106,7 +106,8 @@
 .review-cards {
   position: absolute;
   top: 600px;
-  left: 150px;
+  /* left: 150px; */
+  margin: 0 18%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;

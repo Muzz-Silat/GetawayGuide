@@ -90,19 +90,19 @@ def create_itinerary(request):
 
         # (Continue with the rest of the original code for dietary restriction, restaurants, and hotels)
         # Create the query based on the user's dietary restriction
-        if dietary_restriction == 'halal':
+        if dietary_restriction == 'Halal':
             query = 'halal+restaurants+in+{}'.format(location)
-        elif dietary_restriction == 'vegan':
+        elif dietary_restriction == 'Vegan':
             query = 'vegan+restaurants+in+{}'.format(location)
-        elif dietary_restriction == 'kosher':
+        elif dietary_restriction == 'Kosher':
             query = 'kosher+restaurants+in+{}'.format(location)
         else:
             query = 'restaurants+in+{}'.format(location)
 
          # Create the query based on the user's accessibility requirement
-        if accessibility == 'wheelchair':
+        if accessibility == 'Wheelchair':
             accessibility_query = '+wheelchair+accessible'
-        elif accessibility == 'vision-impaired':
+        elif accessibility == 'Vision-impaired':
             accessibility_query = '+vision+impaired+accessible'
         else:
             accessibility_query = ''
@@ -609,7 +609,9 @@ def get_user_profile(request):
             'accessibility_needs': profile.accessibility_needs,
             'preferences': profile.preferences,
         }
+        print(data)
         return JsonResponse(data)
+
         
     except ObjectDoesNotExist:
         return JsonResponse({'error': 'Profile not found'})
